@@ -744,6 +744,7 @@ input,textarea,select,button{font-family:'Clash Display',sans-serif;}
     <span style="font-size:22px;font-weight:700;color:var(--black);">errands<span style="color:var(--purple);">®</span></span>
     <div style="display:flex;align-items:center;gap:16px;">
       <span style="font-size:13px;color:#555;font-weight:500;cursor:pointer;" onclick="document.getElementById('how-it-works').scrollIntoView({behavior:'smooth'})">How it works</span>
+      <span style="font-size:13px;color:#555;font-weight:500;cursor:pointer;" onclick="document.getElementById('escrow-section').scrollIntoView({behavior:'smooth'})">Escrow</span>
       <span style="font-size:13px;color:#555;font-weight:500;cursor:pointer;" onclick="go('runner-signup')">Become a runner</span>
       <button onclick="go('signin')" style="background:transparent;border:1.5px solid var(--border);color:var(--black);padding:8px 18px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Clash Display',sans-serif;">Sign in</button>
       <button onclick="go('signup')" style="background:var(--purple);border:none;color:#fff;padding:8px 18px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Clash Display',sans-serif;">Get started</button>
@@ -759,8 +760,12 @@ input,textarea,select,button{font-family:'Clash Display',sans-serif;}
         <span style="width:7px;height:7px;border-radius:50%;background:#22c55e;display:inline-block;"></span>
         Now live in Lagos & Abuja
       </div>
-      <h1 style="font-size:clamp(36px,6vw,68px);font-weight:700;color:#fff;line-height:1.15;margin-bottom:20px;max-width:820px;margin-left:auto;margin-right:auto;">Your city is full of <span style="color:#f0c0f5;">trusted people</span><br>ready to help.</h1>
-      <p style="font-size:clamp(15px,2vw,20px);color:rgba(255,255,255,0.85);line-height:1.8;margin-bottom:40px;max-width:600px;margin-left:auto;margin-right:auto;">From market runs to pickups, school runs to office errands — there's a verified runner near you who knows your area, values your trust, and will get it done. No stress. No shortcuts. Just results.</p>
+      <h1 style="font-size:clamp(36px,6vw,68px);font-weight:700;color:#fff;line-height:1.2;margin-bottom:20px;max-width:900px;margin-left:auto;margin-right:auto;">Your city is full of <span style="color:#f0c0f5;">trusted people</span> ready to help.</h1>
+      <p style="font-size:clamp(15px,2vw,20px);color:rgba(255,255,255,0.85);line-height:1.8;margin-bottom:28px;max-width:600px;margin-left:auto;margin-right:auto;">From market runs to pickups, school runs to office errands — there's a verified runner near you who knows your area, values your trust, and will get it done. No stress. No shortcuts. Just results.</p>
+      <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.1);padding:8px 18px;border-radius:10px;font-size:13px;color:rgba(255,255,255,0.8);margin-bottom:32px;border:1px solid rgba(255,255,255,0.15);">
+        <i class="ti ti-shield-lock" style="font-size:16px;color:#f0c0f5;"></i>
+        <span>Includes <strong style="color:#fff;">Errands Escrow</strong> — your money, protected until the job is done</span>
+      </div>
       <div style="display:flex;flex-wrap:wrap;gap:14px;justify-content:center;">
         <button onclick="go('signup')" style="background:#fff;color:var(--purple);border:none;padding:16px 36px;border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;font-family:'Clash Display',sans-serif;">Post an errand →</button>
         <button onclick="go('runner-signup')" style="background:rgba(255,255,255,0.12);color:#fff;border:1.5px solid rgba(255,255,255,0.3);padding:16px 36px;border-radius:12px;font-size:16px;font-weight:600;cursor:pointer;font-family:'Clash Display',sans-serif;">Earn as a runner</button>
@@ -869,6 +874,44 @@ input,textarea,select,button{font-family:'Clash Display',sans-serif;}
     </div>
   </div>
 
+  <!-- ESCROW SECTION -->
+  <div id="escrow-section" style="padding:80px 32px;background:var(--black);">
+    <div style="max-width:900px;margin:0 auto;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;flex-wrap:wrap;">
+        <div>
+          <div style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--purple);margin-bottom:16px;">Errands Escrow</div>
+          <h2 style="font-size:clamp(28px,4vw,44px);font-weight:700;color:#fff;line-height:1.2;margin-bottom:16px;">Your money,<br><span style="color:#f0c0f5;">protected until done.</span></h2>
+          <p style="font-size:15px;color:rgba(255,255,255,0.7);line-height:1.8;margin-bottom:28px;">Nigerians lose money every day because there is no trusted third party between buyer and seller. Errands Escrow changes that. Deposit your funds with us before any transaction. We hold it securely. We release it only when you confirm the job is done, the goods arrived, the service delivered.</p>
+          <p style="font-size:15px;color:rgba(255,255,255,0.7);line-height:1.8;margin-bottom:32px;">From personal transactions to business deals — if trust is the problem, Errands Escrow is the answer.</p>
+          <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:32px;">
+            <div style="display:flex;align-items:center;gap:12px;"><div style="width:32px;height:32px;background:var(--purple);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ti ti-lock" style="color:#fff;font-size:15px;"></i></div><span style="font-size:14px;color:rgba(255,255,255,0.8);">Funds held securely until both parties confirm</span></div>
+            <div style="display:flex;align-items:center;gap:12px;"><div style="width:32px;height:32px;background:var(--purple);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ti ti-receipt-refund" style="color:#fff;font-size:15px;"></i></div><span style="font-size:14px;color:rgba(255,255,255,0.8);">Full refund if terms are not met</span></div>
+            <div style="display:flex;align-items:center;gap:12px;"><div style="width:32px;height:32px;background:var(--purple);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ti ti-building-bank" style="color:#fff;font-size:15px;"></i></div><span style="font-size:14px;color:rgba(255,255,255,0.8);">Backed by licensed financial partners</span></div>
+            <div style="display:flex;align-items:center;gap:12px;"><div style="width:32px;height:32px;background:var(--purple);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ti ti-users" style="color:#fff;font-size:15px;"></i></div><span style="font-size:14px;color:rgba(255,255,255,0.8);">For individuals, businesses, and corporate deals</span></div>
+          </div>
+          <button onclick="go('signup')" style="background:var(--purple);color:#fff;border:none;padding:14px 32px;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;font-family:'Clash Display',sans-serif;">Use Errands Escrow →</button>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          <div style="background:rgba(255,255,255,0.06);border-radius:16px;padding:20px 22px;border:1px solid rgba(255,255,255,0.1);">
+            <div style="font-size:12px;font-weight:700;color:var(--purple);letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;">Personal escrow</div>
+            <div style="font-size:14px;color:rgba(255,255,255,0.8);margin-bottom:8px;line-height:1.6;">Buying something from a stranger online? Paying a freelancer? Sending money to someone you don't fully trust? Let Errands hold it until you're satisfied.</div>
+            <div style="font-size:13px;color:var(--purple);font-weight:600;">Transactions from ₦5,000</div>
+          </div>
+          <div style="background:rgba(255,255,255,0.06);border-radius:16px;padding:20px 22px;border:1px solid rgba(255,255,255,0.1);">
+            <div style="font-size:12px;font-weight:700;color:var(--purple);letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;">Business escrow</div>
+            <div style="font-size:14px;color:rgba(255,255,255,0.8);margin-bottom:8px;line-height:1.6;">Supplier payments, contractor agreements, service contracts. Errands acts as a neutral third party so business gets done without risk on either side.</div>
+            <div style="font-size:13px;color:var(--purple);font-weight:600;">Transactions from ₦100,000</div>
+          </div>
+          <div style="background:rgba(255,255,255,0.06);border-radius:16px;padding:20px 22px;border:1px solid rgba(255,255,255,0.1);">
+            <div style="font-size:12px;font-weight:700;color:var(--purple);letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;">Corporate & institutional</div>
+            <div style="font-size:14px;color:rgba(255,255,255,0.8);margin-bottom:8px;line-height:1.6;">Large-scale guarantees, letters of credit, and institutional escrow in partnership with licensed financial institutions. For deals that require formal backing.</div>
+            <div style="font-size:13px;color:var(--purple);font-weight:600;">Custom arrangements — contact us</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- VISION SECTION -->
   <div style="padding:80px 32px;background:var(--black);text-align:center;">
     <div style="max-width:800px;margin:0 auto;">
@@ -953,7 +996,7 @@ input,textarea,select,button{font-family:'Clash Display',sans-serif;}
   <!-- FOOTER -->
   <div style="background:var(--black);padding:48px 32px 32px;">
     <div style="max-width:1200px;margin:0 auto;">
-      <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px;flex-wrap:wrap;">
+      <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:32px;margin-bottom:40px;flex-wrap:wrap;">
         <div>
           <div style="font-size:22px;font-weight:700;color:#fff;margin-bottom:12px;">errands<span style="color:var(--purple);">®</span></div>
           <p style="font-size:13px;color:rgba(255,255,255,0.45);line-height:1.7;max-width:240px;">Trusted hands, whenever you need them. Building the trust layer for Africa's gig economy.</p>
@@ -964,6 +1007,13 @@ input,textarea,select,button{font-family:'Clash Display',sans-serif;}
           <div style="font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:8px;cursor:pointer;" onclick="go('signup')">Post an errand</div>
           <div style="font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:8px;cursor:pointer;" onclick="go('runner-signup')">Become a runner</div>
           <div style="font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:8px;cursor:pointer;" onclick="document.getElementById('how-it-works').scrollIntoView({behavior:'smooth'})">How it works</div>
+        </div>
+        <div>
+          <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--purple);margin-bottom:14px;">Escrow</div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:8px;">Personal escrow</div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:8px;">Business escrow</div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:8px;">Corporate & institutional</div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.3);margin-bottom:8px;">How escrow works</div>
         </div>
         <div>
           <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--purple);margin-bottom:14px;">Cities</div>
