@@ -724,6 +724,94 @@ input,textarea,select,button{font-family:'Clash Display',sans-serif;}
   }
 }
 
+
+/* ==================== WALLET ==================== */
+#wallet { background: #fff; }
+.wallet-top { background: var(--black); padding: 20px 20px 28px; flex-shrink: 0; }
+.wallet-tr { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+.wallet-title { font-size: 17px; font-weight: 700; color: #fff; }
+.wallet-card { background: var(--purple); border-radius: 16px; padding: 20px; }
+.wallet-lbl { font-size: 10px; color: rgba(255,255,255,0.6); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; }
+.wallet-bal { font-size: 32px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+.wallet-locked { font-size: 12px; color: rgba(255,255,255,0.6); margin-bottom: 16px; }
+.wallet-actions { display: flex; gap: 10px; }
+.wallet-action-btn { flex: 1; background: rgba(255,255,255,0.15); border: none; color: #fff; padding: 10px 8px; border-radius: 10px; font-size: 12px; font-weight: 700; cursor: pointer; font-family: 'Clash Display', sans-serif; display: flex; align-items: center; justify-content: center; gap: 6px; }
+.wallet-body { flex: 1; overflow-y: auto; padding: 20px; padding-bottom: 80px; }
+.tx-item { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 0.5px solid #f5f5f5; }
+.tx-item:last-child { border-bottom: none; }
+.tx-icon { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.tx-icon.credit { background: #f0fdf4; }
+.tx-icon.debit { background: #fef2f2; }
+.tx-icon.lock { background: #fefce8; }
+.tx-info { flex: 1; }
+.tx-desc { font-size: 13px; font-weight: 600; color: var(--black); }
+.tx-date { font-size: 11px; color: var(--muted); margin-top: 2px; }
+.tx-amount { font-size: 14px; font-weight: 700; }
+.tx-amount.credit { color: #16a34a; }
+.tx-amount.debit { color: #dc2626; }
+.tx-amount.lock { color: #ca8a04; }
+
+/* Fund wallet modal */
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 200; display: flex; align-items: flex-end; justify-content: center; }
+.modal-overlay.hidden { display: none; }
+.modal-sheet { background: #fff; border-radius: 20px 20px 0 0; padding: 24px; width: 100%; max-width: 430px; }
+.modal-handle { width: 40px; height: 4px; background: #e5e5e5; border-radius: 2px; margin: 0 auto 20px; }
+.modal-title { font-size: 18px; font-weight: 700; color: var(--black); margin-bottom: 6px; }
+.modal-sub { font-size: 13px; color: var(--muted); margin-bottom: 20px; }
+.amount-presets { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 16px; }
+.amount-preset { background: var(--grey); border: 1.5px solid var(--border); border-radius: 10px; padding: 10px 6px; text-align: center; font-size: 13px; font-weight: 700; color: var(--black); cursor: pointer; font-family: 'Clash Display', sans-serif; }
+.amount-preset.sel { border-color: var(--purple); background: #fdf8fe; color: var(--purple); }
+
+/* ==================== ESCROW ==================== */
+#escrow-tab { background: #fff; }
+.escrow-top { background: var(--black); padding: 20px 20px 24px; flex-shrink: 0; }
+.escrow-header-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+.escrow-title { font-size: 17px; font-weight: 700; color: #fff; }
+.escrow-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.escrow-stat { background: rgba(255,255,255,0.08); border-radius: 10px; padding: 10px 8px; text-align: center; }
+.escrow-stat-v { font-size: 16px; font-weight: 700; color: #fff; }
+.escrow-stat-l { font-size: 9px; color: rgba(255,255,255,0.5); margin-top: 2px; }
+.escrow-body { flex: 1; overflow-y: auto; padding: 16px 20px; padding-bottom: 80px; }
+.escrow-tabs-row { display: flex; gap: 6px; margin-bottom: 20px; }
+.etab { flex: 1; padding: 9px 6px; border-radius: 10px; border: 1.5px solid var(--border); font-size: 11px; font-weight: 700; text-align: center; cursor: pointer; color: var(--muted); background: #fff; font-family: 'Clash Display', sans-serif; }
+.etab.on { background: var(--black); color: #fff; border-color: var(--black); }
+.etab-content { display: none; }
+.etab-content.vis { display: block; }
+
+/* Create escrow form */
+.tier-cards { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+.tier-card { border: 1.5px solid var(--border); border-radius: 12px; padding: 14px; cursor: pointer; }
+.tier-card.sel { border-color: var(--purple); background: #fdf8fe; }
+.tier-card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; }
+.tier-name { font-size: 14px; font-weight: 700; color: var(--black); }
+.tier-fee { font-size: 12px; color: var(--purple); font-weight: 600; }
+.tier-desc { font-size: 12px; color: var(--muted); }
+.tier-min { font-size: 11px; color: #aaa; margin-top: 3px; }
+.tier-radio { width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--border); flex-shrink: 0; }
+.tier-radio.chk { border-color: var(--purple); background: var(--purple); }
+
+/* Escrow status items */
+.escrow-item { border: 1px solid #f0f0f0; border-radius: 14px; padding: 14px; margin-bottom: 12px; cursor: pointer; }
+.escrow-item-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 8px; }
+.escrow-ref { font-size: 11px; color: var(--muted); font-weight: 600; }
+.escrow-status-pill { padding: 3px 10px; border-radius: 8px; font-size: 10px; font-weight: 700; }
+.escrow-status-pill.funded { background: #f0fdf4; color: #16a34a; }
+.escrow-status-pill.pending { background: #fefce8; color: #ca8a04; }
+.escrow-status-pill.released { background: var(--grey); color: #888; }
+.escrow-status-pill.disputed { background: #fef2f2; color: #dc2626; }
+.escrow-desc { font-size: 13px; font-weight: 700; color: var(--black); margin-bottom: 4px; }
+.escrow-parties { font-size: 11px; color: var(--muted); margin-bottom: 10px; }
+.escrow-amount-row { display: flex; align-items: center; justify-content: space-between; }
+.escrow-amount { font-size: 16px; font-weight: 700; color: var(--black); }
+.escrow-actions { display: flex; gap: 8px; margin-top: 12px; }
+.escrow-btn { flex: 1; padding: 10px; border-radius: 8px; font-size: 11px; font-weight: 700; cursor: pointer; font-family: 'Clash Display', sans-serif; border: none; }
+.escrow-btn.release { background: var(--black); color: #fff; }
+.escrow-btn.dispute { background: #fef2f2; color: #dc2626; }
+
+/* Role switch */
+.role-switch { display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.1); padding: 6px 12px; border-radius: 20px; cursor: pointer; border: none; font-family: 'Clash Display', sans-serif; }
+.role-switch span { font-size: 11px; color: #fff; font-weight: 600; }
+
 </style>
 </head>
 <body>
@@ -1120,7 +1208,13 @@ input,textarea,select,button{font-family:'Clash Display',sans-serif;}
 <div class="screen" id="home">
   <div class="home-top">
     <div class="home-top-row">
-      <div class="hav" id="home-av">KO</div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div class="hav" id="home-av">KO</div>
+        <button class="role-switch" id="role-switch-btn" onclick="switchRole()" style="display:none;">
+          <i class="ti ti-switch-horizontal" style="font-size:14px;"></i>
+          <span id="role-switch-label">Switch to Runner</span>
+        </button>
+      </div>
       <div class="hloc"><i class="ti ti-map-pin" style="color:var(--purple);font-size:13px;"></i> <span id="home-city">Lagos</span> <i class="ti ti-chevron-down" style="font-size:12px;"></i></div>
       <i class="ti ti-bell" style="font-size:22px;color:#555;"></i>
     </div>
@@ -1148,7 +1242,7 @@ input,textarea,select,button{font-family:'Clash Display',sans-serif;}
     <div class="ni"><div class="ndot"><i class="ti ti-home on"></i></div><span class="on">Home</span></div>
     <div class="ni" onclick="go('post-errand')"><i class="ti ti-clipboard-list"></i><span>Requests</span></div>
     <div class="ni" onclick="go('chat')"><i class="ti ti-message-2"></i><span>Messages</span></div>
-    <div class="ni"><i class="ti ti-wallet"></i><span>Wallet</span></div>
+    <div class="ni" onclick="go('wallet');loadWallet();"><i class="ti ti-wallet"></i><span>Wallet</span></div>
     <div class="ni" onclick="showProfile()"><i class="ti ti-user"></i><span>Profile</span></div>
   </div>
 </div>
@@ -1415,6 +1509,167 @@ input,textarea,select,button{font-family:'Clash Display',sans-serif;}
   </div>
 </div>
 
+
+<!-- ==================== WALLET SCREEN ==================== -->
+<div class="screen" id="wallet">
+  <div class="wallet-top">
+    <div class="wallet-tr">
+      <span class="wallet-title">My Wallet</span>
+      <i class="ti ti-history" style="color:rgba(255,255,255,0.6);font-size:20px;"></i>
+    </div>
+    <div class="wallet-card">
+      <div class="wallet-lbl">Available balance</div>
+      <div class="wallet-bal" id="wallet-balance">₦0.00</div>
+      <div class="wallet-locked" id="wallet-locked">₦0.00 locked in active errands</div>
+      <div class="wallet-actions">
+        <button class="wallet-action-btn" onclick="showFundModal()"><i class="ti ti-plus"></i> Fund wallet</button>
+        <button class="wallet-action-btn" onclick="toast('Withdrawal coming soon')"><i class="ti ti-arrow-up"></i> Withdraw</button>
+        <button class="wallet-action-btn" onclick="go('escrow-tab')"><i class="ti ti-safe"></i> Escrow</button>
+      </div>
+    </div>
+  </div>
+  <div class="wallet-body">
+    <div class="sec-hdr"><span class="sec-ttl">Transactions</span></div>
+    <div id="wallet-transactions">
+      <div class="empty-state"><p>No transactions yet. Fund your wallet to get started.</p></div>
+    </div>
+  </div>
+  <div class="bnav">
+    <div class="ni" onclick="go('home')"><i class="ti ti-home"></i><span>Home</span></div>
+    <div class="ni" onclick="go('post-errand')"><i class="ti ti-clipboard-list"></i><span>Requests</span></div>
+    <div class="ni" onclick="go('chat')"><i class="ti ti-message-2"></i><span>Messages</span></div>
+    <div class="ni"><div class="ndot"><i class="ti ti-wallet on"></i></div><span class="on">Wallet</span></div>
+    <div class="ni" onclick="showProfile()"><i class="ti ti-user"></i><span>Profile</span></div>
+  </div>
+</div>
+
+<!-- FUND WALLET MODAL -->
+<div class="modal-overlay hidden" id="fund-modal" onclick="if(event.target===this)hideFundModal()">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-title">Fund your wallet</div>
+    <div class="modal-sub">Choose an amount or enter a custom amount</div>
+    <div class="amount-presets">
+      <button class="amount-preset" onclick="selectAmount(2000)">₦2,000</button>
+      <button class="amount-preset" onclick="selectAmount(5000)">₦5,000</button>
+      <button class="amount-preset" onclick="selectAmount(10000)">₦10,000</button>
+      <button class="amount-preset" onclick="selectAmount(20000)">₦20,000</button>
+      <button class="amount-preset" onclick="selectAmount(50000)">₦50,000</button>
+      <button class="amount-preset" onclick="selectAmount(100000)">₦100,000</button>
+    </div>
+    <div class="fg">
+      <label class="lbl">Or enter custom amount</label>
+      <div style="display:flex;"><span class="bpre">₦</span><input class="bin" type="number" id="fund-amount" placeholder="Enter amount" style="border-radius:0 10px 10px 0;"/></div>
+    </div>
+    <div style="background:#f0fdf4;border-radius:10px;padding:10px 14px;margin-bottom:16px;display:flex;align-items:center;gap:8px;">
+      <i class="ti ti-shield-check" style="color:#16a34a;font-size:16px;"></i>
+      <span style="font-size:12px;color:#166534;">Powered by Paystack. Your payment is secure.</span>
+    </div>
+    <button class="btn btn-dark" onclick="processFunding()" style="margin-bottom:10px;">Fund wallet →</button>
+    <button class="btn btn-outline" onclick="hideFundModal()">Cancel</button>
+  </div>
+</div>
+
+<!-- ==================== ESCROW TAB ==================== -->
+<div class="screen" id="escrow-tab">
+  <div class="escrow-top">
+    <div class="escrow-header-row">
+      <span class="escrow-title">Errands Escrow</span>
+      <div style="display:flex;align-items:center;gap:6px;background:rgba(255,255,255,0.1);padding:4px 12px;border-radius:20px;">
+        <div style="width:6px;height:6px;border-radius:50%;background:#22c55e;"></div>
+        <span style="font-size:10px;color:#fff;font-weight:600;">Active</span>
+      </div>
+    </div>
+    <div class="escrow-stats">
+      <div class="escrow-stat"><div class="escrow-stat-v" id="esc-total">0</div><div class="escrow-stat-l">Total escrows</div></div>
+      <div class="escrow-stat"><div class="escrow-stat-v" id="esc-active">0</div><div class="escrow-stat-l">Active</div></div>
+      <div class="escrow-stat"><div class="escrow-stat-v" id="esc-released">0</div><div class="escrow-stat-l">Released</div></div>
+    </div>
+  </div>
+  <div class="escrow-body">
+    <div class="escrow-tabs-row">
+      <button class="etab on" onclick="escrowTab('create',this)">Create</button>
+      <button class="etab" onclick="escrowTab('sent',this)">Sent</button>
+      <button class="etab" onclick="escrowTab('received',this)">Received</button>
+    </div>
+
+    <!-- CREATE ESCROW -->
+    <div class="etab-content vis" id="etab-create">
+      <div style="font-size:12px;color:var(--muted);margin-bottom:16px;line-height:1.6;">Deposit funds with Errands. We hold it securely until both parties confirm.</div>
+      
+      <label class="lbl">Select tier</label>
+      <div class="tier-cards">
+        <div class="tier-card sel" onclick="selTier(this,'personal')">
+          <div class="tier-card-top">
+            <div>
+              <div class="tier-name">Personal</div>
+              <div class="tier-desc">Individual transactions — buying goods, paying freelancers</div>
+              <div class="tier-min">From ₦5,000 · Fee: 2%</div>
+            </div>
+            <div class="tier-radio chk" id="tr-personal"></div>
+          </div>
+        </div>
+        <div class="tier-card" onclick="selTier(this,'business')">
+          <div class="tier-card-top">
+            <div>
+              <div class="tier-name">Business</div>
+              <div class="tier-desc">Supplier payments, contracts, service agreements</div>
+              <div class="tier-min">From ₦100,000 · Fee: 1.5%</div>
+            </div>
+            <div class="tier-radio" id="tr-business"></div>
+          </div>
+        </div>
+        <div class="tier-card" onclick="selTier(this,'corporate')">
+          <div class="tier-card-top">
+            <div>
+              <div class="tier-name">Corporate & Institutional</div>
+              <div class="tier-desc">Property, large deals, letters of credit</div>
+              <div class="tier-min">Custom amount · Fee: 1% · Contact us</div>
+            </div>
+            <div class="tier-radio" id="tr-corporate"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fg"><label class="lbl">What is this escrow for?</label><input class="field" id="esc-desc" placeholder="e.g. Purchase of iPhone 15 from vendor"/></div>
+      <div class="fg"><label class="lbl">Receiver email or phone</label><input class="field" id="esc-receiver" placeholder="receiver@email.com or 08012345678"/></div>
+      <label class="lbl">Amount</label>
+      <div class="budget-wrap" style="margin-bottom:6px;"><span class="bpre">₦</span><input class="bin" type="number" id="esc-amount" placeholder="Enter amount" oninput="calcEscrowFee()"/></div>
+      <div style="background:var(--grey);border-radius:10px;padding:10px 14px;margin-bottom:16px;" id="esc-fee-display" style="display:none;">
+        <div style="display:flex;justify-content:space-between;margin-bottom:4px;"><span style="font-size:12px;color:var(--muted);">Escrow amount</span><span style="font-size:12px;font-weight:600;" id="esc-amount-display">₦0</span></div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:4px;"><span style="font-size:12px;color:var(--muted);">Service fee</span><span style="font-size:12px;font-weight:600;color:var(--purple);" id="esc-fee-display-val">₦0</span></div>
+        <div style="display:flex;justify-content:space-between;border-top:0.5px solid var(--border);padding-top:6px;margin-top:4px;"><span style="font-size:13px;font-weight:700;">Total to pay</span><span style="font-size:14px;font-weight:700;" id="esc-total-display">₦0</span></div>
+      </div>
+      <div style="background:#fff8e6;border-radius:10px;padding:12px 14px;margin-bottom:16px;border:1px solid #fde68a;display:flex;gap:8px;">
+        <i class="ti ti-info-circle" style="color:#d97706;font-size:16px;flex-shrink:0;"></i>
+        <p style="font-size:12px;color:#92400e;line-height:1.5;">Funds are held securely by Errands and only released when you confirm. Auto-release in 7 days if no action is taken.</p>
+      </div>
+      <button class="btn btn-dark" onclick="createEscrow()">Create escrow →</button>
+    </div>
+
+    <!-- SENT ESCROW -->
+    <div class="etab-content" id="etab-sent">
+      <div id="escrow-sent-list">
+        <div class="empty-state"><p>No escrow transactions sent yet.</p><button class="btn btn-purple" onclick="escrowTab('create',document.querySelector('.etab'))" style="width:auto;padding:10px 20px;font-size:13px;margin-top:8px;">Create escrow →</button></div>
+      </div>
+    </div>
+
+    <!-- RECEIVED ESCROW -->
+    <div class="etab-content" id="etab-received">
+      <div id="escrow-received-list">
+        <div class="empty-state"><p>No escrow funds received yet.</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="bnav">
+    <div class="ni" onclick="go('home')"><i class="ti ti-home"></i><span>Home</span></div>
+    <div class="ni" onclick="go('post-errand')"><i class="ti ti-clipboard-list"></i><span>Requests</span></div>
+    <div class="ni" onclick="go('chat')"><i class="ti ti-message-2"></i><span>Messages</span></div>
+    <div class="ni" onclick="go('wallet')"><i class="ti ti-wallet"></i><span>Wallet</span></div>
+    <div class="ni"><div class="ndot"><i class="ti ti-safe on"></i></div><span class="on">Escrow</span></div>
+  </div>
+</div>
+
 <!-- ==================== ADMIN ==================== -->
 <div class="screen" id="admin">
   <div class="adm-top">
@@ -1559,6 +1814,8 @@ async function loadHomeData() {
   if (!currentUser) return;
   requestNotifications();
   watchErrandUpdates();
+  loadWallet();
+  checkUserRoles();
   // Set user name
   const name = currentUser.user_metadata?.full_name || currentUser.email?.split('@')[0] || 'there';
   document.getElementById('home-name').textContent = name.split(' ')[0];
@@ -2093,6 +2350,296 @@ async function loadAdminData() {
   }
   // Enhanced verifications
   loadAdminVerifications();
+}
+
+
+// ==================== WALLET ====================
+let walletData = { balance: 0, locked_balance: 0 };
+let selectedFundAmount = 0;
+let selectedTier = 'personal';
+const tierFees = { personal: 0.02, business: 0.015, corporate: 0.01 };
+
+async function loadWallet() {
+  if (!currentUser) return;
+  const { data, error } = await sb.from('wallets').select('*').eq('user_id', currentUser.id).single();
+  if (error || !data) {
+    // Create wallet if not exists
+    await sb.from('wallets').insert({ user_id: currentUser.id, balance: 0, locked_balance: 0 });
+    walletData = { balance: 0, locked_balance: 0 };
+  } else {
+    walletData = data;
+  }
+  updateWalletDisplay();
+  loadTransactions();
+}
+
+function updateWalletDisplay() {
+  const bal = document.getElementById('wallet-balance');
+  const locked = document.getElementById('wallet-locked');
+  if (bal) bal.textContent = '₦' + (walletData.balance || 0).toLocaleString('en-NG', {minimumFractionDigits:2});
+  if (locked) locked.textContent = '₦' + (walletData.locked_balance || 0).toLocaleString('en-NG', {minimumFractionDigits:2}) + ' locked in active errands';
+}
+
+async function loadTransactions() {
+  if (!currentUser) return;
+  const { data } = await sb.from('wallet_transactions').select('*').eq('user_id', currentUser.id).order('created_at', {ascending:false}).limit(20);
+  const container = document.getElementById('wallet-transactions');
+  if (!data || data.length === 0) {
+    container.innerHTML = '<div class="empty-state"><p>No transactions yet. Fund your wallet to get started.</p></div>';
+    return;
+  }
+  container.innerHTML = data.map(tx => {
+    const isCredit = ['fund','refund','unlock'].includes(tx.type);
+    const isLock = tx.type === 'lock';
+    const iconClass = isCredit ? 'credit' : isLock ? 'lock' : 'debit';
+    const icon = isCredit ? 'ti-arrow-down' : isLock ? 'ti-lock' : 'ti-arrow-up';
+    const iconColor = isCredit ? '#16a34a' : isLock ? '#ca8a04' : '#dc2626';
+    const amountPrefix = isCredit ? '+' : '-';
+    const amountClass = isCredit ? 'credit' : isLock ? 'lock' : 'debit';
+    return `
+      <div class="tx-item">
+        <div class="tx-icon ${iconClass}"><i class="ti ${icon}" style="color:${iconColor};font-size:18px;"></i></div>
+        <div class="tx-info">
+          <div class="tx-desc">${tx.description || tx.type}</div>
+          <div class="tx-date">${new Date(tx.created_at).toLocaleDateString('en-NG', {day:'numeric',month:'short',year:'numeric'})}</div>
+        </div>
+        <div class="tx-amount ${amountClass}">${amountPrefix}₦${(tx.amount||0).toLocaleString()}</div>
+      </div>
+    `;
+  }).join('');
+}
+
+function showFundModal() {
+  document.getElementById('fund-modal').classList.remove('hidden');
+}
+function hideFundModal() {
+  document.getElementById('fund-modal').classList.add('hidden');
+  selectedFundAmount = 0;
+  document.querySelectorAll('.amount-preset').forEach(b => b.classList.remove('sel'));
+  document.getElementById('fund-amount').value = '';
+}
+function selectAmount(amt) {
+  selectedFundAmount = amt;
+  document.querySelectorAll('.amount-preset').forEach(b => b.classList.remove('sel'));
+  event.target.classList.add('sel');
+  document.getElementById('fund-amount').value = amt;
+}
+
+async function processFunding() {
+  if (!currentUser) return;
+  const amt = parseFloat(document.getElementById('fund-amount').value) || selectedFundAmount;
+  if (!amt || amt < 100) return toast('Please enter a valid amount (min ₦100)');
+  showLoader('Processing payment...');
+  // Simulate Paystack — in production this calls Paystack API
+  setTimeout(async () => {
+    // Update wallet balance
+    const newBalance = (walletData.balance || 0) + amt;
+    await sb.from('wallets').upsert({ user_id: currentUser.id, balance: newBalance, updated_at: new Date().toISOString() });
+    // Log transaction
+    await sb.from('wallet_transactions').insert({
+      user_id: currentUser.id, type: 'fund', amount: amt,
+      description: 'Wallet funded via Paystack',
+      reference: 'PAY-' + Date.now()
+    });
+    walletData.balance = newBalance;
+    updateWalletDisplay();
+    loadTransactions();
+    hideLoader();
+    hideFundModal();
+    toast('✅ Wallet funded — ₦' + amt.toLocaleString() + ' added');
+  }, 1500);
+}
+
+// ==================== ESCROW ====================
+function escrowTab(name, el) {
+  document.querySelectorAll('.etab').forEach(t => t.classList.remove('on'));
+  document.querySelectorAll('.etab-content').forEach(c => c.classList.remove('vis'));
+  el.classList.add('on');
+  document.getElementById('etab-' + name).classList.add('vis');
+  if (name === 'sent') loadSentEscrow();
+  if (name === 'received') loadReceivedEscrow();
+}
+
+function selTier(el, tier) {
+  selectedTier = tier;
+  document.querySelectorAll('.tier-card').forEach(c => c.classList.remove('sel'));
+  el.classList.add('sel');
+  ['personal','business','corporate'].forEach(t => {
+    const r = document.getElementById('tr-' + t);
+    if (r) r.className = 'tier-radio' + (t === tier ? ' chk' : '');
+  });
+  calcEscrowFee();
+}
+
+function calcEscrowFee() {
+  const amt = parseFloat(document.getElementById('esc-amount').value) || 0;
+  if (!amt) return;
+  const fee = amt * (tierFees[selectedTier] || 0.02);
+  const total = amt + fee;
+  document.getElementById('esc-amount-display').textContent = '₦' + amt.toLocaleString();
+  document.getElementById('esc-fee-display-val').textContent = '₦' + fee.toLocaleString();
+  document.getElementById('esc-total-display').textContent = '₦' + total.toLocaleString();
+  document.getElementById('esc-fee-display').style.display = 'block';
+}
+
+async function createEscrow() {
+  if (!currentUser) { toast('Please sign in first'); go('signin'); return; }
+  const desc = document.getElementById('esc-desc').value.trim();
+  const receiver = document.getElementById('esc-receiver').value.trim();
+  const amount = parseFloat(document.getElementById('esc-amount').value);
+  if (!desc) return toast('Please describe what this escrow is for');
+  if (!receiver) return toast('Please enter the receiver email or phone');
+  if (!amount || amount < 5000) return toast('Minimum escrow amount is ₦5,000');
+  const fee = amount * (tierFees[selectedTier] || 0.02);
+  const total = amount + fee;
+  // Check wallet balance
+  if ((walletData.balance || 0) < total) {
+    toast('Insufficient wallet balance. Please fund your wallet first.');
+    hideFundModal();
+    showFundModal();
+    return;
+  }
+  showLoader('Creating escrow...');
+  // Create escrow record
+  const isEmail = receiver.includes('@');
+  const { data, error } = await sb.from('escrow').insert({
+    sender_id: currentUser.id,
+    receiver_email: isEmail ? receiver : null,
+    receiver_phone: !isEmail ? receiver : null,
+    amount, fee,
+    description: desc,
+    tier: selectedTier,
+    category: 'general',
+    status: 'funded',
+    funded_at: new Date().toISOString(),
+    auto_release_at: new Date(Date.now() + 7*24*60*60*1000).toISOString()
+  }).select().single();
+  if (error) { hideLoader(); toast('Failed to create escrow. Try again.'); return; }
+  // Deduct from wallet
+  const newBalance = (walletData.balance || 0) - total;
+  await sb.from('wallets').update({ balance: newBalance, locked_balance: (walletData.locked_balance||0) + amount }).eq('user_id', currentUser.id);
+  await sb.from('wallet_transactions').insert({
+    user_id: currentUser.id, type: 'lock', amount: total,
+    description: 'Escrow created: ' + desc,
+    reference: data.reference
+  });
+  walletData.balance = newBalance;
+  hideLoader();
+  toast('✅ Escrow created! Reference: ' + data.reference);
+  document.getElementById('esc-desc').value = '';
+  document.getElementById('esc-receiver').value = '';
+  document.getElementById('esc-amount').value = '';
+  document.getElementById('esc-fee-display').style.display = 'none';
+  escrowTab('sent', document.querySelectorAll('.etab')[1]);
+  loadEscrowStats();
+}
+
+async function loadEscrowStats() {
+  if (!currentUser) return;
+  const { data } = await sb.from('escrow').select('status').eq('sender_id', currentUser.id);
+  if (!data) return;
+  document.getElementById('esc-total').textContent = data.length;
+  document.getElementById('esc-active').textContent = data.filter(e => e.status === 'funded' || e.status === 'in_progress').length;
+  document.getElementById('esc-released').textContent = data.filter(e => e.status === 'released').length;
+}
+
+async function loadSentEscrow() {
+  if (!currentUser) return;
+  const { data } = await sb.from('escrow').select('*').eq('sender_id', currentUser.id).order('created_at', {ascending:false});
+  const container = document.getElementById('escrow-sent-list');
+  if (!data || data.length === 0) {
+    container.innerHTML = '<div class="empty-state"><p>No escrow transactions sent yet.</p></div>';
+    return;
+  }
+  container.innerHTML = data.map(e => `
+    <div class="escrow-item">
+      <div class="escrow-item-top">
+        <span class="escrow-ref">${e.reference}</span>
+        <span class="escrow-status-pill ${e.status === 'funded' ? 'funded' : e.status === 'released' ? 'released' : e.status === 'disputed' ? 'disputed' : 'pending'}">${e.status}</span>
+      </div>
+      <div class="escrow-desc">${e.description}</div>
+      <div class="escrow-parties">To: ${e.receiver_email || e.receiver_phone || 'Pending'}</div>
+      <div class="escrow-amount-row">
+        <span class="escrow-amount">₦${(e.amount||0).toLocaleString()}</span>
+        <span style="font-size:11px;color:var(--muted);">${e.tier} · ${new Date(e.created_at).toLocaleDateString()}</span>
+      </div>
+      ${e.status === 'funded' ? `
+      <div class="escrow-actions">
+        <button class="escrow-btn release" onclick="releaseEscrow('${e.id}')">Release funds ✓</button>
+        <button class="escrow-btn dispute" onclick="disputeEscrow('${e.id}')">Dispute</button>
+      </div>` : ''}
+    </div>
+  `).join('');
+}
+
+async function loadReceivedEscrow() {
+  if (!currentUser) return;
+  const email = currentUser.email;
+  const { data } = await sb.from('escrow').select('*').eq('receiver_email', email).order('created_at', {ascending:false});
+  const container = document.getElementById('escrow-received-list');
+  if (!data || data.length === 0) {
+    container.innerHTML = '<div class="empty-state"><p>No escrow funds received yet.</p></div>';
+    return;
+  }
+  container.innerHTML = data.map(e => `
+    <div class="escrow-item">
+      <div class="escrow-item-top">
+        <span class="escrow-ref">${e.reference}</span>
+        <span class="escrow-status-pill ${e.status === 'funded' ? 'funded' : e.status === 'released' ? 'released' : 'pending'}">${e.status}</span>
+      </div>
+      <div class="escrow-desc">${e.description}</div>
+      <div class="escrow-parties">From: ${e.sender_id?.slice(0,8)}...</div>
+      <div class="escrow-amount-row">
+        <span class="escrow-amount">₦${(e.amount||0).toLocaleString()}</span>
+        <span style="font-size:11px;color:var(--muted);">${new Date(e.created_at).toLocaleDateString()}</span>
+      </div>
+      ${e.status === 'funded' ? `<p style="font-size:12px;color:var(--muted);margin-top:8px;">Awaiting sender confirmation. Auto-releases ${new Date(e.auto_release_at).toLocaleDateString()}.</p>` : ''}
+    </div>
+  `).join('');
+}
+
+async function releaseEscrow(id) {
+  showLoader('Releasing funds...');
+  await sb.from('escrow').update({ status: 'released', released_at: new Date().toISOString() }).eq('id', id);
+  // In production: trigger payout to receiver
+  hideLoader();
+  toast('✅ Funds released to receiver');
+  loadSentEscrow();
+  loadEscrowStats();
+}
+
+async function disputeEscrow(id) {
+  showLoader('Raising dispute...');
+  await sb.from('escrow').update({ status: 'disputed', disputed_at: new Date().toISOString() }).eq('id', id);
+  hideLoader();
+  toast('Dispute raised. Errands team will review within 24 hours.');
+  loadSentEscrow();
+}
+
+// ==================== ROLE SWITCHING ====================
+let currentRole = 'user';
+
+function switchRole() {
+  if (currentRole === 'user') {
+    currentRole = 'runner';
+    document.getElementById('role-switch-label').textContent = 'Switch to User';
+    go('runner-dash');
+    loadRunnerDashboard();
+    toast('Switched to Runner mode');
+  } else {
+    currentRole = 'user';
+    document.getElementById('role-switch-label').textContent = 'Switch to Runner';
+    go('home');
+    toast('Switched to User mode');
+  }
+}
+
+async function checkUserRoles() {
+  if (!currentUser) return;
+  const { data: runner } = await sb.from('runners').select('id').eq('user_id', currentUser.id).single();
+  if (runner) {
+    document.getElementById('role-switch-btn').style.display = 'flex';
+  }
 }
 
 </script>
