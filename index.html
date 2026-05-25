@@ -386,431 +386,495 @@ input,textarea,select,button{font-family:'Clash Display',sans-serif;}
 .adm-pill.active{background:#f0fdf4;color:#16a34a;}
 .adm-pill.flagged{background:#fef2f2;color:#dc2626;}
 .adm-time{font-size:9px;color:#ccc;margin-top:2px;}
-/* ==================== RESPONSIVE DESKTOP STYLES ==================== */
 
-/* Base - already mobile first */
-/* Tablet: 768px+ */
-/* Desktop: 1024px+ */
-/* Wide: 1280px+ */
+/* ==================== DESKTOP RESPONSIVE ==================== */
+/* Mobile first. Desktop kicks in at 1024px+ */
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
+
   body {
-    background: #f0e8f2;
+    background: #1a1a1a;
+    display: flex;
     align-items: flex-start;
+    justify-content: flex-start;
     padding: 0;
   }
-  
+
+  /* SIDEBAR NAVIGATION */
   .app {
     max-width: 100%;
+    width: 100%;
     min-height: 100vh;
-  }
-
-  /* LANDING - wide hero */
-  .hero {
-    padding: 80px 48px 64px;
-  }
-  .hero-h1 {
-    font-size: 52px;
-  }
-  .hero-sub {
-    font-size: 18px;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .hero-ctas {
+    display: flex;
     flex-direction: row;
-    justify-content: center;
-    max-width: 480px;
-    margin: 0 auto;
+    background: transparent;
   }
-  .hero-ctas .btn {
-    width: auto;
-    padding: 16px 32px;
-  }
-  .landing-body {
-    padding: 60px 48px;
-    max-width: 900px;
-    margin: 0 auto;
-  }
-  .step-cards-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-  }
-  .step-card {
-    margin-bottom: 0;
-  }
-  .cta-strip {
-    padding: 60px 48px;
-  }
-  .cta-strip .btn {
-    width: auto;
-    padding: 16px 40px;
-    display: inline-flex;
-  }
-  .cta-row {
-    flex-direction: row;
-    justify-content: center;
-    gap: 16px;
-  }
-}
 
-@media (min-width: 1024px) {
-  /* HOME - two column layout */
-  .home-top {
-    padding: 20px 40px 16px;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  .hbody {
-    padding: 0 40px;
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 32px;
-    padding-bottom: 100px;
-  }
-  .hbody-left {
-    grid-column: 1;
-  }
-  .hbody-right {
-    grid-column: 2;
-  }
-  .acards {
-    grid-template-columns: 1fr 1fr;
-  }
-  .rcards {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    overflow-x: visible;
-  }
-  .rcard {
-    min-width: unset;
-  }
-  
-  /* AUTH - centered card */
-  .auth-body {
-    max-width: 480px;
-    margin: 0 auto;
-    padding: 40px 48px;
-  }
-  
-  /* POST ERRAND - centered */
-  .post-body {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 32px 40px;
-    padding-bottom: 120px;
-  }
-  .post-btm {
-    max-width: 600px;
-  }
-  
-  /* RUNNER PROFILE - wider */
-  .rp-head {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 0 40px 20px;
-  }
-  .rp-stats {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 0 40px 20px;
-    grid-template-columns: repeat(4, 1fr);
-  }
-  .rp-tabs {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 0 40px;
-  }
-  .rp-tc {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 24px 40px;
-    padding-bottom: 120px;
-  }
-  .rp-cta {
-    max-width: 900px;
-  }
-  .rp-cta .btn {
-    width: auto;
-    padding: 16px 40px;
-    display: inline-flex;
-    margin-right: 16px;
-  }
-  
-  /* CHAT - wider */
-  .chat-nav {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 16px 40px;
-  }
-  .conf-strip {
-    max-width: 900px;
-    margin: 14px auto;
-  }
-  .tbar {
-    max-width: 900px;
-    margin: 0 auto 14px;
-  }
-  .chat-msgs {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 10px 40px;
-    padding-bottom: 100px;
-  }
-  .chat-ibar {
-    max-width: 900px;
-  }
-  
-  /* PAYMENT - centered */
-  .pay-nav {
-    max-width: 700px;
-    margin: 0 auto;
-    padding: 16px 40px;
-  }
-  .pay-body {
-    max-width: 700px;
-    margin: 0 auto;
-    padding: 32px 40px;
-    padding-bottom: 120px;
-  }
-  .pay-btm {
-    max-width: 700px;
-  }
-  .pay-btm .btn {
-    width: auto;
-    padding: 16px 40px;
-    display: inline-flex;
-  }
-  
-  /* RUNNER DASH - two column */
-  .rd-top {
-    padding: 20px 40px 24px;
-  }
-  .rd-body {
-    padding: 20px 40px;
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 32px;
-    padding-bottom: 100px;
-  }
-  .rd-stats {
-    grid-column: 1 / -1;
-  }
-  
-  /* ADMIN - wider */
-  .adm-top {
-    padding: 20px 40px 24px;
-  }
-  .adm-body {
-    padding: 24px 40px;
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 32px;
-    padding-bottom: 40px;
-  }
-  .adm-quick {
-    grid-column: 1 / -1;
-  }
-  
-  /* NAV - wider */
-  .bnav {
-    max-width: 100%;
-    padding: 12px 60px 18px;
-    justify-content: center;
-    gap: 60px;
-  }
-  
-  /* SUCCESS - centered */
-  #success {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 60px 40px;
-  }
-  
-  /* RUNNER SIGNUP - centered */
-  .auth-body {
-    max-width: 560px;
-    margin: 0 auto;
-  }
-}
-
-@media (min-width: 1280px) {
-  .home-top, .hbody {
-    max-width: 1400px;
-  }
-  .hbody {
-    grid-template-columns: 2fr 1fr;
-  }
-  .hero-h1 {
-    font-size: 64px;
-  }
-  .acards {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .rcards {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-/* Desktop nav becomes sidebar on very wide screens */
-@media (min-width: 1024px) {
+  /* Left sidebar nav */
   .bnav {
     position: fixed;
     top: 0;
     left: 0;
     bottom: 0;
-    width: 220px;
+    width: 240px;
     flex-direction: column;
     justify-content: flex-start;
-    padding: 32px 20px;
-    gap: 8px;
+    padding: 0;
+    gap: 0;
     border-top: none;
     border-right: 0.5px solid #f0f0f0;
     z-index: 100;
     background: #fff;
+    overflow-y: auto;
   }
+
   .bnav-logo {
-    font-size: 20px;
+    display: block !important;
+    font-size: 22px;
     font-weight: 700;
     color: var(--black);
-    padding: 0 12px 32px;
-    display: block;
+    padding: 28px 24px 24px;
+    border-bottom: 0.5px solid #f5f5f5;
+    margin-bottom: 8px;
   }
   .bnav-logo span { color: var(--purple); }
+
   .ni {
     flex-direction: row;
     gap: 12px;
-    padding: 12px 16px;
-    border-radius: 12px;
+    padding: 12px 24px;
+    border-radius: 0;
     justify-content: flex-start;
     width: 100%;
+    cursor: pointer;
   }
-  .ni:hover {
-    background: var(--light);
-  }
-  .ni i {
-    font-size: 20px;
-  }
-  .ni span {
-    font-size: 14px;
-    font-weight: 600;
-  }
+  .ni:hover { background: var(--light); }
+  .ni i { font-size: 20px; }
+  .ni span { font-size: 14px; font-weight: 600; display: block; }
   .ndot {
     width: 32px;
     height: 32px;
     border-radius: 10px;
+    background: var(--light);
   }
-  
-  /* Push content right when sidebar exists */
-  #home, #post-errand, #runner-profile, #chat, #payment, #success, #runner-dash, #admin {
-    padding-left: 220px;
+
+  /* All screens get left padding for sidebar */
+  .screen {
+    margin-left: 240px;
+    background: #f5f5f5;
+    min-height: 100vh;
   }
+
+  /* Landing page has its own nav - no sidebar offset needed */
+  #landing {
+    margin-left: 0 !important;
+    background: #fff !important;
+  }
+
+  /* Auth screens - no sidebar */
+  #signup, #signin, #runner-signup {
+    margin-left: 0 !important;
+  }
+
+  #signup .auth-body,
+  #signin .auth-body,
+  #runner-signup .auth-body {
+    max-width: 520px;
+    margin: 40px auto;
+    background: #fff;
+    border-radius: 20px;
+    padding: 40px 48px;
+  }
+
+  /* ==================== HOME ==================== */
+  #home {
+    display: flex;
+    flex-direction: column;
+  }
+
   .home-top {
-    padding-left: 260px;
+    background: #fff;
+    padding: 24px 40px 20px;
+    border-bottom: 0.5px solid #f0f0f0;
+    flex-shrink: 0;
   }
+
   .hbody {
-    padding-left: 260px;
+    flex: 1;
+    padding: 32px 40px 40px;
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 32px;
+    max-width: 1400px;
+    align-items: start;
   }
-  .top-hdr, .chat-nav, .pay-nav, .rd-top, .adm-top, .rp-hero {
-    padding-left: 260px;
+
+  /* Home left column gets the main content */
+  .acards {
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 24px;
   }
+
+  .acard { min-height: 110px; }
+
+  .promo {
+    margin-bottom: 24px;
+  }
+
+  /* Runner cards go into a grid */
+  .rcards {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 12px !important;
+    overflow-x: visible !important;
+    margin-bottom: 24px;
+  }
+
+  .rcard {
+    min-width: unset !important;
+  }
+
+  /* ==================== CHAT ==================== */
+  #chat {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    max-width: 900px;
+    margin-left: 240px;
+    border-right: 0.5px solid #f0f0f0;
+    min-height: 100vh;
+  }
+
+  .chat-nav {
+    padding: 16px 32px;
+  }
+
+  .conf-strip {
+    margin: 14px 32px;
+  }
+
+  .tbar {
+    margin: 0 32px 14px;
+  }
+
+  .chat-msgs {
+    padding: 10px 32px;
+    padding-bottom: 100px;
+  }
+
+  .chat-ibar {
+    max-width: 900px;
+    left: 240px;
+    transform: none;
+    padding: 10px 32px 24px;
+  }
+
+  /* ==================== POST ERRAND ==================== */
+  #post-errand {
+    background: #f5f5f5;
+  }
+
+  .top-hdr {
+    background: var(--purple);
+    padding: 16px 40px;
+  }
+
+  .post-body {
+    max-width: 700px;
+    margin: 32px auto;
+    background: #fff;
+    border-radius: 16px;
+    padding: 32px 40px;
+    padding-bottom: 100px;
+  }
+
+  .post-btm {
+    max-width: 700px;
+    left: 50%;
+    transform: translateX(calc(-50% + 120px));
+    padding: 12px 40px 24px;
+    border-radius: 0 0 16px 16px;
+  }
+
+  /* ==================== RUNNER PROFILE ==================== */
+  #runner-profile {
+    background: #f5f5f5;
+  }
+
+  .rp-hero {
+    height: 160px;
+  }
+
+  .rp-head {
+    background: #fff;
+    padding: 0 40px 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .rp-stats {
+    background: #fff;
+    padding: 0 40px 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 0.5px solid #f5f5f5;
+    padding-top: 16px;
+  }
+
+  .rp-tabs {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 40px;
+    background: #fff;
+    border-bottom: 0.5px solid #f0f0f0;
+  }
+
+  .rp-tc {
+    max-width: 1000px;
+    margin: 24px auto;
+    background: #fff;
+    border-radius: 16px;
+    padding: 28px 40px;
+    padding-bottom: 100px;
+  }
+
+  .rp-cta {
+    max-width: 1000px;
+    left: 50%;
+    transform: translateX(calc(-50% + 120px));
+    padding: 12px 40px 24px;
+  }
+
+  .rp-cta .btn {
+    width: auto;
+    display: inline-flex;
+    padding: 14px 32px;
+    margin-right: 12px;
+  }
+
+  /* ==================== PAYMENT ==================== */
+  #payment {
+    background: #f5f5f5;
+  }
+
+  .pay-nav {
+    background: #fff;
+    padding: 16px 40px;
+    border-bottom: 0.5px solid #f0f0f0;
+  }
+
+  .pay-body {
+    max-width: 680px;
+    margin: 32px auto;
+    background: #fff;
+    border-radius: 16px;
+    padding: 32px 40px;
+    padding-bottom: 100px;
+  }
+
+  .pay-btm {
+    max-width: 680px;
+    left: 50%;
+    transform: translateX(calc(-50% + 120px));
+    border-radius: 0 0 16px 16px;
+  }
+
+  .pay-btm .btn {
+    width: auto;
+    display: inline-flex;
+    padding: 14px 40px;
+  }
+
+  /* ==================== SUCCESS ==================== */
+  #success {
+    max-width: 600px;
+    margin: 60px auto;
+    background: #fff;
+    border-radius: 20px;
+    padding: 60px 48px;
+    align-items: center;
+    min-height: unset;
+  }
+
+  /* ==================== AUTH SCREENS ==================== */
+  #signup, #signin, #runner-signup {
+    background: #f5f5f5;
+  }
+
+  .auth-nav {
+    background: #fff;
+    border-bottom: 0.5px solid var(--border);
+    padding: 16px 40px;
+  }
+
+  .auth-body {
+    max-width: 520px;
+    margin: 40px auto;
+    background: #fff;
+    border-radius: 20px;
+    padding: 40px 48px;
+  }
+
+  /* ==================== WALLET ==================== */
+  #wallet {
+    background: #f5f5f5;
+  }
+
+  .wallet-top {
+    background: var(--black);
+    padding: 24px 40px 32px;
+  }
+
+  .wallet-card {
+    max-width: 600px;
+  }
+
+  .wallet-body {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 32px 40px;
+    padding-bottom: 80px;
+  }
+
+  /* ==================== ESCROW ==================== */
+  #escrow-tab {
+    background: #f5f5f5;
+  }
+
+  .escrow-top {
+    padding: 24px 40px 28px;
+  }
+
+  .escrow-body {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 24px 40px;
+    padding-bottom: 80px;
+  }
+
+  /* ==================== RUNNER DASH ==================== */
+  #runner-dash {
+    background: #f5f5f5;
+  }
+
+  .rd-top {
+    padding: 24px 40px 28px;
+  }
+
+  .rd-body {
+    padding: 24px 40px;
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    padding-bottom: 80px;
+  }
+
+  .rd-stats {
+    grid-column: 1 / -1;
+  }
+
+  /* ==================== ADMIN ==================== */
+  #admin {
+    background: #f5f5f5;
+  }
+
+  .adm-top {
+    padding: 24px 40px 28px;
+  }
+
+  .adm-body {
+    padding: 24px 40px;
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    padding-bottom: 40px;
+  }
+
+  .adm-quick {
+    grid-column: 1 / -1;
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .adm-sg {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  /* ==================== ACADEMY ==================== */
+  #academy, #academy-module {
+    background: #f5f5f5;
+  }
+
+  #academy > div:last-of-type,
+  #academy-module > div {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 16px;
+    padding: 32px 40px;
+  }
+
+  /* ==================== LEGAL PAGES ==================== */
+  #terms-page, #privacy-page, #pricing-page,
+  #referral-page, #dispute-page, #help {
+    background: #f5f5f5;
+  }
+
+  #terms-page > div:last-child,
+  #privacy-page > div:last-child,
+  #pricing-page > div:last-child,
+  #referral-page > div:last-child,
+  #dispute-page > div:last-child,
+  #help > div:last-child {
+    max-width: 760px;
+    margin: 32px auto;
+    background: #fff;
+    border-radius: 16px;
+    padding: 40px 48px;
+  }
+
+  /* ==================== MODALS ==================== */
+  .modal-sheet {
+    max-width: 520px;
+    border-radius: 20px;
+    margin-bottom: 40px;
+  }
+
+  /* ==================== FUND MODAL ==================== */
+  #fund-modal .modal-sheet {
+    max-width: 520px;
+  }
+
+  /* Fix bottom bars on desktop */
+  .post-btm,
+  .pay-btm,
+  .rp-cta,
+  .chat-ibar {
+    left: 240px;
+    width: calc(100% - 240px);
+    transform: none;
+    max-width: unset;
+  }
+
 }
 
+/* Ultra-wide 1440px+ */
+@media (min-width: 1440px) {
+  .hbody {
+    grid-template-columns: 1fr 380px;
+    max-width: 1600px;
+  }
 
-/* ==================== WALLET ==================== */
-#wallet { background: #fff; }
-.wallet-top { background: var(--black); padding: 20px 20px 28px; flex-shrink: 0; }
-.wallet-tr { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
-.wallet-title { font-size: 17px; font-weight: 700; color: #fff; }
-.wallet-card { background: var(--purple); border-radius: 16px; padding: 20px; }
-.wallet-lbl { font-size: 10px; color: rgba(255,255,255,0.6); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; }
-.wallet-bal { font-size: 32px; font-weight: 700; color: #fff; margin-bottom: 4px; }
-.wallet-locked { font-size: 12px; color: rgba(255,255,255,0.6); margin-bottom: 16px; }
-.wallet-actions { display: flex; gap: 10px; }
-.wallet-action-btn { flex: 1; background: rgba(255,255,255,0.15); border: none; color: #fff; padding: 10px 8px; border-radius: 10px; font-size: 12px; font-weight: 700; cursor: pointer; font-family: 'Clash Display', sans-serif; display: flex; align-items: center; justify-content: center; gap: 6px; }
-.wallet-body { flex: 1; overflow-y: auto; padding: 20px; padding-bottom: 80px; }
-.tx-item { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 0.5px solid #f5f5f5; }
-.tx-item:last-child { border-bottom: none; }
-.tx-icon { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-.tx-icon.credit { background: #f0fdf4; }
-.tx-icon.debit { background: #fef2f2; }
-.tx-icon.lock { background: #fefce8; }
-.tx-info { flex: 1; }
-.tx-desc { font-size: 13px; font-weight: 600; color: var(--black); }
-.tx-date { font-size: 11px; color: var(--muted); margin-top: 2px; }
-.tx-amount { font-size: 14px; font-weight: 700; }
-.tx-amount.credit { color: #16a34a; }
-.tx-amount.debit { color: #dc2626; }
-.tx-amount.lock { color: #ca8a04; }
+  .rcards {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
 
-/* Fund wallet modal */
-.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 200; display: flex; align-items: flex-end; justify-content: center; }
-.modal-overlay.hidden { display: none; }
-.modal-sheet { background: #fff; border-radius: 20px 20px 0 0; padding: 24px; width: 100%; max-width: 430px; }
-.modal-handle { width: 40px; height: 4px; background: #e5e5e5; border-radius: 2px; margin: 0 auto 20px; }
-.modal-title { font-size: 18px; font-weight: 700; color: var(--black); margin-bottom: 6px; }
-.modal-sub { font-size: 13px; color: var(--muted); margin-bottom: 20px; }
-.amount-presets { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 16px; }
-.amount-preset { background: var(--grey); border: 1.5px solid var(--border); border-radius: 10px; padding: 10px 6px; text-align: center; font-size: 13px; font-weight: 700; color: var(--black); cursor: pointer; font-family: 'Clash Display', sans-serif; }
-.amount-preset.sel { border-color: var(--purple); background: #fdf8fe; color: var(--purple); }
-
-/* ==================== ESCROW ==================== */
-#escrow-tab { background: #fff; }
-.escrow-top { background: var(--black); padding: 20px 20px 24px; flex-shrink: 0; }
-.escrow-header-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
-.escrow-title { font-size: 17px; font-weight: 700; color: #fff; }
-.escrow-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-.escrow-stat { background: rgba(255,255,255,0.08); border-radius: 10px; padding: 10px 8px; text-align: center; }
-.escrow-stat-v { font-size: 16px; font-weight: 700; color: #fff; }
-.escrow-stat-l { font-size: 9px; color: rgba(255,255,255,0.5); margin-top: 2px; }
-.escrow-body { flex: 1; overflow-y: auto; padding: 16px 20px; padding-bottom: 80px; }
-.escrow-tabs-row { display: flex; gap: 6px; margin-bottom: 20px; }
-.etab { flex: 1; padding: 9px 6px; border-radius: 10px; border: 1.5px solid var(--border); font-size: 11px; font-weight: 700; text-align: center; cursor: pointer; color: var(--muted); background: #fff; font-family: 'Clash Display', sans-serif; }
-.etab.on { background: var(--black); color: #fff; border-color: var(--black); }
-.etab-content { display: none; }
-.etab-content.vis { display: block; }
-
-/* Create escrow form */
-.tier-cards { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
-.tier-card { border: 1.5px solid var(--border); border-radius: 12px; padding: 14px; cursor: pointer; }
-.tier-card.sel { border-color: var(--purple); background: #fdf8fe; }
-.tier-card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; }
-.tier-name { font-size: 14px; font-weight: 700; color: var(--black); }
-.tier-fee { font-size: 12px; color: var(--purple); font-weight: 600; }
-.tier-desc { font-size: 12px; color: var(--muted); }
-.tier-min { font-size: 11px; color: #aaa; margin-top: 3px; }
-.tier-radio { width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--border); flex-shrink: 0; }
-.tier-radio.chk { border-color: var(--purple); background: var(--purple); }
-
-/* Escrow status items */
-.escrow-item { border: 1px solid #f0f0f0; border-radius: 14px; padding: 14px; margin-bottom: 12px; cursor: pointer; }
-.escrow-item-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 8px; }
-.escrow-ref { font-size: 11px; color: var(--muted); font-weight: 600; }
-.escrow-status-pill { padding: 3px 10px; border-radius: 8px; font-size: 10px; font-weight: 700; }
-.escrow-status-pill.funded { background: #f0fdf4; color: #16a34a; }
-.escrow-status-pill.pending { background: #fefce8; color: #ca8a04; }
-.escrow-status-pill.released { background: var(--grey); color: #888; }
-.escrow-status-pill.disputed { background: #fef2f2; color: #dc2626; }
-.escrow-desc { font-size: 13px; font-weight: 700; color: var(--black); margin-bottom: 4px; }
-.escrow-parties { font-size: 11px; color: var(--muted); margin-bottom: 10px; }
-.escrow-amount-row { display: flex; align-items: center; justify-content: space-between; }
-.escrow-amount { font-size: 16px; font-weight: 700; color: var(--black); }
-.escrow-actions { display: flex; gap: 8px; margin-top: 12px; }
-.escrow-btn { flex: 1; padding: 10px; border-radius: 8px; font-size: 11px; font-weight: 700; cursor: pointer; font-family: 'Clash Display', sans-serif; border: none; }
-.escrow-btn.release { background: var(--black); color: #fff; }
-.escrow-btn.dispute { background: #fef2f2; color: #dc2626; }
-
-/* Role switch */
-.role-switch { display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.1); padding: 6px 12px; border-radius: 20px; cursor: pointer; border: none; font-family: 'Clash Display', sans-serif; }
-.role-switch span { font-size: 11px; color: #fff; font-weight: 600; }
+  .rd-body, .adm-body {
+    max-width: 1400px;
+  }
+}
 
 </style>
 <!-- Google Analytics - Errands -->
@@ -1249,12 +1313,47 @@ input,textarea,select,button{font-family:'Clash Display',sans-serif;}
       <div class="empty-state"><p>No errands yet. Post your first one.</p><button class="btn btn-purple" onclick="go('post-errand')" style="width:auto;padding:10px 20px;font-size:13px;">Post an errand →</button></div>
     </div>
   </div>
-  <div class="bnav"><span class="bnav-logo" style="display:none;">errands<span>®</span></span>
+  <div class="bnav"><span class="bnav-logo" style="display:none;">errands<span>®</span></span><span class="bnav-logo" style="display:none;">errands<span>®</span></span>
     <div class="ni"><div class="ndot"><i class="ti ti-home on"></i></div><span class="on">Home</span></div>
     <div class="ni" onclick="go('post-errand')"><i class="ti ti-clipboard-list"></i><span>Requests</span></div>
     <div class="ni" onclick="go('chat')"><i class="ti ti-message-2"></i><span>Messages</span></div>
     <div class="ni" onclick="go('wallet');loadWallet();"><i class="ti ti-wallet"></i><span>Wallet</span></div>
     <div class="ni" onclick="showProfile()"><i class="ti ti-user"></i><span>Profile</span></div>
+  </div>
+</div>
+
+<!-- ==================== PROFILE MENU ==================== -->
+<div class="modal-overlay hidden" id="profile-menu" onclick="if(event.target===this)document.getElementById('profile-menu').classList.add('hidden')">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px;">
+      <div style="width:48px;height:48px;border-radius:50%;background:var(--purple);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#fff;" id="pm-avatar">KO</div>
+      <div>
+        <div style="font-size:15px;font-weight:700;color:var(--black);" id="pm-name">Kenneth</div>
+        <div style="font-size:12px;color:var(--muted);" id="pm-email">kenneth@example.com</div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px;">
+      <button onclick="go('wallet');loadWallet();document.getElementById('profile-menu').classList.add('hidden');" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:var(--grey);border:none;border-radius:12px;cursor:pointer;font-family:'Clash Display',sans-serif;width:100%;">
+        <i class="ti ti-wallet" style="color:var(--purple);font-size:20px;"></i>
+        <span style="font-size:13px;font-weight:600;color:var(--black);">My Wallet</span>
+      </button>
+      <button onclick="go('referral-page');loadReferralPage();document.getElementById('profile-menu').classList.add('hidden');" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:var(--grey);border:none;border-radius:12px;cursor:pointer;font-family:'Clash Display',sans-serif;width:100%;">
+        <i class="ti ti-gift" style="color:var(--purple);font-size:20px;"></i>
+        <span style="font-size:13px;font-weight:600;color:var(--black);">Refer & Earn</span>
+      </button>
+      <button onclick="go('help');document.getElementById('profile-menu').classList.add('hidden');" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:var(--grey);border:none;border-radius:12px;cursor:pointer;font-family:'Clash Display',sans-serif;width:100%;">
+        <i class="ti ti-help" style="color:var(--purple);font-size:20px;"></i>
+        <span style="font-size:13px;font-weight:600;color:var(--black);">Help & Support</span>
+      </button>
+      <button onclick="go('terms-page');document.getElementById('profile-menu').classList.add('hidden');" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:var(--grey);border:none;border-radius:12px;cursor:pointer;font-family:'Clash Display',sans-serif;width:100%;">
+        <i class="ti ti-file-text" style="color:var(--purple);font-size:20px;"></i>
+        <span style="font-size:13px;font-weight:600;color:var(--black);">Terms & Privacy</span>
+      </button>
+    </div>
+    <button onclick="signOut()" style="width:100%;background:#fef2f2;color:#dc2626;border:1.5px solid #fecaca;padding:14px;border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Clash Display',sans-serif;display:flex;align-items:center;justify-content:center;gap:8px;">
+      <i class="ti ti-logout" style="font-size:18px;"></i> Sign out
+    </button>
   </div>
 </div>
 
@@ -1947,14 +2046,36 @@ async function checkSession() {
   const { data: { session } } = await sb.auth.getSession();
   if (session) {
     currentUser = session.user;
-    loadHomeData();
-    go('home');
+    // Only auto-redirect if user is on landing page
+    // Don't redirect if they navigated to a specific screen
+    const activePage = document.querySelector('.screen.active');
+    if (activePage && activePage.id === 'landing') {
+      loadHomeData();
+      go('home');
+    } else {
+      loadHomeData();
+    }
   }
 }
 
 function showProfile() {
   if (!currentUser) return go('signin');
-  toast('Profile coming soon');
+  const name = currentUser.user_metadata?.full_name || currentUser.email?.split('@')[0] || 'User';
+  const email = currentUser.email || '';
+  document.getElementById('pm-avatar').textContent = initials(name);
+  document.getElementById('pm-name').textContent = name;
+  document.getElementById('pm-email').textContent = email;
+  document.getElementById('profile-menu').classList.remove('hidden');
+}
+
+async function signOut() {
+  showLoader('Signing out...');
+  await sb.auth.signOut();
+  currentUser = null;
+  hideLoader();
+  document.getElementById('profile-menu').classList.add('hidden');
+  toast('Signed out successfully');
+  go('landing');
 }
 
 // ==================== LOAD HOME DATA ====================
@@ -2505,6 +2626,16 @@ function shareGeneral() {
     copyReferralLink();
   }
 }
+
+// ==================== RESPONSIVE NAV ====================
+function handleResize() {
+  var isDesktop = window.innerWidth >= 1024;
+  document.querySelectorAll('.bnav-logo').forEach(function(el) {
+    el.style.display = isDesktop ? 'block' : 'none';
+  });
+}
+window.addEventListener('resize', handleResize);
+handleResize();
 
 // ==================== INIT ====================
 window.addEventListener('load', () => {
