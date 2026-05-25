@@ -1054,7 +1054,7 @@ input,textarea,select,button{font-family:'Clash Display',sans-serif;}
 
 <!-- ==================== POST ERRAND ==================== -->
 <div class="screen" id="post-errand">
-  <div class="top-hdr"><div class="bkcircle" onclick="go('home')"><i class="ti ti-arrow-left" style="color:#fff;font-size:16px;"></i></div><h2>New errand</h2><div style="width:30px;"></div></div>
+  <div class="top-hdr"><div class="bkcircle" onclick="peBack()"><i class="ti ti-arrow-left" style="color:#fff;font-size:16px;"></i></div><h2>New errand</h2><div style="width:30px;"></div></div>
   <div class="post-body">
     <div class="slbl-row"><span class="seyebrow" id="pe-lbl">STEP 1 — WHAT</span><span class="scounter" id="pe-count">1 of 3</span></div>
     <div class="pbar"><div class="pb on" id="pp1"></div><div class="pb" id="pp2"></div><div class="pb" id="pp3"></div></div>
@@ -1123,12 +1123,27 @@ input,textarea,select,button{font-family:'Clash Display',sans-serif;}
           <div class="uopt" onclick="selUrg(this)">Schedule</div>
         </div>
       </div>
+      <div class="fg" id="pe-duration-wrap" style="display:none;">
+        <label class="lbl">Estimated duration</label>
+        <select class="select field" id="pe-duration" onchange="updatePricingDisplay()">
+          <option value="1">1 hour</option>
+          <option value="2">2 hours</option>
+          <option value="3">3 hours</option>
+          <option value="4">Half day (4 hrs)</option>
+          <option value="8">Full day (8 hrs)</option>
+        </select>
+      </div>
+      <div style="background:var(--light);border:1.5px solid var(--border);border-radius:12px;padding:14px;margin-bottom:14px;" id="pe-pricing-display">
+        <div style="font-size:11px;font-weight:700;color:var(--purple);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;">Runner rate guide</div>
+        <div style="font-size:14px;font-weight:700;color:var(--black);" id="pe-pricing-text">Select a category to see rates</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:4px;line-height:1.5;">Final rate agreed with runner before start. Payment held in your wallet until errand is confirmed complete.</div>
+      </div>
       <div class="fg">
         <label class="lbl">Additional instructions <span style="font-weight:400;color:var(--muted);font-size:11px;">(optional)</span></label>
         <textarea class="textarea" id="pe-notes" placeholder="Anything else the runner should know..."></textarea>
       </div>
       <div style="background:var(--grey);border-radius:12px;padding:14px;margin-bottom:4px;">
-        <div style="font-size:11px;font-weight:700;color:var(--black);margin-bottom:8px;">Summary</div>
+        <div style="font-size:11px;font-weight:700;color:var(--black);margin-bottom:8px;">Errand summary</div>
         <div id="pe-summary-inline" style="font-size:12px;color:#555;line-height:1.8;"></div>
       </div>
     </div>
@@ -2061,6 +2076,7 @@ function peGoTo(n) {
     if (i+1 === n) el.classList.add('on');
   });
   document.getElementById('pe-btn').textContent = n === 3 ? 'Post errand →' : 'Next →';
+  if (n === 3) updatePricingDisplay();
 }
 
 function calcPlatformFee(amount) {
@@ -2520,6 +2536,62 @@ async function loadActiveErrand() {
     if (runner) runner.textContent = 'Status: ' + res.data.status;
   } else {
     strip.style.display = 'none';
+  }
+}
+
+
+// ==================== POST ERRAND BACK ====================
+function peBack() {
+  if (peStep === 1) {
+    go('home');
+  } else {
+    peGoTo(peStep - 1);
+  }
+}
+
+// Category pricing guide
+var categoryPricing = {
+  'Pickup & delivery': { type: 'task', min: 1500, max: 4000 },
+  'School run': { type: 'task', min: 2000, max: 5000 },
+  'Office errands': { type: 'task', min: 1500, max: 4000 },
+  'Laundry': { type: 'time', min: 2000, max: 6000 },
+  'Car wash': { type: 'time', min: 2000, max: 5000 },
+  'Pharmacy pickup': { type: 'task', min: 1000, max: 3000 },
+  'Food delivery': { type: 'task', min: 1000, max: 3000 },
+  'Personal assistant': { type: 'time', min: 3000, max: 10000 },
+  'Queue service': { type: 'task', min: 1500, max: 4000 },
+  'Tech support': { type: 'time', min: 3000, max: 8000 },
+  'House cleaning': { type: 'time', min: 3000, max: 10000 },
+  'Quick fix': { type: 'task', min: 2000, max: 6000 },
+  'Home tutoring': { type: 'time', min: 3000, max: 8000 },
+  'Other': { type: 'task', min: 1500, max: 5000 }
+};
+
+
+function updatePricingDisplay() {
+  var cat = currentErrand.category;
+  var pricing = categoryPricing[cat];
+  if (!pricing) return;
+  // Show duration selector for time-based
+  var durWrap = document.getElementById('pe-duration-wrap');
+  if (durWrap) durWrap.style.display = pricing.type === 'time' ? 'block' : 'none';
+  // Update pricing text
+  var txt = document.getElementById('pe-pricing-text');
+  if (txt) txt.textContent = getEstimatedCost();
+}
+
+function getEstimatedCost() {
+  var cat = currentErrand.category;
+  var pricing = categoryPricing[cat];
+  if (!pricing) return '';
+  if (pricing.type === 'time') {
+    var dur = document.getElementById('pe-duration');
+    var hours = dur ? parseFloat(dur.value) || 1 : 1;
+    var min = Math.round(pricing.min * hours);
+    var max = Math.round(pricing.max * hours);
+    return 'Estimated: ₦' + min.toLocaleString() + ' — ₦' + max.toLocaleString();
+  } else {
+    return 'Estimated: ₦' + pricing.min.toLocaleString() + ' — ₦' + pricing.max.toLocaleString();
   }
 }
 

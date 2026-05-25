@@ -138,144 +138,70 @@ input,textarea,select,button{font-family:'Clash Display',sans-serif;}
   <div class="section" style="background:#fffbf0;border-left:4px solid #f59e0b;">
     <div class="section-num" style="color:#d97706;">Important — read before testing</div>
     <div class="section-title">What's live, what's simulated</div>
-    <div class="section-body" style="margin-bottom:16px;">This is a working prototype connected to a real database. Most things are functional. A few are intentionally simulated while infrastructure is being finalised. Here's exactly what to expect:</div>
+    <div class="section-body" style="margin-bottom:16px;">This is a working prototype connected to a real database. Most things are functional. A few are intentionally simulated. Here's exactly what to expect:</div>
 
-    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px;">
-      <div style="font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#16a34a;margin-bottom:4px;">✓ Fully working</div>
+    <div style="margin-bottom:20px;">
+      <div style="font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#16a34a;margin-bottom:10px;">✓ Fully working</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
         <div style="background:#f0fdf4;border-radius:8px;padding:10px 12px;font-size:12px;color:#166534;font-weight:600;">Email sign up & sign in</div>
-        <div style="background:#f0fdf4;border-radius:8px;padding:10px 12px;font-size:12px;color:#166534;font-weight:600;">Post an errand → saves to database</div>
-        <div style="background:#f0fdf4;border-radius:8px;padding:10px 12px;font-size:12px;color:#166534;font-weight:600;">Runner profiles & verification</div>
+        <div style="background:#f0fdf4;border-radius:8px;padding:10px 12px;font-size:12px;color:#166534;font-weight:600;">Post an errand — 3-step adaptive form</div>
+        <div style="background:#f0fdf4;border-radius:8px;padding:10px 12px;font-size:12px;color:#166534;font-weight:600;">Adaptive location fields per category</div>
         <div style="background:#f0fdf4;border-radius:8px;padding:10px 12px;font-size:12px;color:#166534;font-weight:600;">In-app chat</div>
         <div style="background:#f0fdf4;border-radius:8px;padding:10px 12px;font-size:12px;color:#166534;font-weight:600;">Errands Wallet — fund & track</div>
-        <div style="background:#f0fdf4;border-radius:8px;padding:10px 12px;font-size:12px;color:#166534;font-weight:600;">Errands Escrow — create & manage</div>
-        <div style="background:#f0fdf4;border-radius:8px;padding:10px 12px;font-size:12px;color:#166534;font-weight:600;">Errands Academy — all 5 modules</div>
-        <div style="background:#f0fdf4;border-radius:8px;padding:10px 12px;font-size:12px;color:#166534;font-weight:600;">Admin panel — runner approval</div>
+        <div style="background:#f0fdf4;border-radius:8px;padding:10px 12px;font-size:12px;color:#166534;font-weight:600;">Errands Escrow — 3 tiers, create & manage</div>
+        <div style="background:#f0fdf4;border-radius:8px;padding:10px 12px;font-size:12px;color:#166534;font-weight:600;">Errands Academy — 5 modules & quizzes</div>
+        <div style="background:#f0fdf4;border-radius:8px;padding:10px 12px;font-size:12px;color:#166534;font-weight:600;">Admin — runner verification & approval</div>
+        <div style="background:#f0fdf4;border-radius:8px;padding:10px 12px;font-size:12px;color:#166534;font-weight:600;">Profile menu — sign out, wallet, referral</div>
+        <div style="background:#f0fdf4;border-radius:8px;padding:10px 12px;font-size:12px;color:#166534;font-weight:600;">Help & Support — 5 issue categories</div>
+        <div style="background:#f0fdf4;border-radius:8px;padding:10px 12px;font-size:12px;color:#166534;font-weight:600;">Legal pages — Terms, Privacy, Pricing</div>
+        <div style="background:#f0fdf4;border-radius:8px;padding:10px 12px;font-size:12px;color:#166534;font-weight:600;">Referral system — unique code & WhatsApp share</div>
       </div>
     </div>
 
-    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px;">
-      <div style="font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#d97706;margin-bottom:4px;">⚡ Simulated (UI works, not live)</div>
-      <div style="display:flex;flex-direction:column;gap:6px;">
+    <div style="margin-bottom:20px;">
+      <div style="font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#d97706;margin-bottom:10px;">⚡ Simulated (UI works, backend pending)</div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
         <div style="background:#fffbf0;border:1px solid #fde68a;border-radius:8px;padding:10px 14px;">
-          <div style="font-size:12px;font-weight:700;color:#92400e;">Wallet funding via Paystack</div>
-          <div style="font-size:11px;color:#a16207;margin-top:2px;">The fund wallet flow completes successfully but no real money moves. Paystack live keys are being integrated.</div>
+          <div style="font-size:12px;font-weight:700;color:#92400e;">Wallet funding</div>
+          <div style="font-size:11px;color:#a16207;margin-top:2px;">Fund wallet completes in the UI but no real money moves. Paystack live keys being integrated.</div>
         </div>
         <div style="background:#fffbf0;border:1px solid #fde68a;border-radius:8px;padding:10px 14px;">
-          <div style="font-size:12px;font-weight:700;color:#92400e;">Escrow funding</div>
-          <div style="font-size:11px;color:#a16207;margin-top:2px;">Escrow creates correctly in the database but real funds are not held. Full financial infrastructure being finalised.</div>
+          <div style="font-size:12px;font-weight:700;color:#92400e;">Escrow payment</div>
+          <div style="font-size:11px;color:#a16207;margin-top:2px;">Escrow records save to database correctly but real funds are not held. Direct payment integration coming.</div>
         </div>
         <div style="background:#fffbf0;border:1px solid #fde68a;border-radius:8px;padding:10px 14px;">
-          <div style="font-size:12px;font-weight:700;color:#92400e;">Runner-to-user matching</div>
-          <div style="font-size:11px;color:#a16207;margin-top:2px;">Errand posting and runner dashboards are live but the automated matching algorithm is being built. Runners currently see all available errands.</div>
+          <div style="font-size:12px;font-weight:700;color:#92400e;">Runner pricing & matching</div>
+          <div style="font-size:11px;color:#a16207;margin-top:2px;">Rate guide shows estimates only. Distance-based pricing via Google Maps and automated runner matching are next build phase.</div>
+        </div>
+        <div style="background:#fffbf0;border:1px solid #fde68a;border-radius:8px;padding:10px 14px;">
+          <div style="font-size:12px;font-weight:700;color:#92400e;">Chat replies from runner</div>
+          <div style="font-size:11px;color:#a16207;margin-top:2px;">Chat UI works. Runner replies are simulated. Real-time runner messaging activates when live runners are onboarded.</div>
         </div>
       </div>
     </div>
 
-    <div style="display:flex;flex-direction:column;gap:8px;">
-      <div style="font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#888;margin-bottom:4px;">◯ Placeholder (visible, not functional)</div>
-      <div style="display:flex;flex-direction:column;gap:6px;">
+    <div>
+      <div style="font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#888;margin-bottom:10px;">◯ Placeholder (visible, not yet functional)</div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
         <div style="background:#f8f8f8;border:1px solid #e5e5e5;border-radius:8px;padding:10px 14px;">
           <div style="font-size:12px;font-weight:700;color:#555;">Google, Facebook, Apple sign in</div>
-          <div style="font-size:11px;color:#888;margin-top:2px;">Buttons are visible on sign up and sign in. Google OAuth is configured but requires final approval. Facebook and Apple integrations are next phase. Use email sign up for now.</div>
+          <div style="font-size:11px;color:#888;margin-top:2px;">Buttons visible. Use email sign up for now — social login is next phase.</div>
         </div>
         <div style="background:#f8f8f8;border:1px solid #e5e5e5;border-radius:8px;padding:10px 14px;">
           <div style="font-size:12px;font-weight:700;color:#555;">Market run category</div>
-          <div style="font-size:11px;color:#888;margin-top:2px;">Intentionally disabled. Requires virtual card infrastructure for runners to spend on behalf of users. Being integrated via a licensed fintech partner.</div>
+          <div style="font-size:11px;color:#888;margin-top:2px;">Intentionally disabled. Requires virtual card infrastructure for runners to spend on your behalf.</div>
         </div>
         <div style="background:#f8f8f8;border:1px solid #e5e5e5;border-radius:8px;padding:10px 14px;">
-          <div style="font-size:12px;font-weight:700;color:#555;">Withdrawal to bank account</div>
-          <div style="font-size:11px;color:#888;margin-top:2px;">Wallet withdrawal button is visible. Bank payout integration is next phase after Paystack live keys are confirmed.</div>
+          <div style="font-size:12px;font-weight:700;color:#555;">Wallet withdrawal</div>
+          <div style="font-size:11px;color:#888;margin-top:2px;">Button visible. Bank payout integration follows live payment keys.</div>
         </div>
         <div style="background:#f8f8f8;border:1px solid #e5e5e5;border-radius:8px;padding:10px 14px;">
-          <div style="font-size:12px;font-weight:700;color:#555;">Runner NIN verification</div>
-          <div style="font-size:11px;color:#888;margin-top:2px;">NIN is collected during signup but automated government verification API is being integrated. Manual admin verification is active in the meantime.</div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-
-  <!-- SECTION 2 — WHAT TO TEST -->
-  <div class="section">
-    <div class="section-num">02 — What to test</div>
-    <div class="section-title">Your testing flow</div>
-    <div class="section-body">Test both as a user and a runner. Use the live link at the top of this page. Use your real email — accounts are saved to a real database.</div>
-    <div class="steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-content">
-          <div class="step-action">Open the landing page on desktop</div>
-          <div class="step-detail">Read the landing page from top to bottom. Does it communicate what Errands is within 10 seconds? Does it feel global or local?</div>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-content">
-          <div class="step-action">Sign up as a user</div>
-          <div class="step-detail">Create an account with your email. Note any friction in the signup flow. Does it feel fast enough? Too much or too little asked?</div>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-content">
-          <div class="step-action">Browse the home dashboard</div>
-          <div class="step-detail">Look at the runner cards. Tap one — review the runner profile. Does it feel credible? Would you trust this person with an errand?</div>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">4</div>
-        <div class="step-content">
-          <div class="step-action">Post a test errand</div>
-          <div class="step-detail">Post a real or fictional errand through the full 3-step flow. Note the category options, how natural the flow feels, and the summary preview.</div>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">5</div>
-        <div class="step-content">
-          <div class="step-action">Fund your wallet and explore Escrow</div>
-          <div class="step-detail">Tap Wallet in the bottom nav. Fund a test amount. Then tap Escrow — create a test escrow transaction. Review all three tiers.</div>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">6</div>
-        <div class="step-content">
-          <div class="step-action">Sign up as a runner (use a second email)</div>
-          <div class="step-detail">Go through the full runner signup. Complete the 4-step process including verification. Review the growth pathway screen that appears after signup.</div>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">7</div>
-        <div class="step-content">
-          <div class="step-action">Go through the Errands Academy</div>
-          <div class="step-detail">Complete at least 2 of the 5 modules. Review the curriculum. Does this training standard feel professional? Would it build a trustworthy runner workforce?</div>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">8</div>
-        <div class="step-content">
-          <div class="step-action">Check the legal pages</div>
-          <div class="step-detail">Scroll to the footer. Review Terms of Service, Privacy Policy, Pricing, and Dispute Resolution. Are these substantial enough for a financial platform?</div>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">9</div>
-        <div class="step-content">
-          <div class="step-action">Switch to mobile</div>
-          <div class="step-detail">Open the same link on your phone. Does the experience hold up? Is the mobile version as strong as desktop?</div>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">10</div>
-        <div class="step-content">
-          <div class="step-action">Come back and fill this form</div>
-          <div class="step-detail">Your feedback below is the most important part. Be honest. The more specific you are, the more useful it is.</div>
+          <div style="font-size:12px;font-weight:700;color:#555;">Desktop layout</div>
+          <div style="font-size:11px;color:#888;margin-top:2px;">Test on mobile only. Desktop redesign is a dedicated upcoming session. Landing page is desktop-responsive.</div>
         </div>
       </div>
     </div>
   </div>
-
 
   <!-- SECTION 3 — REVIEW LENSES -->
   <div class="section">
