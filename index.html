@@ -420,6 +420,51 @@ input,textarea,select,button{font-family:'Clash Display',sans-serif;}
   #landing .hero { padding: 100px 80px 80px; }
 }
 
+
+/* ==================== MODALS ==================== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 500;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.modal-overlay.hidden {
+  display: none !important;
+}
+.modal-sheet {
+  background: #fff;
+  border-radius: 20px 20px 0 0;
+  padding: 24px;
+  width: 100%;
+  max-width: 430px;
+}
+.modal-handle {
+  width: 40px;
+  height: 4px;
+  background: #e5e5e5;
+  border-radius: 2px;
+  margin: 0 auto 20px;
+}
+.modal-title { font-size: 18px; font-weight: 700; color: var(--black); margin-bottom: 6px; }
+.modal-sub { font-size: 13px; color: var(--muted); margin-bottom: 20px; }
+.amount-presets { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-bottom: 16px; }
+.amount-preset {
+  background: var(--grey);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 6px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--black);
+  cursor: pointer;
+  font-family: 'Clash Display', sans-serif;
+}
+.amount-preset.sel { border-color: var(--purple); background: #fdf8fe; color: var(--purple); }
+
 </style>
 <!-- Google Analytics - Errands -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-JSVCRC95HR"></script>
