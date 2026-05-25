@@ -387,260 +387,39 @@ input,textarea,select,button{font-family:'Clash Display',sans-serif;}
 .adm-pill.flagged{background:#fef2f2;color:#dc2626;}
 .adm-time{font-size:9px;color:#ccc;margin-top:2px;}
 
-/* ==================== DESKTOP RESPONSIVE ==================== */
-/* Approach: sidebar is fixed overlay, screens use padding-left */
-/* Never touch display:none/flex logic - screens handle their own visibility */
+
+
+/* ==================== LANDING PAGE DESKTOP ==================== */
+@media (min-width: 768px) {
+
+  /* Break the app container constraint for landing page */
+  body:has(#landing.active) .app,
+  .app:has(#landing.active) {
+    max-width: 100% !important;
+    overflow: visible !important;
+  }
+
+  /* Also target the screen directly */
+  #landing.active {
+    width: 100vw !important;
+    max-width: 100vw !important;
+  }
+
+  .hero { padding: 80px 48px 64px; }
+  .hero-h1 { font-size: clamp(36px,6vw,68px); }
+  .hero-sub { font-size: 18px; max-width: 600px; margin-left:auto; margin-right:auto; }
+  .hero-ctas { flex-direction: row; justify-content: center; max-width: 480px; margin: 0 auto; }
+  .hero-ctas .btn { width: auto; padding: 16px 32px; }
+  .landing-body { padding: 60px 48px; max-width: 960px; margin: 0 auto; }
+  .step-cards-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+  .step-card { margin-bottom: 0; }
+  .cta-strip { padding: 60px 48px; }
+}
 
 @media (min-width: 1024px) {
-
-  body {
-    background: #1a1a2e;
-  }
-
-  .app {
-    max-width: 100%;
-    /* Do NOT change flex-direction - screens stack normally */
-  }
-
-  /* Fixed sidebar */
-  .bnav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 220px;
-    flex-direction: column;
-    justify-content: flex-start;
-    padding-top: 0;
-    gap: 0;
-    border-top: none;
-    border-right: 0.5px solid #f0f0f0;
-    z-index: 100;
-    background: #fff;
-    box-shadow: 2px 0 8px rgba(0,0,0,0.04);
-  }
-
-  .bnav-logo {
-    display: block !important;
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--black);
-    padding: 24px 20px 20px;
-    border-bottom: 0.5px solid #f5f5f5;
-    margin-bottom: 8px;
-    cursor: pointer;
-  }
-  .bnav-logo span { color: var(--purple); }
-
-  .ni {
-    flex-direction: row;
-    gap: 10px;
-    padding: 11px 20px;
-    border-radius: 0;
-    justify-content: flex-start;
-    width: 100%;
-    cursor: pointer;
-    transition: background 0.15s;
-  }
-  .ni:hover { background: var(--light); }
-  .ni i { font-size: 18px; }
-  .ni span { font-size: 13px; font-weight: 600; display: block; }
-  .ndot { width: 30px; height: 30px; border-radius: 8px; }
-
-  /* Screens: add left padding to account for fixed sidebar */
-  /* Use padding-left NOT margin-left to avoid breaking display logic */
-  .screen.active {
-    padding-left: 220px;
-    width: 100%;
-    min-height: 100vh;
-  }
-
-  /* Landing and auth screens: no sidebar padding */
-  #landing.active,
-  #signup.active,
-  #signin.active,
-  #runner-signup.active {
-    padding-left: 0 !important;
-  }
-
-  /* HOME */
-  .home-top {
-    padding: 20px 40px 16px;
-  }
-
-  .hbody {
-    padding: 24px 40px 80px;
-    display: grid;
-    grid-template-columns: 1fr 320px;
-    gap: 28px;
-    max-width: 1300px;
-  }
-
-  .acards { grid-template-columns: 1fr 1fr; }
-  .acard { min-height: 100px; }
-
-  .rcards {
-    display: grid !important;
-    grid-template-columns: repeat(2, 1fr) !important;
-    overflow-x: visible !important;
-    gap: 10px !important;
-    margin-bottom: 20px;
-  }
-  .rcard { min-width: unset !important; }
-
-  /* POST ERRAND */
-  .post-body {
-    max-width: 640px;
-    margin: 0 auto;
-    padding: 28px 40px 120px;
-  }
-
-  .post-btm {
-    left: 220px;
-    width: calc(100% - 220px);
-    transform: none;
-    max-width: unset;
-  }
-
-  /* RUNNER PROFILE */
-  .rp-head { padding: 0 40px 16px; }
-  .rp-stats {
-    padding: 0 40px 16px;
-    grid-template-columns: repeat(4, 1fr);
-  }
-  .rp-tabs { padding: 0 40px; }
-  .rp-tc {
-    padding: 20px 40px;
-    padding-bottom: 120px;
-    max-width: 900px;
-  }
-  .rp-cta {
-    left: 220px;
-    width: calc(100% - 220px);
-    transform: none;
-    max-width: unset;
-    padding: 12px 40px 20px;
-  }
-  .rp-cta .btn {
-    width: auto;
-    display: inline-flex;
-    padding: 14px 28px;
-    margin-right: 12px;
-  }
-
-  /* CHAT */
-  .chat-nav { padding: 14px 40px; }
-  .conf-strip { margin: 14px 40px; }
-  .tbar { margin: 0 40px 14px; }
-  .chat-msgs { padding: 10px 40px 100px; }
-  .chat-ibar {
-    left: 220px;
-    width: calc(100% - 220px);
-    transform: none;
-    max-width: unset;
-    padding: 10px 40px 20px;
-  }
-
-  /* PAYMENT */
-  .pay-nav { padding: 14px 40px; }
-  .pay-body {
-    max-width: 640px;
-    margin: 0 auto;
-    padding: 28px 40px 120px;
-  }
-  .pay-btm {
-    left: 220px;
-    width: calc(100% - 220px);
-    transform: none;
-    max-width: unset;
-  }
-
-  /* WALLET */
-  .wallet-top { padding: 20px 40px 28px; }
-  .wallet-body {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 28px 40px 80px;
-  }
-
-  /* ESCROW */
-  .escrow-top { padding: 20px 40px 24px; }
-  .escrow-body {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 20px 40px 80px;
-  }
-
-  /* RUNNER DASH */
-  .rd-top { padding: 20px 40px 24px; }
-  .rd-body {
-    padding: 20px 40px 80px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-  }
-  .rd-stats { grid-column: 1 / -1; }
-
-  /* ADMIN */
-  .adm-top { padding: 20px 40px 24px; }
-  .adm-body {
-    padding: 20px 40px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-  }
-  .adm-quick {
-    grid-column: 1 / -1;
-    grid-template-columns: repeat(6, 1fr);
-  }
-  .adm-sg { grid-template-columns: repeat(4, 1fr); }
-
-  /* AUTH on desktop - centered cards */
-  #signup .auth-body,
-  #signin .auth-body,
-  #runner-signup .auth-body {
-    max-width: 480px;
-    margin: 40px auto;
-  }
-
-  /* SUCCESS */
-  #success {
-    padding: 60px 40px;
-    max-width: 560px;
-    margin: 0 auto;
-  }
-
+  #landing .hero { padding: 100px 80px 80px; }
 }
 
-/* Wider screens */
-@media (min-width: 1280px) {
-  .hbody { grid-template-columns: 1fr 360px; }
-  .rcards { grid-template-columns: repeat(3, 1fr) !important; }
-}
-
-
-/* MODALS */
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:200;display:flex;align-items:flex-end;justify-content:center;}
-.modal-overlay.hidden{display:none;}
-.modal-sheet{background:#fff;border-radius:20px 20px 0 0;padding:24px;width:100%;max-width:430px;}
-.modal-handle{width:40px;height:4px;background:#e5e5e5;border-radius:2px;margin:0 auto 20px;}
-.modal-title{font-size:18px;font-weight:700;color:var(--black);margin-bottom:6px;}
-.modal-sub{font-size:13px;color:var(--muted);margin-bottom:20px;}
-.amount-presets{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px;}
-.amount-preset{background:var(--grey);border:1.5px solid var(--border);border-radius:10px;padding:10px 6px;text-align:center;font-size:13px;font-weight:700;color:var(--black);cursor:pointer;font-family:'Clash Display',sans-serif;}
-.amount-preset.sel{border-color:var(--purple);background:#fdf8fe;color:var(--purple);}
-
-/* STEP CARDS */
-.step-cards-grid{display:flex;flex-direction:column;gap:16px;}
-@media(min-width:900px){
-  .step-cards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
-  .step-card{margin-bottom:0;}
-}
-
-@media(min-width:1024px){
-  .modal-overlay{align-items:center;}
-  .modal-sheet{border-radius:20px;max-width:520px;margin-bottom:0;}
-}
 </style>
 <!-- Google Analytics - Errands -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-JSVCRC95HR"></script>
@@ -1688,6 +1467,7 @@ function go(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   const t = document.getElementById(id);
   if (t) { t.classList.add('active'); t.scrollTop = 0; }
+  expandForLanding();
 }
 function showLoader(msg = 'Loading...') {
   document.getElementById('loader-msg').textContent = msg;
@@ -1805,6 +1585,19 @@ async function signInWithGoogle() {
     options: { redirectTo: window.location.href }
   });
   if (error) toast('Google sign in failed. Please try email.');
+}
+
+function expandForLanding() {
+  var app = document.querySelector('.app');
+  if (!app) return;
+  var isLanding = document.getElementById('landing').classList.contains('active');
+  if (isLanding) {
+    app.style.maxWidth = '100%';
+    app.style.overflow = 'visible';
+  } else {
+    app.style.maxWidth = '';
+    app.style.overflow = '';
+  }
 }
 
 async function checkSession() {
@@ -2391,16 +2184,6 @@ function shareGeneral() {
     copyReferralLink();
   }
 }
-
-// ==================== RESPONSIVE NAV ====================
-function handleResize() {
-  var isDesktop = window.innerWidth >= 1024;
-  document.querySelectorAll('.bnav-logo').forEach(function(el) {
-    el.style.display = isDesktop ? 'block' : 'none';
-  });
-}
-window.addEventListener('resize', handleResize);
-handleResize();
 
 // ==================== INIT ====================
 window.addEventListener('load', () => {
