@@ -870,37 +870,80 @@ input,textarea,select,button{font-family:'Clash Display',sans-serif;}
 
 <!-- ==================== HOME ==================== -->
 <div class="screen" id="home">
-  <div class="home-top">
-    <div class="home-top-row">
-      <div style="display:flex;align-items:center;gap:8px;">
-        <div class="hav" id="home-av">KO</div>
-        <button class="role-switch" id="role-switch-btn" onclick="switchRole()" style="display:none;">
-          <i class="ti ti-switch-horizontal" style="font-size:14px;"></i>
-          <span id="role-switch-label">Switch to Runner</span>
-        </button>
+  <!-- HOME TOP BAR -->
+  <div style="background:#fff;padding:16px 20px 14px;border-bottom:0.5px solid #f0f0f0;">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div class="hav" id="home-av" onclick="showProfile()" style="cursor:pointer;">KO</div>
+        <div>
+          <div style="font-size:12px;color:var(--muted);">Hi <span id="home-name">there</span></div>
+          <div style="font-size:11px;color:#aaa;display:flex;align-items:center;gap:4px;"><i class="ti ti-map-pin" style="color:var(--purple);font-size:11px;"></i><span id="home-city">Lagos</span></div>
+        </div>
       </div>
-      <div class="hloc"><i class="ti ti-map-pin" style="color:var(--purple);font-size:13px;"></i> <span id="home-city">Lagos</span> <i class="ti ti-chevron-down" style="font-size:12px;"></i></div>
-      <i class="ti ti-bell" style="font-size:22px;color:#555;"></i>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <button class="role-switch" id="role-switch-btn" onclick="switchRole()" style="display:none;background:var(--purple);border:none;color:#fff;padding:6px 14px;border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Clash Display',sans-serif;">
+          <span id="role-switch-label">Runner mode</span>
+        </button>
+        <i class="ti ti-bell" style="font-size:22px;color:#555;cursor:pointer;"></i>
+      </div>
     </div>
-    <div class="hgreet">Hi <span id="home-name">there</span></div>
-    <div class="hh1">What do you need<br>help with today?</div>
-    <div class="hsearch"><i class="ti ti-search" style="color:#bbb;font-size:16px;"></i><span>Find a runner</span><div class="filt"><i class="ti ti-adjustments-horizontal" style="color:#fff;font-size:14px;"></i></div></div>
-    <div class="pills"><div class="pill on">All</div><div class="pill">Grocery</div><div class="pill">Laundry</div><div class="pill">Errands</div><div class="pill">Shopping</div></div>
+    <div style="font-size:22px;font-weight:700;color:var(--black);line-height:1.2;">What do you need<br>done today?</div>
   </div>
-  <div class="hbody">
-    <div class="acards">
-      <div class="acard dk" onclick="go('runner-profile')"><div class="acard-lbl">Find a Runner</div><div class="acard-sub">Browse local runners by category</div><div class="acard-ico"><i class="ti ti-run"></i></div></div>
-      <div class="acard pu" onclick="go('post-errand')"><div class="acard-lbl">Post a Task</div><div class="acard-sub">Tell us what you need</div><div class="acard-ico"><i class="ti ti-clipboard-list"></i></div></div>
+
+  <!-- HOME BODY -->
+  <div class="hbody" style="padding:16px 20px;overflow-y:auto;flex:1;padding-bottom:80px;">
+
+    <!-- ACTIVE ERRAND STRIP -->
+    <div id="active-errand-strip" style="display:none;background:var(--black);border-radius:14px;padding:14px 16px;margin-bottom:16px;">
+      <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--purple);margin-bottom:8px;display:flex;align-items:center;gap:6px;">
+        <div style="width:6px;height:6px;border-radius:50%;background:#22c55e;"></div>
+        Errand in progress
+      </div>
+      <div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:4px;" id="active-errand-desc">Market run — Balogun</div>
+      <div style="font-size:11px;color:rgba(255,255,255,0.6);margin-bottom:12px;" id="active-errand-runner">Runner: Adaeze Kalu</div>
+      <button onclick="go('chat')" style="background:var(--purple);border:none;color:#fff;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Clash Display',sans-serif;">Open chat →</button>
     </div>
-    <div class="promo" onclick="loadReferralPage();go('referral-page');" style="cursor:pointer;"><div><div class="promo-t">Refer a friend</div><div class="promo-s">Earn ₦500 for every referral</div></div><div class="promo-b">Share →</div></div>
-    <div class="sec-hdr"><span class="sec-ttl">Top Rated in Your Area</span><span class="see-all">See More</span></div>
-    <div class="rcards" id="runners-list">
-      <div style="padding:20px;color:var(--muted);font-size:12px;">Loading runners...</div>
+
+    <!-- POST ERRAND HERO -->
+    <div onclick="go('post-errand')" style="background:linear-gradient(135deg,var(--purple) 0%,#6b2070 100%);border-radius:16px;padding:20px;margin-bottom:12px;cursor:pointer;position:relative;overflow:hidden;">
+      <div style="position:absolute;right:-10px;bottom:-10px;font-size:80px;opacity:0.1;"><i class="ti ti-clipboard-list"></i></div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.7);margin-bottom:8px;">Get started</div>
+      <div style="font-size:20px;font-weight:700;color:#fff;margin-bottom:6px;">Post an errand</div>
+      <div style="font-size:13px;color:rgba(255,255,255,0.75);margin-bottom:16px;line-height:1.5;">Describe what you need. A verified runner near you handles it.</div>
+      <div style="background:rgba(255,255,255,0.2);display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;color:#fff;">
+        <i class="ti ti-plus" style="font-size:14px;"></i> New errand
+      </div>
     </div>
-    <div class="sec-hdr"><span class="sec-ttl">Your Errands</span><span class="see-all" onclick="go('post-errand')">Post new</span></div>
-    <div id="my-errands">
+
+    <!-- QUICK ACTIONS ROW -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;">
+      <div onclick="go('wallet');loadWallet();" style="background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:14px;cursor:pointer;">
+        <i class="ti ti-wallet" style="color:var(--purple);font-size:22px;display:block;margin-bottom:8px;"></i>
+        <div style="font-size:13px;font-weight:700;color:var(--black);">My Wallet</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:2px;" id="home-wallet-bal">₦0.00</div>
+      </div>
+      <div onclick="go('escrow-tab');loadEscrowStats();" style="background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:14px;cursor:pointer;">
+        <i class="ti ti-safe" style="color:var(--purple);font-size:22px;display:block;margin-bottom:8px;"></i>
+        <div style="font-size:13px;font-weight:700;color:var(--black);">Escrow</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:2px;">Secure payments</div>
+      </div>
+    </div>
+
+    <!-- YOUR ERRANDS -->
+    <div class="sec-hdr"><span class="sec-ttl">Your errands</span><span class="see-all" onclick="go('post-errand')">+ New</span></div>
+    <div id="my-errands" style="margin-bottom:16px;">
       <div class="empty-state"><p>No errands yet. Post your first one.</p><button class="btn btn-purple" onclick="go('post-errand')" style="width:auto;padding:10px 20px;font-size:13px;">Post an errand →</button></div>
     </div>
+
+    <!-- REFER A FRIEND -->
+    <div onclick="loadReferralPage();go('referral-page');" style="background:var(--black);border-radius:14px;padding:16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;margin-bottom:16px;">
+      <div>
+        <div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:3px;">Refer a friend</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.5);">Earn ₦500 wallet credit per referral</div>
+      </div>
+      <div style="background:var(--purple);padding:8px 14px;border-radius:8px;font-size:12px;font-weight:700;color:#fff;">Share →</div>
+    </div>
+
   </div>
   <div class="bnav"><span class="bnav-logo" style="display:none;">errands<span>®</span></span><span class="bnav-logo" style="display:none;">errands<span>®</span></span>
     <div class="ni"><div class="ndot"><i class="ti ti-home on"></i></div><span class="on">Home</span></div>
@@ -950,59 +993,74 @@ input,textarea,select,button{font-family:'Clash Display',sans-serif;}
 <div class="screen" id="post-errand">
   <div class="top-hdr"><div class="bkcircle" onclick="go('home')"><i class="ti ti-arrow-left" style="color:#fff;font-size:16px;"></i></div><h2>New errand</h2><div style="width:30px;"></div></div>
   <div class="post-body">
-    <div class="slbl-row"><span class="seyebrow" id="pe-lbl">STEP 1 — WHAT & WHERE</span><span class="scounter" id="pe-count">1 of 3</span></div>
-    <div class="pbar"><div class="pb on" id="pp1"></div><div class="pb" id="pp2"></div><div class="pb" id="pp3"></div></div>
+    <div class="slbl-row"><span class="seyebrow" id="pe-lbl">STEP 1 — WHAT & WHERE</span><span class="scounter" id="pe-count">1 of 2</span></div>
+    <div class="pbar"><div class="pb on" id="pp1"></div><div class="pb" id="pp2"></div></div>
+
     <div class="sv vis" id="pe1">
-      <label class="lbl">Errand type</label>
-      <div class="cats-grid" style="grid-template-columns:repeat(2,1fr);">
-        <div class="copt" onclick="selCat(this)" style="opacity:0.5;display:flex;align-items:center;gap:8px;text-align:left;padding:10px 12px;"><i class="ti ti-shopping-cart" style="font-size:16px;flex-shrink:0;"></i><span>Market run</span></div>
-        <div class="copt sel" onclick="selCat(this)" style="display:flex;align-items:center;gap:8px;text-align:left;padding:10px 12px;"><i class="ti ti-package" style="font-size:16px;flex-shrink:0;"></i><span>Pickup & delivery</span></div>
-        <div class="copt" onclick="selCat(this)" style="display:flex;align-items:center;gap:8px;text-align:left;padding:10px 12px;"><i class="ti ti-school" style="font-size:16px;flex-shrink:0;"></i><span>School run</span></div>
-        <div class="copt" onclick="selCat(this)" style="display:flex;align-items:center;gap:8px;text-align:left;padding:10px 12px;"><i class="ti ti-building" style="font-size:16px;flex-shrink:0;"></i><span>Office errands</span></div>
-        <div class="copt" onclick="selCat(this)" style="display:flex;align-items:center;gap:8px;text-align:left;padding:10px 12px;"><i class="ti ti-shirt" style="font-size:16px;flex-shrink:0;"></i><span>Laundry</span></div>
-        <div class="copt" onclick="selCat(this)" style="display:flex;align-items:center;gap:8px;text-align:left;padding:10px 12px;"><i class="ti ti-car" style="font-size:16px;flex-shrink:0;"></i><span>Car wash</span></div>
-        <div class="copt" onclick="selCat(this)" style="display:flex;align-items:center;gap:8px;text-align:left;padding:10px 12px;"><i class="ti ti-pill" style="font-size:16px;flex-shrink:0;"></i><span>Pharmacy pickup</span></div>
-        <div class="copt" onclick="selCat(this)" style="display:flex;align-items:center;gap:8px;text-align:left;padding:10px 12px;"><i class="ti ti-salad" style="font-size:16px;flex-shrink:0;"></i><span>Food delivery</span></div>
-        <div class="copt" onclick="selCat(this)" style="display:flex;align-items:center;gap:8px;text-align:left;padding:10px 12px;"><i class="ti ti-user-check" style="font-size:16px;flex-shrink:0;"></i><span>Personal assistant</span></div>
-        <div class="copt" onclick="selCat(this)" style="display:flex;align-items:center;gap:8px;text-align:left;padding:10px 12px;"><i class="ti ti-clock" style="font-size:16px;flex-shrink:0;"></i><span>Queue service</span></div>
-        <div class="copt" onclick="selCat(this)" style="display:flex;align-items:center;gap:8px;text-align:left;padding:10px 12px;"><i class="ti ti-device-laptop" style="font-size:16px;flex-shrink:0;"></i><span>Tech support</span></div>
-        <div class="copt" onclick="selCat(this)" style="display:flex;align-items:center;gap:8px;text-align:left;padding:10px 12px;"><i class="ti ti-home" style="font-size:16px;flex-shrink:0;"></i><span>House cleaning</span></div>
-        <div class="copt" onclick="selCat(this)" style="display:flex;align-items:center;gap:8px;text-align:left;padding:10px 12px;"><i class="ti ti-tool" style="font-size:16px;flex-shrink:0;"></i><span>Quick fix</span></div>
-        <div class="copt" onclick="selCat(this)" style="display:flex;align-items:center;gap:8px;text-align:left;padding:10px 12px;"><i class="ti ti-book" style="font-size:16px;flex-shrink:0;"></i><span>Home tutoring</span></div>
-        <div class="copt" onclick="selCatOther(this)" id="other-cat-opt" style="display:flex;align-items:center;gap:8px;text-align:left;padding:10px 12px;grid-column:1/-1;"><i class="ti ti-dots" style="font-size:16px;flex-shrink:0;"></i><span>Other — describe below</span></div>
+      <div class="fg">
+        <label class="lbl">Errand type</label>
+        <select class="select field" id="pe-category" onchange="currentErrand.category=this.value">
+          <option value="">Select errand type</option>
+          <option value="Market run" disabled style="color:#ccc;">Market run (coming soon)</option>
+          <option value="Pickup &amp; delivery">Pickup &amp; delivery</option>
+          <option value="School run">School run</option>
+          <option value="Office errands">Office errands</option>
+          <option value="Laundry">Laundry</option>
+          <option value="Car wash">Car wash</option>
+          <option value="Pharmacy pickup">Pharmacy pickup</option>
+          <option value="Food delivery">Food delivery</option>
+          <option value="Personal assistant">Personal assistant</option>
+          <option value="Queue service">Queue service</option>
+          <option value="Tech support">Tech support</option>
+          <option value="House cleaning">House cleaning</option>
+          <option value="Quick fix">Quick fix</option>
+          <option value="Home tutoring">Home tutoring</option>
+          <option value="Other">Other (describe below)</option>
+        </select>
       </div>
-      <div id="other-cat-field" style="display:none;margin-bottom:14px;">
-        <label class="lbl">Describe your errand type</label>
-        <input class="field" id="other-cat-input" placeholder="e.g. Dry cleaning drop-off, outdoor cleaning..." oninput="currentErrand.category=this.value||'Other'"/>
+      <div class="fg">
+        <label class="lbl">Describe the errand</label>
+        <textarea class="textarea" id="pe-desc" placeholder="Be specific — what exactly should the runner do, collect, or deliver?"></textarea>
       </div>
-      <label class="lbl">Describe the errand</label>
-      <textarea class="textarea" id="pe-desc" placeholder="E.g. Go to Balogun market, buy 2 yards of plain ankara fabric (blue), bring to my office..."></textarea>
-      <label class="lbl">Pickup location</label>
-      <div class="locwrap"><i class="ti ti-map-pin locico"></i><input type="text" id="pe-pickup" placeholder="Where should runner start?"/></div>
-      <label class="lbl">Destination</label>
-      <div class="locwrap"><i class="ti ti-flag locico" style="color:var(--purple);"></i><input type="text" id="pe-dest" placeholder="Where should it end up?"/></div>
+      <div class="fg">
+        <label class="lbl">Pickup location</label>
+        <div class="locwrap"><i class="ti ti-map-pin locico"></i><input type="text" id="pe-pickup" placeholder="Where should the runner start?"/></div>
+      </div>
+      <div class="fg">
+        <label class="lbl">Destination</label>
+        <div class="locwrap"><i class="ti ti-flag locico" style="color:var(--purple);"></i><input type="text" id="pe-dest" placeholder="Where should it end up?"/></div>
+        <div id="saved-addresses-list" style="margin-top:6px;display:flex;gap:6px;flex-wrap:wrap;"></div>
+      </div>
+      <div style="background:var(--grey);border-radius:12px;padding:14px;margin-bottom:16px;">
+        <div style="font-size:12px;font-weight:700;color:var(--black);margin-bottom:10px;">Contact at destination <span style="font-weight:400;color:var(--muted);font-size:11px;">(optional but recommended)</span></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+          <input class="field" id="pe-contact-name" placeholder="Contact name" style="font-size:13px;"/>
+          <div style="display:flex;"><span class="phone-pre" style="font-size:12px;">+234</span><input class="phone-in" id="pe-contact-phone" type="tel" placeholder="Phone" style="font-size:13px;"/></div>
+        </div>
+        <p style="font-size:11px;color:var(--muted);margin-top:8px;line-height:1.5;">Helps the runner locate the right person and resolve any ground issues.</p>
+      </div>
     </div>
+
     <div class="sv" id="pe2">
-      <label class="lbl">When do you need this?</label>
-      <div class="urg-row">
-        <div class="uopt sel" onclick="selUrg(this)">ASAP</div>
-        <div class="uopt" onclick="selUrg(this)">Today</div>
-        <div class="uopt" onclick="selUrg(this)">Tomorrow</div>
-        <div class="uopt" onclick="selUrg(this)">Schedule</div>
+      <div class="fg">
+        <label class="lbl">When do you need this?</label>
+        <div class="urg-row">
+          <div class="uopt sel" onclick="selUrg(this)">ASAP</div>
+          <div class="uopt" onclick="selUrg(this)">Today</div>
+          <div class="uopt" onclick="selUrg(this)">Tomorrow</div>
+          <div class="uopt" onclick="selUrg(this)">Schedule</div>
+        </div>
       </div>
-      <label class="lbl">Your budget</label>
-      <div class="budget-wrap"><span class="bpre">₦</span><input class="bin" type="number" id="pe-budget" placeholder="e.g. 2500"/></div>
-      <p class="hint">Runners can counter-offer. Final price agreed before start.</p>
-      <label class="lbl">Additional instructions</label>
-      <textarea class="textarea" id="pe-notes" placeholder="Any special notes for the runner?"></textarea>
-    </div>
-    <div class="sv" id="pe3">
-      <div class="sum-card" id="pe-summary"></div>
-      <div style="background:#fff8e6;border-radius:10px;padding:12px 14px;margin-bottom:16px;border:1px solid #fde68a;display:flex;gap:10px;align-items:flex-start;">
-        <i class="ti ti-alert-circle" style="color:#d97706;font-size:16px;flex-shrink:0;margin-top:1px;"></i>
-        <p style="font-size:12px;color:#92400e;line-height:1.5;">Verify your phone number to post this errand. Takes 30 seconds.</p>
+      <div class="fg">
+        <label class="lbl">Additional instructions <span style="font-weight:400;color:var(--muted);font-size:11px;">(optional)</span></label>
+        <textarea class="textarea" id="pe-notes" placeholder="Gate code, floor number, any special instructions for the runner..."></textarea>
+      </div>
+      <div style="background:var(--grey);border-radius:12px;padding:14px;margin-bottom:16px;">
+        <div style="font-size:11px;font-weight:700;color:var(--black);margin-bottom:8px;">Errand summary</div>
+        <div id="pe-summary-inline" style="font-size:12px;color:#555;line-height:1.8;"></div>
       </div>
     </div>
+
   </div>
   <div class="post-btm"><button class="btn btn-dark" id="pe-btn" onclick="peNext()">Next →</button></div>
 </div>
@@ -1693,10 +1751,16 @@ async function loadHomeData() {
   document.getElementById('home-name').textContent = name.split(' ')[0];
   document.getElementById('home-av').textContent = initials(name);
   document.getElementById('home-city').textContent = currentUser.user_metadata?.city || 'Lagos';
-  // Load runners
-  loadRunners();
-  // Load my errands
+  // Load my errands only (no runner cards)
   loadMyErrands();
+  loadActiveErrand();
+  // Update wallet balance on home
+  sb.from('wallets').select('balance').eq('user_id', currentUser.id).single().then(function(res) {
+    if (res.data) {
+      var bal = document.getElementById('home-wallet-bal');
+      if (bal) bal.textContent = '₦' + (res.data.balance||0).toLocaleString();
+    }
+  });
 }
 
 async function loadRunners() {
@@ -1799,29 +1863,30 @@ function selUrg(el) {
 
 function peNext() {
   if (peStep === 1) {
-    const desc = document.getElementById('pe-desc').value.trim();
-    const pickup = document.getElementById('pe-pickup').value.trim();
-    const dest = document.getElementById('pe-dest').value.trim();
+    var cat = document.getElementById('pe-category').value;
+    var desc = document.getElementById('pe-desc').value.trim();
+    var pickup = document.getElementById('pe-pickup').value.trim();
+    var dest = document.getElementById('pe-dest').value.trim();
+    if (!cat) return toast('Please select an errand type.');
     if (!desc) return toast('Please describe your errand.');
+    currentErrand.category = cat;
     currentErrand.description = desc;
     currentErrand.pickup = pickup;
     currentErrand.destination = dest;
+    currentErrand.contactName = document.getElementById('pe-contact-name').value.trim();
+    currentErrand.contactPhone = document.getElementById('pe-contact-phone').value.trim();
+    // Build inline summary for step 2
+    var summary = '';
+    summary += '<b>' + cat + '</b><br>';
+    summary += desc + '<br>';
+    if (pickup) summary += '<i class="ti ti-map-pin" style="font-size:11px;color:var(--purple);"></i> ' + pickup + '<br>';
+    if (dest) summary += '<i class="ti ti-flag" style="font-size:11px;color:var(--purple);"></i> ' + dest + '<br>';
+    if (currentErrand.contactName) summary += '<i class="ti ti-user" style="font-size:11px;color:var(--muted);"></i> ' + currentErrand.contactName;
+    document.getElementById('pe-summary-inline').innerHTML = summary;
     peGoTo(2);
   } else if (peStep === 2) {
-    const budget = document.getElementById('pe-budget').value;
-    currentErrand.budget = parseFloat(budget) || 0;
     currentErrand.notes = document.getElementById('pe-notes').value.trim();
-    // Build summary
-    document.getElementById('pe-summary').innerHTML = `
-      <div class="sum-row"><span class="sum-l">Type</span><span class="sum-r">${currentErrand.category}</span></div>
-      <div class="sum-row"><span class="sum-l">Description</span><span class="sum-r">${currentErrand.description}</span></div>
-      ${currentErrand.pickup?`<div class="sum-row"><span class="sum-l">Pickup</span><span class="sum-r">${currentErrand.pickup}</span></div>`:''}
-      ${currentErrand.destination?`<div class="sum-row"><span class="sum-l">Destination</span><span class="sum-r">${currentErrand.destination}</span></div>`:''}
-      <div class="sum-row"><span class="sum-l">When</span><span class="sum-r">${currentErrand.urgency.toUpperCase()}</span></div>
-      <div class="sum-row"><span class="sum-l">Budget</span><span class="sum-r pu">₦${currentErrand.budget.toLocaleString()}</span></div>
-    `;
-    peGoTo(3);
-  } else if (peStep === 3) {
+    currentErrand.budget = 0;
     submitErrand();
   }
 }
@@ -1830,16 +1895,17 @@ function peGoTo(n) {
   document.getElementById('pe'+peStep).classList.remove('vis');
   peStep = n;
   document.getElementById('pe'+n).classList.add('vis');
-  const lbls = ['STEP 1 — WHAT & WHERE','STEP 2 — WHEN & BUDGET','STEP 3 — PREVIEW'];
+  var lbls = ['STEP 1 — WHAT & WHERE', 'STEP 2 — WHEN & CONFIRM'];
   document.getElementById('pe-lbl').textContent = lbls[n-1];
-  document.getElementById('pe-count').textContent = n + ' of 3';
-  ['pp1','pp2','pp3'].forEach((id,i) => {
-    const el = document.getElementById(id);
+  document.getElementById('pe-count').textContent = n + ' of 2';
+  ['pp1','pp2'].forEach(function(id,i) {
+    var el = document.getElementById(id);
+    if (!el) return;
     el.className = 'pb';
     if (i+1 < n) el.classList.add('dn');
     if (i+1 === n) el.classList.add('on');
   });
-  document.getElementById('pe-btn').textContent = n === 3 ? 'Post errand →' : 'Next →';
+  document.getElementById('pe-btn').textContent = n === 2 ? 'Post errand →' : 'Next →';
 }
 
 function calcPlatformFee(amount) {
@@ -2267,6 +2333,29 @@ window.addEventListener('load', () => {
     }
   });
 });
+
+
+// ==================== ACTIVE ERRAND ====================
+async function loadActiveErrand() {
+  if (!currentUser) return;
+  var res = await sb.from('errands').select('*')
+    .eq('user_id', currentUser.id)
+    .in('status', ['accepted','in_progress'])
+    .order('created_at', {ascending:false})
+    .limit(1)
+    .single();
+  var strip = document.getElementById('active-errand-strip');
+  if (!strip) return;
+  if (res.data) {
+    strip.style.display = 'block';
+    var desc = document.getElementById('active-errand-desc');
+    var runner = document.getElementById('active-errand-runner');
+    if (desc) desc.textContent = res.data.description.slice(0,50) + (res.data.description.length > 50 ? '...' : '');
+    if (runner) runner.textContent = 'Status: ' + res.data.status;
+  } else {
+    strip.style.display = 'none';
+  }
+}
 
 // ==================== NOTIFICATIONS ====================
 let notifPermission = false;
