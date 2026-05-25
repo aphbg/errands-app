@@ -465,6 +465,60 @@ input,textarea,select,button{font-family:'Clash Display',sans-serif;}
 }
 .amount-preset.sel { border-color: var(--purple); background: #fdf8fe; color: var(--purple); }
 
+
+/* Landing nav links - desktop only */
+@media (min-width: 768px) {
+  .landing-nav-links { display: flex !important; }
+}
+
+
+/* Hero CTA buttons */
+.hero-cta-row {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+.hero-cta-primary {
+  background: #fff;
+  color: var(--purple);
+  border: none;
+  padding: 15px 32px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Clash Display', sans-serif;
+  width: 100%;
+}
+.hero-cta-secondary {
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+  border: 1.5px solid rgba(255,255,255,0.3);
+  padding: 15px 32px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Clash Display', sans-serif;
+  width: 100%;
+}
+@media (min-width: 600px) {
+  .hero-cta-row {
+    flex-direction: row;
+    justify-content: center;
+    max-width: 520px;
+  }
+  .hero-cta-primary, .hero-cta-secondary {
+    width: auto;
+    min-width: 180px;
+  }
+  .landing-nav-links { display: inline-flex !important; }
+}
+
 </style>
 <!-- Google Analytics - Errands -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-JSVCRC95HR"></script>
@@ -489,14 +543,18 @@ input,textarea,select,button{font-family:'Clash Display',sans-serif;}
 <div class="screen active" id="landing">
 
   <!-- NAV -->
-  <nav style="background:#fff;padding:16px 32px;display:flex;align-items:center;justify-content:space-between;border-bottom:0.5px solid var(--border);position:sticky;top:0;z-index:50;">
-    <span style="font-size:22px;font-weight:700;color:var(--black);">errands<span style="color:var(--purple);">®</span></span>
-    <div style="display:flex;align-items:center;gap:16px;">
-      <span style="font-size:13px;color:#555;font-weight:500;cursor:pointer;" onclick="document.getElementById('how-it-works').scrollIntoView({behavior:'smooth'})">How it works</span>
-      <span style="font-size:13px;color:#555;font-weight:500;cursor:pointer;" onclick="document.getElementById('escrow-section').scrollIntoView({behavior:'smooth'})">Escrow</span>
-      <span style="font-size:13px;color:#555;font-weight:500;cursor:pointer;" onclick="go('runner-signup')">Become a runner</span>
-      <button onclick="go('signin')" style="background:transparent;border:1.5px solid var(--border);color:var(--black);padding:8px 18px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Clash Display',sans-serif;">Sign in</button>
-      <button onclick="go('signup')" style="background:var(--purple);border:none;color:#fff;padding:8px 18px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Clash Display',sans-serif;">Get started</button>
+  <nav style="background:#fff;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:0.5px solid var(--border);position:sticky;top:0;z-index:50;">
+    <span style="font-size:20px;font-weight:700;color:var(--black);">errands<span style="color:var(--purple);">®</span></span>
+    <!-- Always visible: sign in + get started -->
+    <div style="display:flex;align-items:center;gap:8px;">
+      <!-- Desktop nav links - hidden on mobile -->
+      <span class="landing-nav-links" style="display:none;align-items:center;gap:16px;margin-right:8px;">
+        <span style="font-size:13px;color:#555;font-weight:500;cursor:pointer;" onclick="document.getElementById('how-it-works').scrollIntoView({behavior:'smooth'})">How it works</span>
+        <span style="font-size:13px;color:#555;font-weight:500;cursor:pointer;" onclick="document.getElementById('escrow-section').scrollIntoView({behavior:'smooth'})">Escrow</span>
+        <span style="font-size:13px;color:#555;font-weight:500;cursor:pointer;" onclick="go('runner-signup')">Become a runner</span>
+      </span>
+      <button onclick="go('signin')" style="background:transparent;border:1.5px solid var(--border);color:var(--black);padding:8px 14px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Clash Display',sans-serif;">Sign in</button>
+      <button onclick="go('signup')" style="background:var(--purple);border:none;color:#fff;padding:8px 14px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Clash Display',sans-serif;">Get started</button>
     </div>
   </nav>
 
@@ -515,9 +573,9 @@ input,textarea,select,button{font-family:'Clash Display',sans-serif;}
         <i class="ti ti-shield-lock" style="font-size:16px;color:#f0c0f5;"></i>
         <span>Includes <strong style="color:#fff;">Errands Escrow</strong> — your money, protected until the job is done</span>
       </div>
-      <div style="display:flex;flex-wrap:wrap;gap:14px;justify-content:center;">
-        <button onclick="go('signup')" style="background:#fff;color:var(--purple);border:none;padding:16px 36px;border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;font-family:'Clash Display',sans-serif;">Post an errand →</button>
-        <button onclick="go('runner-signup')" style="background:rgba(255,255,255,0.12);color:#fff;border:1.5px solid rgba(255,255,255,0.3);padding:16px 36px;border-radius:12px;font-size:16px;font-weight:600;cursor:pointer;font-family:'Clash Display',sans-serif;">Earn as a runner</button>
+      <div class="hero-cta-row">
+        <button onclick="go('signup')" class="hero-cta-primary">Post an errand →</button>
+        <button onclick="go('runner-signup')" class="hero-cta-secondary">Earn as a runner</button>
       </div>
     </div>
   </div>
@@ -639,7 +697,7 @@ input,textarea,select,button{font-family:'Clash Display',sans-serif;}
             <div style="display:flex;align-items:center;gap:12px;"><div style="width:32px;height:32px;background:var(--purple);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ti ti-building-bank" style="color:#fff;font-size:15px;"></i></div><span style="font-size:14px;color:rgba(255,255,255,0.8);">Backed by licensed financial partners</span></div>
             <div style="display:flex;align-items:center;gap:12px;"><div style="width:32px;height:32px;background:var(--purple);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ti ti-users" style="color:#fff;font-size:15px;"></i></div><span style="font-size:14px;color:rgba(255,255,255,0.8);">For individuals, businesses, and corporate deals</span></div>
           </div>
-          <button onclick="go('signup')" style="background:var(--purple);color:#fff;border:none;padding:14px 32px;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;font-family:'Clash Display',sans-serif;">Use Errands Escrow →</button>
+          <button onclick="handleEscrowCTA()" style="background:var(--purple);color:#fff;border:none;padding:14px 32px;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;font-family:'Clash Display',sans-serif;">Use Errands Escrow →</button>
         </div>
         <div style="display:flex;flex-direction:column;gap:14px;">
           <div style="background:rgba(255,255,255,0.06);border-radius:16px;padding:20px 22px;border:1px solid rgba(255,255,255,0.1);">
@@ -735,7 +793,7 @@ input,textarea,select,button{font-family:'Clash Display',sans-serif;}
   <div style="background:var(--purple);padding:80px 32px;text-align:center;">
     <div style="max-width:600px;margin:0 auto;">
       <h2 style="font-size:clamp(28px,4vw,44px);font-weight:700;color:#fff;margin-bottom:12px;">Ready to get something done?</h2>
-      <p style="font-size:16px;color:rgba(255,255,255,0.8);margin-bottom:36px;line-height:1.7;">Join the waitlist. Post your first errand. Or sign up as a runner and start earning this week.</p>
+      <p style="font-size:16px;color:rgba(255,255,255,0.8);margin-bottom:36px;line-height:1.7;">Sign up and get started. Post your first errand. Or sign up as a runner and start earning this week.</p>
       <div style="display:flex;flex-wrap:wrap;gap:14px;justify-content:center;">
         <button onclick="go('signup')" style="background:#fff;color:var(--purple);border:none;padding:16px 40px;border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;font-family:'Clash Display',sans-serif;">Post an errand</button>
         <button onclick="go('runner-signup')" style="background:var(--black);color:#fff;border:none;padding:16px 40px;border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;font-family:'Clash Display',sans-serif;">Become a runner</button>
@@ -1359,20 +1417,20 @@ input,textarea,select,button{font-family:'Clash Display',sans-serif;}
 
 <!-- ==================== WALLET SCREEN ==================== -->
 <div class="screen" id="wallet">
-  <div class="wallet-top">
-    <div class="wallet-tr">
-      <span class="wallet-title">My Wallet</span>
-      <i class="ti ti-history" style="color:rgba(255,255,255,0.6);font-size:20px;"></i>
-    </div>
-    <div class="wallet-card">
-      <div class="wallet-lbl">Available balance</div>
-      <div class="wallet-bal" id="wallet-balance">₦0.00</div>
-      <div class="wallet-locked" id="wallet-locked">₦0.00 locked in active errands</div>
-      <div class="wallet-actions">
-        <button class="wallet-action-btn" onclick="showFundModal()"><i class="ti ti-plus"></i> Fund wallet</button>
-        <button class="wallet-action-btn" onclick="toast('Withdrawal coming soon')"><i class="ti ti-arrow-up"></i> Withdraw</button>
-        <button class="wallet-action-btn" onclick="go('escrow-tab')"><i class="ti ti-safe"></i> Escrow</button>
-      </div>
+  <!-- Wallet top bar -->
+  <div style="background:#fff;padding:14px 20px;border-bottom:0.5px solid #f0f0f0;display:flex;align-items:center;justify-content:space-between;">
+    <span style="font-size:17px;font-weight:700;color:var(--black);">My Wallet</span>
+    <i class="ti ti-history" style="color:#aaa;font-size:20px;cursor:pointer;"></i>
+  </div>
+  <!-- Balance card -->
+  <div style="background:linear-gradient(135deg,var(--purple) 0%,#6b2070 100%);padding:24px 20px 28px;">
+    <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-bottom:6px;">Available balance</div>
+    <div style="font-size:36px;font-weight:700;color:#fff;margin-bottom:4px;" id="wallet-balance">₦0.00</div>
+    <div style="font-size:12px;color:rgba(255,255,255,0.55);margin-bottom:20px;" id="wallet-locked">₦0.00 locked in active errands</div>
+    <div style="display:flex;gap:10px;">
+      <button onclick="showFundModal()" style="flex:1;background:rgba(255,255,255,0.2);border:none;color:#fff;padding:11px 8px;border-radius:10px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Clash Display',sans-serif;display:flex;align-items:center;justify-content:center;gap:6px;"><i class="ti ti-plus" style="font-size:14px;"></i> Fund</button>
+      <button onclick="toast('Withdrawal coming soon')" style="flex:1;background:rgba(255,255,255,0.2);border:none;color:#fff;padding:11px 8px;border-radius:10px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Clash Display',sans-serif;display:flex;align-items:center;justify-content:center;gap:6px;"><i class="ti ti-arrow-up" style="font-size:14px;"></i> Withdraw</button>
+      <button onclick="go('escrow-tab');loadEscrowStats();" style="flex:1;background:rgba(255,255,255,0.2);border:none;color:#fff;padding:11px 8px;border-radius:10px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Clash Display',sans-serif;display:flex;align-items:center;justify-content:center;gap:6px;"><i class="ti ti-safe" style="font-size:14px;"></i> Escrow</button>
     </div>
   </div>
   <div class="wallet-body">
@@ -2307,25 +2365,23 @@ window.addEventListener('load', () => {
   sb.auth.onAuthStateChange(async (event, session) => {
     if (event === 'SIGNED_IN' && session) {
       currentUser = session.user;
-      // If coming from email confirmation
       if (window.location.hash.includes('access_token')) {
-        // Clear the hash from URL
         history.replaceState(null, null, window.location.pathname);
-        // Create profile if not exists
-        const name = currentUser.user_metadata?.full_name || currentUser.email?.split('@')[0] || '';
-        const city = currentUser.user_metadata?.city || '';
-        const phone = currentUser.user_metadata?.phone || '';
-        await sb.from('profiles').upsert({ 
-          id: currentUser.id, 
-          full_name: name, 
-          phone: phone,
-          city: city,
-          role: 'user' 
-        });
+        var name = (currentUser.user_metadata && currentUser.user_metadata.full_name) || currentUser.email.split('@')[0] || '';
+        var city = (currentUser.user_metadata && currentUser.user_metadata.city) || '';
+        var phone = (currentUser.user_metadata && currentUser.user_metadata.phone) || '';
+        await sb.from('profiles').upsert({ id: currentUser.id, full_name: name, phone: phone, city: city, role: 'user' });
         toast('Email confirmed! Welcome to Errands.');
       }
       loadHomeData();
-      go('home');
+      // Check for post-login redirect
+      var redirect = sessionStorage.getItem('post_login_redirect');
+      if (redirect === 'escrow') {
+        sessionStorage.removeItem('post_login_redirect');
+        setTimeout(function() { go('escrow-tab'); loadEscrowStats(); }, 500);
+      } else {
+        go('home');
+      }
     }
     if (event === 'PASSWORD_RECOVERY') {
       toast('Enter your new password');
@@ -2334,6 +2390,19 @@ window.addEventListener('load', () => {
   });
 });
 
+
+
+// ==================== ESCROW CTA HANDLER ====================
+function handleEscrowCTA() {
+  if (currentUser) {
+    go('escrow-tab');
+    loadEscrowStats();
+  } else {
+    // Store intent to redirect to escrow after login
+    sessionStorage.setItem('post_login_redirect', 'escrow');
+    go('signup');
+  }
+}
 
 // ==================== ACTIVE ERRAND ====================
 async function loadActiveErrand() {
