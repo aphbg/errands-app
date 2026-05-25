@@ -519,6 +519,11 @@ input,textarea,select,button{font-family:'Clash Display',sans-serif;}
   .landing-nav-links { display: inline-flex !important; }
 }
 
+
+/* Escrow tabs */
+.etab-content { display: none; }
+.etab-content.vis { display: block; }
+
 </style>
 <!-- Google Analytics - Errands -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-JSVCRC95HR"></script>
@@ -1051,15 +1056,15 @@ input,textarea,select,button{font-family:'Clash Display',sans-serif;}
 <div class="screen" id="post-errand">
   <div class="top-hdr"><div class="bkcircle" onclick="go('home')"><i class="ti ti-arrow-left" style="color:#fff;font-size:16px;"></i></div><h2>New errand</h2><div style="width:30px;"></div></div>
   <div class="post-body">
-    <div class="slbl-row"><span class="seyebrow" id="pe-lbl">STEP 1 — WHAT & WHERE</span><span class="scounter" id="pe-count">1 of 2</span></div>
-    <div class="pbar"><div class="pb on" id="pp1"></div><div class="pb" id="pp2"></div></div>
+    <div class="slbl-row"><span class="seyebrow" id="pe-lbl">STEP 1 — WHAT</span><span class="scounter" id="pe-count">1 of 3</span></div>
+    <div class="pbar"><div class="pb on" id="pp1"></div><div class="pb" id="pp2"></div><div class="pb" id="pp3"></div></div>
 
+    <!-- STEP 1: What -->
     <div class="sv vis" id="pe1">
       <div class="fg">
         <label class="lbl">Errand type</label>
-        <select class="select field" id="pe-category" onchange="currentErrand.category=this.value">
+        <select class="select field" id="pe-category" onchange="onCategoryChange(this.value)">
           <option value="">Select errand type</option>
-          <option value="Market run" disabled style="color:#ccc;">Market run (coming soon)</option>
           <option value="Pickup &amp; delivery">Pickup &amp; delivery</option>
           <option value="School run">School run</option>
           <option value="Office errands">Office errands</option>
@@ -1073,33 +1078,42 @@ input,textarea,select,button{font-family:'Clash Display',sans-serif;}
           <option value="House cleaning">House cleaning</option>
           <option value="Quick fix">Quick fix</option>
           <option value="Home tutoring">Home tutoring</option>
-          <option value="Other">Other (describe below)</option>
+          <option value="Market run" disabled style="color:#ccc;">Market run (coming soon)</option>
+          <option value="Other">Other</option>
         </select>
       </div>
       <div class="fg">
         <label class="lbl">Describe the errand</label>
-        <textarea class="textarea" id="pe-desc" placeholder="Be specific — what exactly should the runner do, collect, or deliver?"></textarea>
-      </div>
-      <div class="fg">
-        <label class="lbl">Pickup location</label>
-        <div class="locwrap"><i class="ti ti-map-pin locico"></i><input type="text" id="pe-pickup" placeholder="Where should the runner start?"/></div>
-      </div>
-      <div class="fg">
-        <label class="lbl">Destination</label>
-        <div class="locwrap"><i class="ti ti-flag locico" style="color:var(--purple);"></i><input type="text" id="pe-dest" placeholder="Where should it end up?"/></div>
-        <div id="saved-addresses-list" style="margin-top:6px;display:flex;gap:6px;flex-wrap:wrap;"></div>
-      </div>
-      <div style="background:var(--grey);border-radius:12px;padding:14px;margin-bottom:16px;">
-        <div style="font-size:12px;font-weight:700;color:var(--black);margin-bottom:10px;">Contact at destination <span style="font-weight:400;color:var(--muted);font-size:11px;">(optional but recommended)</span></div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-          <input class="field" id="pe-contact-name" placeholder="Contact name" style="font-size:13px;"/>
-          <div style="display:flex;"><span class="phone-pre" style="font-size:12px;">+234</span><input class="phone-in" id="pe-contact-phone" type="tel" placeholder="Phone" style="font-size:13px;"/></div>
-        </div>
-        <p style="font-size:11px;color:var(--muted);margin-top:8px;line-height:1.5;">Helps the runner locate the right person and resolve any ground issues.</p>
+        <textarea class="textarea" id="pe-desc" placeholder="Be specific — what exactly should the runner do?"></textarea>
       </div>
     </div>
 
+    <!-- STEP 2: Where -->
     <div class="sv" id="pe2">
+      <div id="pe-location-fields">
+        <!-- Populated dynamically based on errand type -->
+      </div>
+      <div style="background:var(--grey);border-radius:12px;padding:14px;margin-bottom:4px;">
+        <div style="font-size:12px;font-weight:700;color:var(--black);margin-bottom:12px;">Contact at location</div>
+        <div class="fg"><label class="lbl">Contact name</label><input class="field" id="pe-contact-name" placeholder="Who should the runner ask for?"/></div>
+        <div class="fg"><label class="lbl">Primary phone</label>
+          <div style="display:flex;"><span class="phone-pre">+234</span><input class="phone-in" id="pe-contact-phone" type="tel" placeholder="Main contact number"/></div>
+        </div>
+        <div class="fg"><label class="lbl">Alternate phone <span style="font-weight:400;color:var(--muted);font-size:11px;">(optional)</span></label>
+          <div style="display:flex;"><span class="phone-pre">+234</span><input class="phone-in" id="pe-contact-phone2" type="tel" placeholder="Backup number"/></div>
+        </div>
+        <div class="fg"><label class="lbl">Email <span style="font-weight:400;color:var(--muted);font-size:11px;">(optional)</span></label>
+          <input class="field" id="pe-contact-email" type="email" placeholder="contact@email.com"/>
+        </div>
+        <div class="fg"><label class="lbl">Access instructions <span style="font-weight:400;color:var(--muted);font-size:11px;">(optional)</span></label>
+          <input class="field" id="pe-access" placeholder="Gate code, floor, landmark..."/>
+        </div>
+      </div>
+      <p style="font-size:11px;color:var(--muted);margin-bottom:16px;line-height:1.5;">These details help the runner locate the right person and resolve any issues on the ground.</p>
+    </div>
+
+    <!-- STEP 3: When -->
+    <div class="sv" id="pe3">
       <div class="fg">
         <label class="lbl">When do you need this?</label>
         <div class="urg-row">
@@ -1111,10 +1125,10 @@ input,textarea,select,button{font-family:'Clash Display',sans-serif;}
       </div>
       <div class="fg">
         <label class="lbl">Additional instructions <span style="font-weight:400;color:var(--muted);font-size:11px;">(optional)</span></label>
-        <textarea class="textarea" id="pe-notes" placeholder="Gate code, floor number, any special instructions for the runner..."></textarea>
+        <textarea class="textarea" id="pe-notes" placeholder="Anything else the runner should know..."></textarea>
       </div>
-      <div style="background:var(--grey);border-radius:12px;padding:14px;margin-bottom:16px;">
-        <div style="font-size:11px;font-weight:700;color:var(--black);margin-bottom:8px;">Errand summary</div>
+      <div style="background:var(--grey);border-radius:12px;padding:14px;margin-bottom:4px;">
+        <div style="font-size:11px;font-weight:700;color:var(--black);margin-bottom:8px;">Summary</div>
         <div id="pe-summary-inline" style="font-size:12px;color:#555;line-height:1.8;"></div>
       </div>
     </div>
@@ -1419,7 +1433,10 @@ input,textarea,select,button{font-family:'Clash Display',sans-serif;}
 <div class="screen" id="wallet">
   <!-- Wallet top bar -->
   <div style="background:#fff;padding:14px 20px;border-bottom:0.5px solid #f0f0f0;display:flex;align-items:center;justify-content:space-between;">
-    <span style="font-size:17px;font-weight:700;color:var(--black);">My Wallet</span>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <div class="bkcircle" style="background:#f5f5f5;" onclick="go('home')"><i class="ti ti-arrow-left" style="color:#555;font-size:16px;"></i></div>
+      <span style="font-size:17px;font-weight:700;color:var(--black);">My Wallet</span>
+    </div>
     <i class="ti ti-history" style="color:#aaa;font-size:20px;cursor:pointer;"></i>
   </div>
   <!-- Balance card -->
@@ -1499,7 +1516,10 @@ input,textarea,select,button{font-family:'Clash Display',sans-serif;}
 <div class="screen" id="escrow-tab">
   <!-- Escrow top bar -->
   <div style="background:#fff;padding:14px 20px;border-bottom:0.5px solid #f0f0f0;display:flex;align-items:center;justify-content:space-between;">
-    <span style="font-size:17px;font-weight:700;color:var(--black);">Errands Escrow</span>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <div class="bkcircle" style="background:#f5f5f5;" onclick="go('home')"><i class="ti ti-arrow-left" style="color:#555;font-size:16px;"></i></div>
+      <span style="font-size:17px;font-weight:700;color:var(--black);">Errands Escrow</span>
+    </div>
     <div style="display:flex;align-items:center;gap:6px;background:#f0fdf4;padding:5px 12px;border-radius:20px;">
       <div style="width:6px;height:6px;border-radius:50%;background:#22c55e;"></div>
       <span style="font-size:11px;color:#16a34a;font-weight:700;">Active</span>
@@ -1949,30 +1969,77 @@ function selUrg(el) {
   currentErrand.urgency = el.textContent.toLowerCase();
 }
 
+function onCategoryChange(cat) {
+  currentErrand.category = cat;
+  // Build adaptive location fields
+  var container = document.getElementById('pe-location-fields');
+  if (!container) return;
+  var fields = '';
+  
+  // Runner comes to user
+  var comesToUser = ['Car wash','House cleaning','Laundry','Home tutoring','Tech support','Quick fix'];
+  // Runner goes somewhere specific
+  var goesSomewhere = ['Pickup & delivery','Food delivery','Pharmacy pickup','Queue service','Office errands'];
+  // School specific
+  var isSchool = cat === 'School run';
+  // Personal assistant - flexible
+  var isPA = cat === 'Personal assistant';
+
+  if (comesToUser.includes(cat)) {
+    fields = '<div class="fg"><label class="lbl">Your address</label>' +
+      '<div class="locwrap"><i class="ti ti-home locico"></i><input type="text" id="pe-location1" placeholder="Where should the runner come to?"/></div></div>';
+  } else if (isSchool) {
+    fields = '<div class="fg"><label class="lbl">School name</label>' +
+      '<input class="field" id="pe-school-name" placeholder="Name of the school" style="margin-bottom:10px;"/></div>' +
+      '<div class="fg"><label class="lbl">School address</label>' +
+      '<div class="locwrap"><i class="ti ti-school locico"></i><input type="text" id="pe-location1" placeholder="School address or area"/></div></div>' +
+      '<div class="fg"><label class="lbl">Pickup address <span style="font-weight:400;color:var(--muted);font-size:11px;">(where to collect child from)</span></label>' +
+      '<div class="locwrap"><i class="ti ti-map-pin locico"></i><input type="text" id="pe-location2" placeholder="Home address for dropoff"/></div></div>';
+  } else if (goesSomewhere.includes(cat)) {
+    fields = '<div class="fg"><label class="lbl">Pickup location</label>' +
+      '<div class="locwrap"><i class="ti ti-map-pin locico"></i><input type="text" id="pe-location1" placeholder="Where should the runner collect from?"/></div></div>' +
+      '<div class="fg"><label class="lbl">Delivery location</label>' +
+      '<div class="locwrap"><i class="ti ti-flag locico" style="color:var(--purple);"></i><input type="text" id="pe-location2" placeholder="Where should it be delivered?"/></div></div>';
+  } else {
+    // Generic / Other / PA
+    fields = '<div class="fg"><label class="lbl">Location</label>' +
+      '<div class="locwrap"><i class="ti ti-map-pin locico"></i><input type="text" id="pe-location1" placeholder="Where does this errand take place?"/></div></div>' +
+      '<div class="fg"><label class="lbl">Destination <span style="font-weight:400;color:var(--muted);font-size:11px;">(if applicable)</span></label>' +
+      '<div class="locwrap"><i class="ti ti-flag locico" style="color:var(--purple);"></i><input type="text" id="pe-location2" placeholder="End destination if different"/></div></div>';
+  }
+  container.innerHTML = fields;
+}
+
 function peNext() {
   if (peStep === 1) {
     var cat = document.getElementById('pe-category').value;
     var desc = document.getElementById('pe-desc').value.trim();
-    var pickup = document.getElementById('pe-pickup').value.trim();
-    var dest = document.getElementById('pe-dest').value.trim();
     if (!cat) return toast('Please select an errand type.');
-    if (!desc) return toast('Please describe your errand.');
+    if (!desc) return toast('Please describe what you need done.');
     currentErrand.category = cat;
     currentErrand.description = desc;
-    currentErrand.pickup = pickup;
-    currentErrand.destination = dest;
-    currentErrand.contactName = document.getElementById('pe-contact-name').value.trim();
-    currentErrand.contactPhone = document.getElementById('pe-contact-phone').value.trim();
-    // Build inline summary for step 2
-    var summary = '';
-    summary += '<b>' + cat + '</b><br>';
-    summary += desc + '<br>';
-    if (pickup) summary += '<i class="ti ti-map-pin" style="font-size:11px;color:var(--purple);"></i> ' + pickup + '<br>';
-    if (dest) summary += '<i class="ti ti-flag" style="font-size:11px;color:var(--purple);"></i> ' + dest + '<br>';
-    if (currentErrand.contactName) summary += '<i class="ti ti-user" style="font-size:11px;color:var(--muted);"></i> ' + currentErrand.contactName;
-    document.getElementById('pe-summary-inline').innerHTML = summary;
+    // Build location fields for step 2
+    onCategoryChange(cat);
     peGoTo(2);
   } else if (peStep === 2) {
+    var loc1 = document.getElementById('pe-location1');
+    if (loc1 && !loc1.value.trim()) return toast('Please enter a location.');
+    currentErrand.pickup = loc1 ? loc1.value.trim() : '';
+    var loc2 = document.getElementById('pe-location2');
+    currentErrand.destination = loc2 ? loc2.value.trim() : '';
+    currentErrand.contactName = document.getElementById('pe-contact-name').value.trim();
+    currentErrand.contactPhone = document.getElementById('pe-contact-phone').value.trim();
+    currentErrand.contactPhone2 = document.getElementById('pe-contact-phone2').value.trim();
+    currentErrand.contactEmail = document.getElementById('pe-contact-email').value.trim();
+    currentErrand.access = document.getElementById('pe-access').value.trim();
+    // Build summary
+    var s = '<b>' + currentErrand.category + '</b><br>' + currentErrand.description;
+    if (currentErrand.pickup) s += '<br><i class="ti ti-map-pin" style="font-size:11px;color:var(--purple);"></i> ' + currentErrand.pickup;
+    if (currentErrand.destination) s += '<br><i class="ti ti-flag" style="font-size:11px;color:var(--purple);"></i> ' + currentErrand.destination;
+    if (currentErrand.contactName) s += '<br><i class="ti ti-user" style="font-size:11px;color:var(--muted);"></i> ' + currentErrand.contactName;
+    document.getElementById('pe-summary-inline').innerHTML = s;
+    peGoTo(3);
+  } else if (peStep === 3) {
     currentErrand.notes = document.getElementById('pe-notes').value.trim();
     currentErrand.budget = 0;
     submitErrand();
@@ -1983,17 +2050,17 @@ function peGoTo(n) {
   document.getElementById('pe'+peStep).classList.remove('vis');
   peStep = n;
   document.getElementById('pe'+n).classList.add('vis');
-  var lbls = ['STEP 1 — WHAT & WHERE', 'STEP 2 — WHEN & CONFIRM'];
+  var lbls = ['STEP 1 — WHAT', 'STEP 2 — WHERE & WHO', 'STEP 3 — WHEN'];
   document.getElementById('pe-lbl').textContent = lbls[n-1];
-  document.getElementById('pe-count').textContent = n + ' of 2';
-  ['pp1','pp2'].forEach(function(id,i) {
+  document.getElementById('pe-count').textContent = n + ' of 3';
+  ['pp1','pp2','pp3'].forEach(function(id,i) {
     var el = document.getElementById(id);
     if (!el) return;
     el.className = 'pb';
     if (i+1 < n) el.classList.add('dn');
     if (i+1 === n) el.classList.add('on');
   });
-  document.getElementById('pe-btn').textContent = n === 2 ? 'Post errand →' : 'Next →';
+  document.getElementById('pe-btn').textContent = n === 3 ? 'Post errand →' : 'Next →';
 }
 
 function calcPlatformFee(amount) {
@@ -2461,9 +2528,18 @@ let notifPermission = false;
 
 async function requestNotifications() {
   if (!('Notification' in window)) return;
-  const perm = await Notification.requestPermission();
-  notifPermission = perm === 'granted';
-  if (notifPermission) toast('Notifications enabled!');
+  // Only ask once - check if already decided
+  var asked = localStorage.getItem('errands_notif_asked');
+  if (asked) {
+    notifPermission = Notification.permission === 'granted';
+    return;
+  }
+  // Ask after a delay so it doesn't pop up immediately on login
+  setTimeout(async function() {
+    localStorage.setItem('errands_notif_asked', '1');
+    var perm = await Notification.requestPermission();
+    notifPermission = perm === 'granted';
+  }, 5000);
 }
 
 function sendNotif(title, body, icon = '🟣') {
@@ -2696,10 +2772,19 @@ async function processFunding() {
 
 // ==================== ESCROW ====================
 function escrowTab(name, el) {
-  document.querySelectorAll('.etab').forEach(t => t.classList.remove('on'));
-  document.querySelectorAll('.etab-content').forEach(c => c.classList.remove('vis'));
-  el.classList.add('on');
-  document.getElementById('etab-' + name).classList.add('vis');
+  // Update tab button styles
+  document.querySelectorAll('.etab').forEach(function(t) {
+    t.style.background = 'transparent';
+    t.style.color = 'var(--muted)';
+  });
+  el.style.background = 'var(--black)';
+  el.style.color = '#fff';
+  // Show correct content
+  document.querySelectorAll('.etab-content').forEach(function(c) {
+    c.classList.remove('vis');
+  });
+  var target = document.getElementById('etab-' + name);
+  if (target) target.classList.add('vis');
   if (name === 'sent') loadSentEscrow();
   if (name === 'received') loadReceivedEscrow();
 }
