@@ -1861,16 +1861,63 @@ async function signUp() {
   showLoader('Creating your account...');
   const { data, error } = await sb.auth.signUp({
     email, password,
-    options: { data: { full_name: fname + ' ' + lname, phone: '+234' + phone, city } }
+    options: { 
+      emailRedirectTo: 'https://errands-app-dun.vercel.app',
+      data: { full_name: fname + ' ' + lname, phone: '+234' + phone, city } 
+    }
   });
   hideLoader();
   if (error) return showErr('signup-err', error.message);
-  currentUser = data.user;
-  // Update profile
-  await sb.from('profiles').upsert({ id: currentUser.id, full_name: fname + ' ' + lname, phone: '+234' + phone, city, role: 'user' });
-  toast('Account created! Welcome to Errands.');
-  loadHomeData();
-  go('home');
+  
+  // Supabase requires email confirmation - show confirmation screen
+  // data.user may be null until email is confirmed
+  if (data.user && !data.session) {
+    // Email confirmation required
+    showSignupConfirmation(email);
+    return;
+  }
+  
+  // If session exists (email confirmation disabled in Supabase), go straight to home
+  if (data.session) {
+    currentUser = data.user;
+    await sb.from('profiles').upsert({ id: currentUser.id, full_name: fname + ' ' + lname, phone: '+234' + phone, city, role: 'user' });
+    toast('Account created! Welcome to Errands.');
+    loadHomeData();
+    go('home');
+  } else {
+    showSignupConfirmation(email);
+  }
+}
+
+function showSignupConfirmation(email) {
+  var body = document.querySelector('#signup .auth-body');
+  if (!body) return;
+  body.innerHTML = [
+    '<div style="text-align:center;padding:20px 0;">',
+    '<div style="width:64px;height:64px;border-radius:50%;background:#843287;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;">',
+    '<i class="ti ti-mail" style="color:#fff;font-size:28px;"></i></div>',
+    '<h2 style="font-size:22px;font-weight:700;margin-bottom:10px;">Check your email</h2>',
+    '<p style="font-size:14px;color:#888;line-height:1.7;margin-bottom:8px;">We sent a confirmation link to</p>',
+    '<p style="font-size:15px;font-weight:700;color:#843287;margin-bottom:20px;">' + email + '</p>',
+    '<p style="font-size:13px;color:#888;line-height:1.7;margin-bottom:28px;">Click the link in the email to activate your account. Check your spam folder if you do not see it.</p>',
+    '<div style="background:#f8f8f8;border-radius:12px;padding:16px;margin-bottom:20px;text-align:left;">',
+    '<div style="font-size:12px;font-weight:700;margin-bottom:8px;">What happens next</div>',
+    '<div style="font-size:12px;color:#888;margin-bottom:6px;">1. Open the email from Errands</div>',
+    '<div style="font-size:12px;color:#888;margin-bottom:6px;">2. Click the confirmation link</div>',
+    '<div style="font-size:12px;color:#888;">3. You will be signed in automatically</div></div>',
+    '<button id="conf-signin-btn" class="btn btn-dark" style="margin-bottom:10px;">Go to sign in</button>',
+    '<br><button id="conf-resend-btn" style="background:transparent;color:#843287;border:none;font-size:13px;font-weight:600;cursor:pointer;">Resend confirmation email</button>',
+    '</div>'
+  ].join('');
+  document.getElementById('conf-signin-btn').addEventListener('click', function() { go('signin'); });
+  document.getElementById('conf-resend-btn').addEventListener('click', function() { resendConfirmation(email); });
+}
+
+
+async function resendConfirmation(email) {
+  const { error } = await sb.auth.resend({ type: 'signup', email });
+  if (error) { toast('Could not resend. Please try again.'); return; }
+  toast('Confirmation email resent!');
 }
 
 async function signIn() {
@@ -2467,13 +2514,32 @@ window.addEventListener('load', () => {
   // Check for existing session
   checkSession();
   // Handle OAuth redirect
-  sb.auth.onAuthStateChange((event, session) => {
+  sb.auth.onAuthStateChange(async (event, session) => {
     if (event === 'SIGNED_IN' && session) {
       currentUser = session.user;
-      loadHomeData();
-      if (document.getElementById('home').classList.contains('active') === false) {
-        go('home');
+      // If coming from email confirmation
+      if (window.location.hash.includes('access_token')) {
+        // Clear the hash from URL
+        history.replaceState(null, null, window.location.pathname);
+        // Create profile if not exists
+        const name = currentUser.user_metadata?.full_name || currentUser.email?.split('@')[0] || '';
+        const city = currentUser.user_metadata?.city || '';
+        const phone = currentUser.user_metadata?.phone || '';
+        await sb.from('profiles').upsert({ 
+          id: currentUser.id, 
+          full_name: name, 
+          phone: phone,
+          city: city,
+          role: 'user' 
+        });
+        toast('Email confirmed! Welcome to Errands.');
       }
+      loadHomeData();
+      go('home');
+    }
+    if (event === 'PASSWORD_RECOVERY') {
+      toast('Enter your new password');
+      go('signin');
     }
   });
 });
