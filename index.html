@@ -813,6 +813,14 @@ input,textarea,select,button{font-family:'Clash Display',sans-serif;}
 .role-switch span { font-size: 11px; color: #fff; font-weight: 600; }
 
 </style>
+<!-- Google Analytics - Errands -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JSVCRC95HR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-JSVCRC95HR');
+</script>
 </head>
 <body>
 <div class="app">
@@ -863,10 +871,11 @@ input,textarea,select,button{font-family:'Clash Display',sans-serif;}
 
   <!-- CITY BAR -->
   <div style="background:var(--black);padding:14px 32px;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;">
-    <span style="font-size:12px;color:rgba(255,255,255,0.5);">Currently serving</span>
-    <span style="background:var(--purple);padding:5px 16px;border-radius:20px;font-size:12px;font-weight:700;color:#fff;">Lagos</span>
-    <span style="background:var(--purple);padding:5px 16px;border-radius:20px;font-size:12px;font-weight:700;color:#fff;">Abuja</span>
-    <span style="font-size:12px;color:rgba(255,255,255,0.4);margin-left:8px;">Port Harcourt · Ibadan · Kano coming soon</span>
+    <span style="font-size:12px;color:rgba(255,255,255,0.5);">Now live in</span>
+    <span style="background:var(--purple);padding:5px 16px;border-radius:20px;font-size:12px;font-weight:700;color:#fff;">🇳🇬 Lagos</span>
+    <span style="background:var(--purple);padding:5px 16px;border-radius:20px;font-size:12px;font-weight:700;color:#fff;">🇳🇬 Abuja</span>
+    <span style="font-size:12px;color:rgba(255,255,255,0.3);">·</span>
+    <span style="font-size:12px;color:rgba(255,255,255,0.4);">Port Harcourt · Ibadan · Accra · Nairobi · Dubai — coming</span>
   </div>
 
   <!-- THE PROBLEM -->
@@ -1088,7 +1097,7 @@ input,textarea,select,button{font-family:'Clash Display',sans-serif;}
         <div>
           <div style="font-size:22px;font-weight:700;color:#fff;margin-bottom:12px;">errands<span style="color:var(--purple);">®</span></div>
           <p style="font-size:13px;color:rgba(255,255,255,0.45);line-height:1.7;max-width:240px;">Trusted hands, whenever you need them. Building the trust layer for Africa's gig economy.</p>
-          <div style="margin-top:16px;font-size:12px;color:rgba(255,255,255,0.3);">A Komir Holdings company</div>
+          <div style="margin-top:16px;font-size:12px;color:rgba(255,255,255,0.3);">Errands Logistics Solutions</div>
         </div>
         <div>
           <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--purple);margin-bottom:14px;">Product</div>
@@ -1112,10 +1121,12 @@ input,textarea,select,button{font-family:'Clash Display',sans-serif;}
         </div>
         <div>
           <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--purple);margin-bottom:14px;">Company</div>
-          <div style="font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:8px;">About Errands</div>
-          <div style="font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:8px;">Trust & Safety</div>
-          <div style="font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:8px;">Privacy Policy</div>
-          <div style="font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:8px;">Terms of Service</div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:8px;cursor:pointer;" onclick="go('help')">Help & Support</div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:8px;cursor:pointer;" onclick="go('dispute-page')">Trust & Safety</div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:8px;cursor:pointer;" onclick="go('dispute-page')">Dispute Resolution</div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:8px;cursor:pointer;" onclick="go('privacy-page')">Privacy Policy</div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:8px;cursor:pointer;" onclick="go('terms-page')">Terms of Service</div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:8px;cursor:pointer;" onclick="go('pricing-page')">Pricing</div>
         </div>
       </div>
       <div style="border-top:0.5px solid rgba(255,255,255,0.1);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
@@ -1145,9 +1156,9 @@ input,textarea,select,button{font-family:'Clash Display',sans-serif;}
     <div class="fg"><label class="lbl">Email address</label><input class="field" id="su-email" type="email" placeholder="kenneth@example.com"/></div>
     <label class="lbl">Phone number</label>
     <div class="phone-row"><span class="phone-pre">🇳🇬 +234</span><input class="phone-in" id="su-phone" type="tel" placeholder="802 515 8222"/></div>
-    <div class="fg"><label class="lbl">Your city</label><select class="select field" id="su-city"><option value="">Select your city</option><option value="Lagos">Lagos</option><option value="Abuja">Abuja</option></select></div>
+    <div class="fg"><label class="lbl">Your city</label><select class="select field" id="su-city"><option value="">Select your city</option><option value="lagos">🇳🇬 Lagos, Nigeria</option><option value="abuja">🇳🇬 Abuja, Nigeria</option></select></div>
     <div class="fg"><label class="lbl">Password</label><input class="field" id="su-password" type="password" placeholder="Min. 8 characters"/></div>
-    <div class="terms-row"><input type="checkbox" id="su-terms"/><label for="su-terms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</label></div>
+    <div class="terms-row"><input type="checkbox" id="su-terms"/><label for="su-terms">I agree to the <a href="#" onclick="go('terms-page')">Terms of Service</a> and <a href="#" onclick="go('privacy-page')">Privacy Policy</a>.</label></div>
     <button class="btn btn-dark" onclick="signUp()">Create account →</button>
     <div class="divider"><hr/><span>or continue with</span><hr/></div>
     <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:16px;">
@@ -1228,7 +1239,7 @@ input,textarea,select,button{font-family:'Clash Display',sans-serif;}
       <div class="acard dk" onclick="go('runner-profile')"><div class="acard-lbl">Find a Runner</div><div class="acard-sub">Browse local runners by category</div><div class="acard-ico"><i class="ti ti-run"></i></div></div>
       <div class="acard pu" onclick="go('post-errand')"><div class="acard-lbl">Post a Task</div><div class="acard-sub">Tell us what you need</div><div class="acard-ico"><i class="ti ti-clipboard-list"></i></div></div>
     </div>
-    <div class="promo"><div><div class="promo-t">Refer a friend</div><div class="promo-s">Earn ₦500 for every referral</div></div><div class="promo-b">Share →</div></div>
+    <div class="promo" onclick="loadReferralPage();go('referral-page');" style="cursor:pointer;"><div><div class="promo-t">Refer a friend</div><div class="promo-s">Earn ₦500 for every referral</div></div><div class="promo-b">Share →</div></div>
     <div class="sec-hdr"><span class="sec-ttl">Top Rated in Your Area</span><span class="see-all">See More</span></div>
     <div class="rcards" id="runners-list">
       <div style="padding:20px;color:var(--muted);font-size:12px;">Loading runners...</div>
@@ -1439,7 +1450,7 @@ input,textarea,select,button{font-family:'Clash Display',sans-serif;}
       <div class="fg"><label class="lbl">Email</label><input class="field" id="rs-email" type="email" placeholder="adaeze@example.com"/></div>
       <label class="lbl">Phone number</label>
       <div class="phone-row" style="margin-bottom:16px;"><span class="phone-pre">🇳🇬 +234</span><input class="phone-in" id="rs-phone" type="tel" placeholder="802 000 0000"/></div>
-      <div class="fg"><label class="lbl">City</label><select class="select field" id="rs-city"><option value="">Select city</option><option value="Lagos">Lagos</option><option value="Abuja">Abuja</option></select></div>
+      <div class="fg"><label class="lbl">City</label><select class="select field" id="rs-city"><option value="">Select city</option><option value="lagos">🇳🇬 Lagos, Nigeria</option><option value="abuja">🇳🇬 Abuja, Nigeria</option></select></div>
       <div class="fg"><label class="lbl">Your neighbourhood</label><input class="field" id="rs-area" placeholder="e.g. Lekki Phase 1"/></div>
       <div class="fg"><label class="lbl">Password</label><input class="field" id="rs-password" type="password" placeholder="Min. 8 characters"/></div>
       <button class="btn btn-dark" onclick="rsNext(2)">Continue →</button>
@@ -1469,16 +1480,89 @@ input,textarea,select,button{font-family:'Clash Display',sans-serif;}
       <button class="btn btn-dark" onclick="submitRunnerSignup()">Submit application →</button>
       <button class="btn btn-outline" onclick="rsNext(2)" style="margin-top:10px;">← Back</button>
     </div>
-    <div class="rskip" id="rs4" style="text-align:center;padding-top:20px;">
-      <div style="width:64px;height:64px;border-radius:50%;background:var(--purple);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;"><i class="ti ti-check" style="color:#fff;font-size:28px;"></i></div>
-      <h2 style="font-size:22px;font-weight:700;margin-bottom:8px;color:var(--black);">Application submitted!</h2>
-      <p style="font-size:13px;color:#888;line-height:1.6;margin-bottom:24px;">We'll verify your identity within 24 hours and notify you once your profile is live.</p>
-      <div class="ns-card" style="text-align:left;">
-        <div class="ns-item"><div class="ns-num">1</div><div class="ns-txt">Identity verification — usually within 24hrs</div></div>
-        <div class="ns-item"><div class="ns-num">2</div><div class="ns-txt">Your public profile goes live — share it anywhere</div></div>
-        <div class="ns-item"><div class="ns-num">3</div><div class="ns-txt">Start receiving errands and earning</div></div>
+    <div class="rskip" id="rs4" style="padding-top:16px;">
+      <!-- Header -->
+      <div style="text-align:center;margin-bottom:20px;">
+        <div style="width:64px;height:64px;border-radius:50%;background:var(--purple);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;"><i class="ti ti-check" style="color:#fff;font-size:28px;"></i></div>
+        <h2 style="font-size:20px;font-weight:700;color:var(--black);margin-bottom:6px;">Welcome to the Errands family</h2>
+        <p style="font-size:13px;color:#888;line-height:1.6;">Application submitted. Verification within 24 hours.<br>Here is what joining Errands means for you.</p>
       </div>
-      <button class="btn btn-dark" onclick="go('runner-dash')" style="margin-top:8px;">Go to my dashboard →</button>
+
+      <!-- Growth pathway -->
+      <div style="margin-bottom:20px;">
+        <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--purple);margin-bottom:14px;">Your journey</div>
+        <div style="display:flex;flex-direction:column;gap:0;">
+          
+          <div style="display:flex;gap:14px;align-items:flex-start;padding-bottom:16px;position:relative;">
+            <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;">
+              <div style="width:36px;height:36px;border-radius:50%;background:var(--purple);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff;z-index:1;">1</div>
+              <div style="width:2px;flex:1;background:var(--border);min-height:40px;margin-top:4px;"></div>
+            </div>
+            <div style="flex:1;padding-top:6px;">
+              <div style="font-size:13px;font-weight:700;color:var(--black);">Rookie</div>
+              <div style="font-size:11px;color:var(--muted);margin-top:2px;line-height:1.5;">Sign up, get verified, complete your first errand. Your journey begins.</div>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:14px;align-items:flex-start;padding-bottom:16px;position:relative;">
+            <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;">
+              <div style="width:36px;height:36px;border-radius:50%;background:var(--black);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff;z-index:1;">2</div>
+              <div style="width:2px;flex:1;background:var(--border);min-height:40px;margin-top:4px;"></div>
+            </div>
+            <div style="flex:1;padding-top:6px;">
+              <div style="font-size:13px;font-weight:700;color:var(--black);">Academy Certified <span style="background:var(--purple);color:#fff;font-size:9px;padding:2px 7px;border-radius:6px;margin-left:4px;">BADGE</span></div>
+              <div style="font-size:11px;color:var(--muted);margin-top:2px;line-height:1.5;">Complete 5 training modules. Unlock higher-value errands. Get your certified badge on your profile.</div>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:14px;align-items:flex-start;padding-bottom:16px;position:relative;">
+            <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;">
+              <div style="width:36px;height:36px;border-radius:50%;background:var(--black);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff;z-index:1;">3</div>
+              <div style="width:2px;flex:1;background:var(--border);min-height:40px;margin-top:4px;"></div>
+            </div>
+            <div style="flex:1;padding-top:6px;">
+              <div style="font-size:13px;font-weight:700;color:var(--black);">Specialist <span style="background:var(--black);color:#fff;font-size:9px;padding:2px 7px;border-radius:6px;margin-left:4px;">BADGE</span></div>
+              <div style="font-size:11px;color:var(--muted);margin-top:2px;line-height:1.5;">Complete specialisation training in car wash, laundry, house cleaning, or more. Unlock premium errand types. Earn more per job.</div>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:14px;align-items:flex-start;padding-bottom:16px;position:relative;">
+            <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;">
+              <div style="width:36px;height:36px;border-radius:50%;background:var(--black);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff;z-index:1;">4</div>
+              <div style="width:2px;flex:1;background:var(--border);min-height:40px;margin-top:4px;"></div>
+            </div>
+            <div style="flex:1;padding-top:6px;">
+              <div style="font-size:13px;font-weight:700;color:var(--black);">Premium <span style="background:#ca8a04;color:#fff;font-size:9px;padding:2px 7px;border-radius:6px;margin-left:4px;">BADGE</span></div>
+              <div style="font-size:11px;color:var(--muted);margin-top:2px;line-height:1.5;">4.8+ rating, 100+ errands completed. Priority placement in search. Higher visibility. First access to new features.</div>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:14px;align-items:flex-start;">
+            <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;">
+              <div style="width:36px;height:36px;border-radius:50%;background:var(--purple);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff;">5</div>
+            </div>
+            <div style="flex:1;padding-top:6px;">
+              <div style="font-size:13px;font-weight:700;color:var(--black);">Neighbourhood Captain <span style="background:var(--purple);color:#fff;font-size:9px;padding:2px 7px;border-radius:6px;margin-left:4px;">500+ ERRANDS</span></div>
+              <div style="font-size:11px;color:var(--muted);margin-top:2px;line-height:1.5;">The highest level. Direct company representative for your neighbourhood. Mentor new runners. Earn bonus on mentee errands. Health insurance coverage. Errands for life.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Benefits preview -->
+      <div style="background:var(--black);border-radius:14px;padding:16px;margin-bottom:20px;">
+        <div style="font-size:12px;font-weight:700;color:var(--purple);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;">What being an Errands runner means</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;align-items:center;gap:10px;"><i class="ti ti-wallet" style="color:var(--purple);font-size:16px;flex-shrink:0;"></i><span style="font-size:12px;color:rgba(255,255,255,0.8);">Earn on your own schedule. No boss. No fixed hours.</span></div>
+          <div style="display:flex;align-items:center;gap:10px;"><i class="ti ti-school" style="color:var(--purple);font-size:16px;flex-shrink:0;"></i><span style="font-size:12px;color:rgba(255,255,255,0.8);">University partnership coming — earn while you study.</span></div>
+          <div style="display:flex;align-items:center;gap:10px;"><i class="ti ti-heart" style="color:var(--purple);font-size:16px;flex-shrink:0;"></i><span style="font-size:12px;color:rgba(255,255,255,0.8);">Health insurance for active runners — coming soon.</span></div>
+          <div style="display:flex;align-items:center;gap:10px;"><i class="ti ti-award" style="color:var(--purple);font-size:16px;flex-shrink:0;"></i><span style="font-size:12px;color:rgba(255,255,255,0.8);">Build a real career. Neighbourhood Captain is a company role.</span></div>
+        </div>
+      </div>
+
+      <button class="btn btn-dark" onclick="go('academy');loadAcademy();" style="margin-bottom:10px;">Begin Academy — Module 1 →</button>
+      <button class="btn btn-outline" onclick="go('runner-dash')">Go to dashboard first</button>
     </div>
   </div>
 </div>
@@ -1510,6 +1594,10 @@ input,textarea,select,button{font-family:'Clash Display',sans-serif;}
     <div class="sec-hdr"><span class="sec-ttl">Available errands</span><span class="see-all">See all</span></div>
     <div id="available-errands">
       <div class="empty-state"><p>No errands in your area yet. Check back soon.</p></div>
+    </div>
+    <div style="background:var(--light);border-radius:14px;padding:14px;display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;border:1px solid var(--border);" onclick="go('academy');loadAcademy();" style="cursor:pointer;">
+      <div><div style="font-size:13px;font-weight:700;color:var(--black);">🎓 Errands Academy</div><div style="font-size:11px;color:var(--muted);margin-top:2px;">Complete training to earn your certified badge</div></div>
+      <i class="ti ti-chevron-right" style="color:var(--purple);font-size:18px;"></i>
     </div>
     <div class="rd-share"><div class="rds-txt"><div class="title">Share your profile</div><div class="sub">Send your link. Clients book directly from it.</div></div><button class="rds-btn" onclick="go('runner-profile')">Share →</button></div>
   </div>
@@ -1983,6 +2071,12 @@ function peGoTo(n) {
   document.getElementById('pe-btn').textContent = n === 3 ? 'Post errand →' : 'Next →';
 }
 
+function calcPlatformFee(amount) {
+  if (amount <= 5000) return amount * 0.10;
+  if (amount <= 20000) return amount * 0.08;
+  return amount * 0.05;
+}
+
 async function submitErrand() {
   if (!currentUser) { toast('Please sign in to post an errand.'); go('signin'); return; }
   showLoader('Posting your errand...');
@@ -2232,8 +2326,142 @@ function handleResize() {
 window.addEventListener('resize', handleResize);
 handleResize();
 
+
+
+
+// ==================== HELP & SUPPORT ====================
+const helpTopics = {
+  runner: {
+    title: 'Runner issue — what to do',
+    content: `If your runner has not shown up within 30 minutes of the agreed time, open the chat and send a message first. If there is no response within 15 minutes, you can cancel the errand from the errand details screen for a full refund. If the runner completed the errand but did something wrong — wrong item, damaged goods, wrong delivery — do not confirm completion. Use the Dispute button to open a formal case. Our team reviews within 24 hours. Your money is protected until the dispute is resolved.`
+  },
+  payment: {
+    title: 'Payment or wallet issue — what to do',
+    content: `If your wallet was charged but the errand was not created, the funds are held safely and will return to your balance within 24 hours. If you were charged incorrectly, check your transaction history in the Wallet screen. The platform fee is shown clearly before every payment. If you believe there is an error, tap Raise a dispute below with your transaction reference and we will review it. Withdrawals are processed within 24 hours of request.`
+  },
+  escrow: {
+    title: 'Escrow issue — what to do',
+    content: `If you created an escrow and the other party has not delivered, do not release the funds. Use the Dispute button in your Sent tab. If you are the receiver and funds have not been released after the job is done, contact the sender first through the in-app chat. If they are unresponsive for 48 hours, raise a dispute and we will review. Funds auto-release after 7 days if no action is taken by either party.`
+  },
+  account: {
+    title: 'Account issue — what to do',
+    content: `Cannot sign in — use the Forgot Password link on the sign in screen. A reset code will be sent to your registered email. If you no longer have access to that email, contact us via WhatsApp with your registered phone number for manual verification. To update your profile details, go to Profile in the bottom navigation. Runner verification issues — ensure your NIN is correct and your ID photo is clear. Resubmission available from your profile.`
+  },
+  safety: {
+    title: 'Safety concern — report immediately',
+    content: `If you feel unsafe or have experienced misconduct, report it immediately. Your safety is our highest priority. Use the WhatsApp button below to reach us directly — safety reports are reviewed within 1 hour. For physical emergencies in Nigeria, call 112. Any runner found to have engaged in misconduct, fraud, or harassment will be permanently removed from the platform. All reports are confidential.`
+  }
+};
+
+function showHelpTopic(key) {
+  const topic = helpTopics[key];
+  if (!topic) return;
+  document.getElementById('help-topic-title').textContent = topic.title;
+  document.getElementById('help-topic-content').textContent = topic.content;
+  document.getElementById('help-topic').style.display = 'block';
+  document.getElementById('help-topic').scrollIntoView({ behavior: 'smooth' });
+}
+
+function openWhatsApp() {
+  window.open('https://wa.me/234000000000?text=Hi%20Errands%20support%2C%20I%20need%20help%20with%3A%20', '_blank');
+}
+
+function openEmail() {
+  window.location.href = 'mailto:support@errands.app?subject=Support%20Request';
+}
+
+// ==================== CITY SYSTEM ====================
+const ERRANDS_CITIES = {
+  active: [
+    { id: 'lagos', name: 'Lagos', country: 'Nigeria', flag: '🇳🇬', status: 'active' },
+    { id: 'abuja', name: 'Abuja', country: 'Nigeria', flag: '🇳🇬', status: 'active' },
+  ],
+  coming_soon: [
+    { id: 'ph', name: 'Port Harcourt', country: 'Nigeria', flag: '🇳🇬', status: 'coming_soon' },
+    { id: 'ibadan', name: 'Ibadan', country: 'Nigeria', flag: '🇳🇬', status: 'coming_soon' },
+    { id: 'kano', name: 'Kano', country: 'Nigeria', flag: '🇳🇬', status: 'coming_soon' },
+    { id: 'accra', name: 'Accra', country: 'Ghana', flag: '🇬🇭', status: 'coming_soon' },
+    { id: 'nairobi', name: 'Nairobi', country: 'Kenya', flag: '🇰🇪', status: 'coming_soon' },
+    { id: 'dubai', name: 'Dubai', country: 'UAE', flag: '🇦🇪', status: 'coming_soon' },
+  ]
+};
+
+function getCityOptions() {
+  return ERRANDS_CITIES.active.map(c => 
+    `<option value="${c.id}">${c.flag} ${c.name}, ${c.country}</option>`
+  ).join('');
+}
+
+function updateCityDropdowns() {
+  const opts = getCityOptions();
+  document.querySelectorAll('#su-city, #rs-city').forEach(sel => {
+    if (sel) {
+      const current = sel.value;
+      sel.innerHTML = '<option value="">Select your city</option>' + opts;
+      if (current) sel.value = current;
+    }
+  });
+}
+
+// ==================== REFERRAL SYSTEM ====================
+function generateReferralCode(userId) {
+  if (!userId) return 'ERRANDS-XXXX';
+  return 'ERR-' + userId.slice(0,6).toUpperCase();
+}
+
+function checkReferralCode() {
+  try {
+    const params = new URLSearchParams(window.location.search);
+    const ref = params.get('ref');
+    if (ref) {
+      sessionStorage.setItem('referral_code', ref);
+      toast('Referral code ' + ref + ' applied!');
+    }
+  } catch(e) { console.log('Referral check:', e); }
+}
+
+function loadReferralPage() {
+  if (!currentUser) { go('signin'); return; }
+  const code = generateReferralCode(currentUser.id);
+  const link = window.location.origin + window.location.pathname + '?ref=' + code;
+  const codeEl = document.getElementById('referral-code');
+  const linkEl = document.getElementById('referral-link');
+  if (codeEl) codeEl.textContent = code;
+  if (linkEl) linkEl.textContent = link;
+}
+
+function copyReferralCode() {
+  const el = document.getElementById('referral-code');
+  if (!el) return;
+  navigator.clipboard.writeText(el.textContent).then(() => toast('Referral code copied!'));
+}
+
+function copyReferralLink() {
+  const el = document.getElementById('referral-link');
+  if (!el) return;
+  navigator.clipboard.writeText(el.textContent).then(() => toast('Referral link copied!'));
+}
+
+function shareWhatsApp() {
+  const code = document.getElementById('referral-code') ? document.getElementById('referral-code').textContent : '';
+  const link = window.location.href;
+  const msg = encodeURIComponent('Hey! I have been using Errands — a trusted errand service in Lagos and Abuja. Sign up with my code ' + code + ' and get your first errand done. ' + link);
+  window.open('https://wa.me/?text=' + msg, '_blank');
+}
+
+function shareGeneral() {
+  const code = document.getElementById('referral-code') ? document.getElementById('referral-code').textContent : '';
+  const link = window.location.href;
+  if (navigator.share) {
+    navigator.share({ title: 'Join Errands', text: 'Use my code ' + code + ' to sign up on Errands.', url: link });
+  } else {
+    copyReferralLink();
+  }
+}
+
 // ==================== INIT ====================
 window.addEventListener('load', () => {
+  checkReferralCode();
   // Select wallet by default
   selPay('wallet');
   // Check for existing session
@@ -2682,5 +2910,496 @@ async function checkUserRoles() {
 }
 
 </script>
+
+<!-- ==================== TERMS OF SERVICE ==================== -->
+<div class="screen" id="terms-page">
+  <div style="background:#fff;padding:14px 20px;border-bottom:0.5px solid var(--border);display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10;">
+    <div class="bkcircle" style="background:#f5f5f5;" onclick="history.back()||go('landing')"><i class="ti ti-arrow-left" style="color:#555;font-size:16px;"></i></div>
+    <span style="font-size:16px;font-weight:700;color:var(--black);">Terms of Service</span>
+  </div>
+  <div style="padding:24px 20px;overflow-y:auto;flex:1;padding-bottom:40px;">
+    <div style="font-size:11px;color:var(--muted);margin-bottom:20px;">Last updated: May 2026 · Errands Logistics Solutions</div>
+    
+    <div style="background:var(--light);border-radius:12px;padding:16px;margin-bottom:20px;border-left:4px solid var(--purple);">
+      <p style="font-size:13px;color:var(--black);line-height:1.7;">By using Errands, you agree to these Terms. Please read them carefully. These Terms govern your use of the Errands platform, including posting errands, running errands, and using Errands Escrow.</p>
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <div style="font-size:14px;font-weight:700;color:var(--black);margin-bottom:8px;">1. Who We Are</div>
+      <p style="font-size:13px;color:#555;line-height:1.7;">Errands is a trust-first errand marketplace operated by Errands Logistics Solutions, registered in Nigeria. We connect users who need tasks done with vetted runners who execute those tasks. We also operate Errands Escrow, a secure payment holding service.</p>
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <div style="font-size:14px;font-weight:700;color:var(--black);margin-bottom:8px;">2. The Errands Platform</div>
+      <p style="font-size:13px;color:#555;line-height:1.7;margin-bottom:8px;">Errands is a marketplace platform. We do not employ runners. Runners are independent contractors who offer their services through our platform. Errands facilitates the connection, verifies identity, and provides the trust infrastructure — but the service agreement is between the user and the runner.</p>
+      <p style="font-size:13px;color:#555;line-height:1.7;">We reserve the right to remove any user or runner from the platform for behaviour that violates these Terms or undermines the trust and safety of the community.</p>
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <div style="font-size:14px;font-weight:700;color:var(--black);margin-bottom:8px;">3. User Responsibilities</div>
+      <p style="font-size:13px;color:#555;line-height:1.7;margin-bottom:8px;">As a user you agree to:</p>
+      <p style="font-size:13px;color:#555;line-height:1.7;margin-bottom:4px;">• Provide accurate information when creating your account</p>
+      <p style="font-size:13px;color:#555;line-height:1.7;margin-bottom:4px;">• Post only lawful errands — no illegal activities, no hazardous materials</p>
+      <p style="font-size:13px;color:#555;line-height:1.7;margin-bottom:4px;">• Pay for completed errands promptly and fairly</p>
+      <p style="font-size:13px;color:#555;line-height:1.7;margin-bottom:4px;">• Treat runners with respect and dignity</p>
+      <p style="font-size:13px;color:#555;line-height:1.7;">• Not attempt to contact or transact with runners outside the Errands platform to circumvent our service fee</p>
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <div style="font-size:14px;font-weight:700;color:var(--black);margin-bottom:8px;">4. Runner Responsibilities</div>
+      <p style="font-size:13px;color:#555;line-height:1.7;margin-bottom:4px;">• Complete accepted errands to the best of your ability and as described</p>
+      <p style="font-size:13px;color:#555;line-height:1.7;margin-bottom:4px;">• Communicate promptly and honestly with users through the platform</p>
+      <p style="font-size:13px;color:#555;line-height:1.7;margin-bottom:4px;">• Never misappropriate funds, items, or information entrusted to you</p>
+      <p style="font-size:13px;color:#555;line-height:1.7;margin-bottom:4px;">• Maintain your verified status — notify Errands of any changes to your identity or circumstances</p>
+      <p style="font-size:13px;color:#555;line-height:1.7;">• Not solicit users to transact outside the platform</p>
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <div style="font-size:14px;font-weight:700;color:var(--black);margin-bottom:8px;">5. Payments and Fees</div>
+      <p style="font-size:13px;color:#555;line-height:1.7;margin-bottom:8px;">Errands charges a service fee on each completed errand. The current fee structure is displayed at the time of payment. Fees are subject to change with notice.</p>
+      <p style="font-size:13px;color:#555;line-height:1.7;">For Errands Escrow, a service fee is charged based on the tier selected. Fees are deducted at the time of escrow creation and are non-refundable unless the escrow is cancelled before funding.</p>
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <div style="font-size:14px;font-weight:700;color:var(--black);margin-bottom:8px;">6. Cancellations and Refunds</div>
+      <p style="font-size:13px;color:#555;line-height:1.7;margin-bottom:8px;"><strong>User cancellation before runner accepts:</strong> Full refund to wallet.</p>
+      <p style="font-size:13px;color:#555;line-height:1.7;margin-bottom:8px;"><strong>User cancellation after runner accepts:</strong> 50% of the agreed fee is payable to the runner for time and inconvenience. Remainder refunded to wallet.</p>
+      <p style="font-size:13px;color:#555;line-height:1.7;margin-bottom:8px;"><strong>Runner cancellation:</strong> No fee charged to user. Full refund. Runner's reliability rating is affected.</p>
+      <p style="font-size:13px;color:#555;line-height:1.7;"><strong>Disputed errands:</strong> Handled according to our Dispute Resolution Policy.</p>
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <div style="font-size:14px;font-weight:700;color:var(--black);margin-bottom:8px;">7. Liability</div>
+      <p style="font-size:13px;color:#555;line-height:1.7;">Errands acts as a facilitator. We are not liable for the actions of runners or users, loss of items, damage to property, or failure to complete an errand except where directly caused by a platform failure. We strongly recommend using Errands Escrow for any transaction involving payment for goods.</p>
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <div style="font-size:14px;font-weight:700;color:var(--black);margin-bottom:8px;">8. Governing Law</div>
+      <p style="font-size:13px;color:#555;line-height:1.7;">These Terms are governed by the laws of the Federal Republic of Nigeria. Any disputes shall be resolved in Nigerian courts.</p>
+    </div>
+
+    <div style="background:var(--grey);border-radius:10px;padding:14px;margin-top:20px;">
+      <p style="font-size:12px;color:var(--muted);line-height:1.6;">Questions about these Terms? Contact us at <span style="color:var(--purple);font-weight:600;">legal@errands.ng</span></p>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== PRIVACY POLICY ==================== -->
+<div class="screen" id="privacy-page">
+  <div style="background:#fff;padding:14px 20px;border-bottom:0.5px solid var(--border);display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10;">
+    <div class="bkcircle" style="background:#f5f5f5;" onclick="go('landing')"><i class="ti ti-arrow-left" style="color:#555;font-size:16px;"></i></div>
+    <span style="font-size:16px;font-weight:700;color:var(--black);">Privacy Policy</span>
+  </div>
+  <div style="padding:24px 20px;overflow-y:auto;flex:1;padding-bottom:40px;">
+    <div style="font-size:11px;color:var(--muted);margin-bottom:20px;">Last updated: May 2026 · Compliant with NDPR (Nigeria Data Protection Regulation)</div>
+
+    <div style="background:var(--light);border-radius:12px;padding:16px;margin-bottom:20px;border-left:4px solid var(--purple);">
+      <p style="font-size:13px;color:var(--black);line-height:1.7;">Your privacy matters to us. This policy explains what data we collect, why we collect it, and how we protect it. We comply with the Nigeria Data Protection Regulation (NDPR) 2019.</p>
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <div style="font-size:14px;font-weight:700;color:var(--black);margin-bottom:8px;">1. What We Collect</div>
+      <p style="font-size:13px;color:#555;line-height:1.7;margin-bottom:8px;"><strong>Account information:</strong> Name, email, phone number, city, password (encrypted)</p>
+      <p style="font-size:13px;color:#555;line-height:1.7;margin-bottom:8px;"><strong>Runner verification:</strong> NIN, government-issued ID, selfie — stored encrypted, used only for identity verification</p>
+      <p style="font-size:13px;color:#555;line-height:1.7;margin-bottom:8px;"><strong>Transaction data:</strong> Errands posted, payments made, escrow transactions</p>
+      <p style="font-size:13px;color:#555;line-height:1.7;margin-bottom:8px;"><strong>Communications:</strong> In-app messages between users and runners</p>
+      <p style="font-size:13px;color:#555;line-height:1.7;"><strong>Usage data:</strong> How you use the app, which features you access</p>
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <div style="font-size:14px;font-weight:700;color:var(--black);margin-bottom:8px;">2. Why We Collect It</div>
+      <p style="font-size:13px;color:#555;line-height:1.7;margin-bottom:4px;">• To verify your identity and maintain platform trust and safety</p>
+      <p style="font-size:13px;color:#555;line-height:1.7;margin-bottom:4px;">• To facilitate errands and process payments</p>
+      <p style="font-size:13px;color:#555;line-height:1.7;margin-bottom:4px;">• To resolve disputes and enforce our Terms of Service</p>
+      <p style="font-size:13px;color:#555;line-height:1.7;margin-bottom:4px;">• To improve our platform and personalise your experience</p>
+      <p style="font-size:13px;color:#555;line-height:1.7;">• To comply with legal and regulatory requirements</p>
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <div style="font-size:14px;font-weight:700;color:var(--black);margin-bottom:8px;">3. How We Protect It</div>
+      <p style="font-size:13px;color:#555;line-height:1.7;margin-bottom:8px;">All data is stored on encrypted servers. Passwords are hashed and never stored in plain text. Identity documents are encrypted at rest and in transit. In-app messages are private and not accessible to third parties.</p>
+      <p style="font-size:13px;color:#555;line-height:1.7;">We use Supabase — a SOC 2 Type II compliant infrastructure — for all data storage.</p>
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <div style="font-size:14px;font-weight:700;color:var(--black);margin-bottom:8px;">4. Who We Share It With</div>
+      <p style="font-size:13px;color:#555;line-height:1.7;margin-bottom:8px;">We do not sell your data. We share data only with:</p>
+      <p style="font-size:13px;color:#555;line-height:1.7;margin-bottom:4px;">• Payment processors (Paystack) — to process transactions</p>
+      <p style="font-size:13px;color:#555;line-height:1.7;margin-bottom:4px;">• Identity verification partners — to verify runner identities</p>
+      <p style="font-size:13px;color:#555;line-height:1.7;">• Law enforcement — when required by Nigerian law</p>
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <div style="font-size:14px;font-weight:700;color:var(--black);margin-bottom:8px;">5. Your Rights (NDPR)</div>
+      <p style="font-size:13px;color:#555;line-height:1.7;margin-bottom:4px;">Under the NDPR you have the right to:</p>
+      <p style="font-size:13px;color:#555;line-height:1.7;margin-bottom:4px;">• Access the personal data we hold about you</p>
+      <p style="font-size:13px;color:#555;line-height:1.7;margin-bottom:4px;">• Request correction of inaccurate data</p>
+      <p style="font-size:13px;color:#555;line-height:1.7;margin-bottom:4px;">• Request deletion of your account and associated data</p>
+      <p style="font-size:13px;color:#555;line-height:1.7;">• Withdraw consent for data processing at any time</p>
+    </div>
+
+    <div style="background:var(--grey);border-radius:10px;padding:14px;margin-top:20px;">
+      <p style="font-size:12px;color:var(--muted);line-height:1.6;">Privacy questions? Contact our Data Protection Officer at <span style="color:var(--purple);font-weight:600;">privacy@errands.ng</span></p>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== PRICING PAGE ==================== -->
+<div class="screen" id="pricing-page">
+  <div style="background:#fff;padding:14px 20px;border-bottom:0.5px solid var(--border);display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10;">
+    <div class="bkcircle" style="background:#f5f5f5;" onclick="go('landing')"><i class="ti ti-arrow-left" style="color:#555;font-size:16px;"></i></div>
+    <span style="font-size:16px;font-weight:700;color:var(--black);">Pricing</span>
+  </div>
+  <div style="padding:24px 20px;overflow-y:auto;flex:1;padding-bottom:40px;">
+    <div style="font-size:22px;font-weight:700;color:var(--black);margin-bottom:6px;">Simple, transparent pricing</div>
+    <div style="font-size:13px;color:var(--muted);margin-bottom:24px;line-height:1.6;">No hidden fees. You see exactly what you pay before you confirm.</div>
+
+    <!-- Errand fees -->
+    <div style="margin-bottom:24px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--purple);margin-bottom:14px;">Errand service fee</div>
+      <div style="border:0.5px solid var(--border);border-radius:14px;overflow:hidden;">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:0.5px solid var(--border);">
+          <div><div style="font-size:13px;font-weight:700;color:var(--black);">Standard (₦0 — ₦5,000)</div><div style="font-size:11px;color:var(--muted);margin-top:2px;">Pickup, delivery, office, school run</div></div>
+          <div style="font-size:14px;font-weight:700;color:var(--purple);">10%</div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:0.5px solid var(--border);">
+          <div><div style="font-size:13px;font-weight:700;color:var(--black);">Mid-range (₦5,001 — ₦20,000)</div><div style="font-size:11px;color:var(--muted);margin-top:2px;">Larger tasks, longer errands</div></div>
+          <div style="font-size:14px;font-weight:700;color:var(--purple);">8%</div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;">
+          <div><div style="font-size:13px;font-weight:700;color:var(--black);">Large (₦20,001+)</div><div style="font-size:11px;color:var(--muted);margin-top:2px;">High-value errands. Minimum 5% always.</div></div>
+          <div style="font-size:14px;font-weight:700;color:var(--purple);">5%</div>
+        </div>
+      </div>
+      <p style="font-size:11px;color:var(--muted);margin-top:8px;">Minimum service fee: ₦100. Fee is added to the runner's agreed rate at checkout.</p>
+    </div>
+
+    <!-- Escrow fees -->
+    <div style="margin-bottom:24px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--purple);margin-bottom:14px;">Errands Escrow fee</div>
+      <div style="border:0.5px solid var(--border);border-radius:14px;overflow:hidden;">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:0.5px solid var(--border);">
+          <div><div style="font-size:13px;font-weight:700;color:var(--black);">Personal tier</div><div style="font-size:11px;color:var(--muted);margin-top:2px;">From ₦5,000</div></div>
+          <div style="font-size:14px;font-weight:700;color:var(--purple);">2%</div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:0.5px solid var(--border);">
+          <div><div style="font-size:13px;font-weight:700;color:var(--black);">Business tier</div><div style="font-size:11px;color:var(--muted);margin-top:2px;">From ₦100,000</div></div>
+          <div style="font-size:14px;font-weight:700;color:var(--purple);">1.5%</div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;">
+          <div><div style="font-size:13px;font-weight:700;color:var(--black);">Corporate & institutional</div><div style="font-size:11px;color:var(--muted);margin-top:2px;">Custom amounts</div></div>
+          <div style="font-size:14px;font-weight:700;color:var(--purple);">1%</div>
+        </div>
+      </div>
+      <p style="font-size:11px;color:var(--muted);margin-top:8px;">Escrow fee is charged at creation and is non-refundable. Auto-release after 7 days if no action taken.</p>
+    </div>
+
+    <!-- Runner earnings -->
+    <div style="margin-bottom:24px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--purple);margin-bottom:14px;">Runner earnings</div>
+      <div style="background:var(--grey);border-radius:14px;padding:16px;">
+        <p style="font-size:13px;color:#555;line-height:1.7;margin-bottom:8px;">Runners keep <strong style="color:var(--black);">95%</strong> of every agreed errand fee. Errands takes a 5% platform fee.</p>
+        <p style="font-size:13px;color:#555;line-height:1.7;margin-bottom:8px;">Payouts are processed within <strong style="color:var(--black);">24 hours</strong> of errand completion and user confirmation.</p>
+        <p style="font-size:13px;color:#555;line-height:1.7;">There is <strong style="color:var(--black);">no fee to sign up</strong> as a runner. No subscription. No hidden charges.</p>
+      </div>
+    </div>
+
+    <!-- Referral -->
+    <div style="background:var(--black);border-radius:14px;padding:20px;text-align:center;">
+      <div style="font-size:16px;font-weight:700;color:#fff;margin-bottom:6px;">Refer a friend, earn ₦500</div>
+      <div style="font-size:13px;color:rgba(255,255,255,0.6);margin-bottom:16px;">For every friend who signs up and completes their first errand</div>
+      <button onclick="go('referral-page')" style="background:var(--purple);color:#fff;border:none;padding:12px 28px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Clash Display',sans-serif;">Get your referral link →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== REFERRAL PAGE ==================== -->
+<div class="screen" id="referral-page">
+  <div style="background:#fff;padding:14px 20px;border-bottom:0.5px solid var(--border);display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10;">
+    <div class="bkcircle" style="background:#f5f5f5;" onclick="go('home')"><i class="ti ti-arrow-left" style="color:#555;font-size:16px;"></i></div>
+    <span style="font-size:16px;font-weight:700;color:var(--black);">Refer & Earn</span>
+  </div>
+  <div style="padding:24px 20px;overflow-y:auto;flex:1;padding-bottom:40px;">
+    <div style="text-align:center;margin-bottom:28px;">
+      <div style="width:64px;height:64px;background:var(--purple);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;"><i class="ti ti-gift" style="color:#fff;font-size:28px;"></i></div>
+      <div style="font-size:22px;font-weight:700;color:var(--black);margin-bottom:6px;">Earn ₦500 per referral</div>
+      <div style="font-size:13px;color:var(--muted);line-height:1.6;max-width:280px;margin:0 auto;">Invite friends to Errands. When they sign up and complete their first errand, you earn ₦500 — straight to your wallet.</div>
+    </div>
+
+    <!-- Referral code -->
+    <div style="background:var(--light);border-radius:14px;padding:20px;text-align:center;margin-bottom:20px;border:1.5px dashed var(--purple);">
+      <div style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--purple);margin-bottom:8px;">Your referral code</div>
+      <div style="font-size:28px;font-weight:700;color:var(--black);letter-spacing:4px;margin-bottom:12px;" id="referral-code">ERRANDS-XXXX</div>
+      <button onclick="copyReferralCode()" style="background:var(--purple);color:#fff;border:none;padding:10px 24px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Clash Display',sans-serif;display:inline-flex;align-items:center;gap:6px;"><i class="ti ti-copy" style="font-size:14px;"></i> Copy code</button>
+    </div>
+
+    <!-- Share link -->
+    <div style="background:#fff;border:0.5px solid var(--border);border-radius:14px;padding:16px;margin-bottom:20px;">
+      <div style="font-size:12px;font-weight:700;color:#555;margin-bottom:8px;">Or share your link</div>
+      <div style="background:var(--grey);border-radius:8px;padding:10px 12px;display:flex;align-items:center;justify-content:space-between;gap:8px;">
+        <span style="font-size:11px;color:var(--muted);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" id="referral-link">errands-app-dun.vercel.app?ref=XXXX</span>
+        <button onclick="copyReferralLink()" style="background:var(--black);color:#fff;border:none;padding:6px 12px;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Clash Display',sans-serif;white-space:nowrap;">Copy</button>
+      </div>
+    </div>
+
+    <!-- Share buttons -->
+    <div style="font-size:12px;font-weight:700;color:#555;margin-bottom:10px;">Share via</div>
+    <div style="display:flex;gap:10px;margin-bottom:24px;">
+      <button onclick="shareWhatsApp()" style="flex:1;background:#25D366;color:#fff;border:none;padding:12px;border-radius:10px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Clash Display',sans-serif;display:flex;align-items:center;justify-content:center;gap:6px;">
+        <i class="ti ti-brand-whatsapp" style="font-size:16px;"></i> WhatsApp
+      </button>
+      <button onclick="shareGeneral()" style="flex:1;background:var(--black);color:#fff;border:none;padding:12px;border-radius:10px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Clash Display',sans-serif;display:flex;align-items:center;justify-content:center;gap:6px;">
+        <i class="ti ti-share" style="font-size:16px;"></i> Share
+      </button>
+    </div>
+
+    <!-- How it works -->
+    <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--purple);margin-bottom:14px;">How it works</div>
+    <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:24px;">
+      <div style="display:flex;align-items:flex-start;gap:12px;">
+        <div style="width:28px;height:28px;border-radius:50%;background:var(--purple);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;flex-shrink:0;">1</div>
+        <div><div style="font-size:13px;font-weight:700;color:var(--black);">Share your code or link</div><div style="font-size:12px;color:var(--muted);margin-top:2px;">Send it to friends via WhatsApp, Instagram, or anywhere</div></div>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:12px;">
+        <div style="width:28px;height:28px;border-radius:50%;background:var(--purple);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;flex-shrink:0;">2</div>
+        <div><div style="font-size:13px;font-weight:700;color:var(--black);">They sign up with your code</div><div style="font-size:12px;color:var(--muted);margin-top:2px;">Your friend creates an Errands account using your referral code</div></div>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:12px;">
+        <div style="width:28px;height:28px;border-radius:50%;background:var(--purple);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;flex-shrink:0;">3</div>
+        <div><div style="font-size:13px;font-weight:700;color:var(--black);">They complete their first errand</div><div style="font-size:12px;color:var(--muted);margin-top:2px;">Once their errand is done and confirmed, ₦500 lands in your wallet</div></div>
+      </div>
+    </div>
+
+    <!-- Earnings summary -->
+    <div style="background:var(--grey);border-radius:14px;padding:16px;">
+      <div style="font-size:12px;font-weight:700;color:#555;margin-bottom:12px;">Your referral earnings</div>
+      <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+        <span style="font-size:13px;color:var(--muted);">Total referred</span>
+        <span style="font-size:13px;font-weight:700;color:var(--black);" id="ref-count">0 friends</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;">
+        <span style="font-size:13px;color:var(--muted);">Total earned</span>
+        <span style="font-size:14px;font-weight:700;color:var(--purple);" id="ref-earned">₦0</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== DISPUTE RESOLUTION PAGE ==================== -->
+<div class="screen" id="dispute-page">
+  <div style="background:#fff;padding:14px 20px;border-bottom:0.5px solid var(--border);display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10;">
+    <div class="bkcircle" style="background:#f5f5f5;" onclick="go('landing')"><i class="ti ti-arrow-left" style="color:#555;font-size:16px;"></i></div>
+    <span style="font-size:16px;font-weight:700;color:var(--black);">Dispute Resolution</span>
+  </div>
+  <div style="padding:24px 20px;overflow-y:auto;flex:1;padding-bottom:40px;">
+    <div style="font-size:22px;font-weight:700;color:var(--black);margin-bottom:6px;">How we resolve disputes</div>
+    <div style="font-size:13px;color:var(--muted);margin-bottom:24px;line-height:1.6;">We take every dispute seriously. Our goal is a fair outcome for both user and runner within 48 hours.</div>
+
+    <div style="margin-bottom:20px;">
+      <div style="font-size:14px;font-weight:700;color:var(--black);margin-bottom:10px;">How to raise a dispute</div>
+      <p style="font-size:13px;color:#555;line-height:1.7;margin-bottom:8px;">Tap the <strong>Dispute</strong> button on any active errand or escrow transaction. Describe the issue clearly. Attach any evidence (photos, screenshots) if available.</p>
+      <p style="font-size:13px;color:#555;line-height:1.7;">All disputes must be raised within <strong>48 hours</strong> of the errand completion or escrow release date.</p>
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <div style="font-size:14px;font-weight:700;color:var(--black);margin-bottom:10px;">Resolution timeline</div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div style="display:flex;align-items:flex-start;gap:12px;background:var(--grey);border-radius:10px;padding:12px;">
+          <div style="background:var(--purple);color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:6px;white-space:nowrap;margin-top:1px;">0-4 hrs</div>
+          <p style="font-size:12px;color:#555;line-height:1.5;">Dispute acknowledged. Errands team notified. Both parties contacted for information.</p>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:12px;background:var(--grey);border-radius:10px;padding:12px;">
+          <div style="background:var(--purple);color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:6px;white-space:nowrap;margin-top:1px;">4-24 hrs</div>
+          <p style="font-size:12px;color:#555;line-height:1.5;">Evidence reviewed. Errands team makes a preliminary assessment.</p>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:12px;background:var(--grey);border-radius:10px;padding:12px;">
+          <div style="background:var(--purple);color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:6px;white-space:nowrap;margin-top:1px;">24-48 hrs</div>
+          <p style="font-size:12px;color:#555;line-height:1.5;">Final decision communicated to both parties. Funds released or refunded accordingly.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <div style="font-size:14px;font-weight:700;color:var(--black);margin-bottom:10px;">Possible outcomes</div>
+      <p style="font-size:13px;color:#555;line-height:1.7;margin-bottom:6px;"><strong>Full refund to user</strong> — runner failed to complete the errand or misappropriated funds/items</p>
+      <p style="font-size:13px;color:#555;line-height:1.7;margin-bottom:6px;"><strong>Full payment to runner</strong> — errand was completed as agreed and user dispute is unfounded</p>
+      <p style="font-size:13px;color:#555;line-height:1.7;margin-bottom:6px;"><strong>Partial settlement</strong> — errand was partially completed, payment split accordingly</p>
+      <p style="font-size:13px;color:#555;line-height:1.7;"><strong>Escalation</strong> — for complex disputes involving significant sums, we may involve a neutral third party</p>
+    </div>
+
+    <div style="background:var(--grey);border-radius:10px;padding:14px;margin-top:20px;">
+      <p style="font-size:12px;color:var(--muted);line-height:1.6;">Contact our disputes team directly at <span style="color:var(--purple);font-weight:600;">disputes@errands.ng</span> or call <span style="color:var(--purple);font-weight:600;">+234 800 ERRANDS</span></p>
+    </div>
+  </div>
+</div>
+
+
+<!-- ==================== ERRANDS ACADEMY ==================== -->
+<div class="screen" id="academy">
+  <div style="background:var(--black);padding:16px 20px 20px;flex-shrink:0;">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+      <div class="bkcircle" onclick="go('runner-signup')" style="background:rgba(255,255,255,0.1);"><i class="ti ti-arrow-left" style="color:#fff;font-size:16px;"></i></div>
+      <span style="font-size:17px;font-weight:700;color:#fff;">Errands Academy</span>
+    </div>
+    <div style="background:rgba(255,255,255,0.08);border-radius:14px;padding:14px;">
+      <div style="font-size:10px;color:rgba(255,255,255,0.5);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;">Your progress</div>
+      <div style="font-size:24px;font-weight:700;color:#fff;margin-bottom:8px;" id="academy-progress-text">0 of 5 modules complete</div>
+      <div style="background:rgba(255,255,255,0.15);border-radius:10px;height:8px;overflow:hidden;">
+        <div style="background:var(--purple);height:100%;border-radius:10px;transition:width 0.3s;" id="academy-progress-bar" style="width:0%;"></div>
+      </div>
+      <div style="font-size:11px;color:rgba(255,255,255,0.5);margin-top:6px;">Complete all 5 modules to go live and earn the Academy Certified badge</div>
+    </div>
+  </div>
+
+  <div style="flex:1;overflow-y:auto;padding:16px 20px;padding-bottom:40px;">
+    
+    <!-- CORE MODULES -->
+    <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--purple);margin-bottom:14px;">Core modules — mandatory</div>
+
+    <div id="academy-modules">
+      <!-- Modules rendered by JS -->
+    </div>
+
+    <!-- SPECIALISATION TRACKS -->
+    <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--purple);margin-top:24px;margin-bottom:14px;">Specialisation tracks</div>
+    <div style="font-size:12px;color:var(--muted);margin-bottom:14px;line-height:1.6;">Complete the 5 core modules to unlock specialisation training. Each certification adds a badge to your profile and unlocks higher-value errands.</div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+      <div style="border:1.5px solid var(--border);border-radius:12px;padding:14px;opacity:0.6;">
+        <div style="font-size:18px;margin-bottom:8px;">🚗</div>
+        <div style="font-size:12px;font-weight:700;color:var(--black);margin-bottom:3px;">Car Wash Pro</div>
+        <div style="font-size:10px;color:var(--muted);">Coming soon</div>
+      </div>
+      <div style="border:1.5px solid var(--border);border-radius:12px;padding:14px;opacity:0.6;">
+        <div style="font-size:18px;margin-bottom:8px;">👕</div>
+        <div style="font-size:12px;font-weight:700;color:var(--black);margin-bottom:3px;">Laundry Certified</div>
+        <div style="font-size:10px;color:var(--muted);">Coming soon</div>
+      </div>
+      <div style="border:1.5px solid var(--border);border-radius:12px;padding:14px;opacity:0.6;">
+        <div style="font-size:18px;margin-bottom:8px;">🏠</div>
+        <div style="font-size:12px;font-weight:700;color:var(--black);margin-bottom:3px;">House Cleaning</div>
+        <div style="font-size:10px;color:var(--muted);">Coming soon</div>
+      </div>
+      <div style="border:1.5px solid var(--border);border-radius:12px;padding:14px;opacity:0.6;">
+        <div style="font-size:18px;margin-bottom:8px;">🤝</div>
+        <div style="font-size:12px;font-weight:700;color:var(--black);margin-bottom:3px;">Personal Assistant</div>
+        <div style="font-size:10px;color:var(--muted);">Coming soon</div>
+      </div>
+      <div style="border:1.5px solid var(--border);border-radius:12px;padding:14px;opacity:0.6;">
+        <div style="font-size:18px;margin-bottom:8px;">🍱</div>
+        <div style="font-size:12px;font-weight:700;color:var(--black);margin-bottom:3px;">Food Handling</div>
+        <div style="font-size:10px;color:var(--muted);">Coming soon</div>
+      </div>
+      <div style="border:1.5px solid var(--border);border-radius:12px;padding:14px;opacity:0.6;display:flex;align-items:center;justify-content:center;flex-direction:column;">
+        <div style="font-size:18px;margin-bottom:8px;">🎓</div>
+        <div style="font-size:11px;font-weight:700;color:var(--purple);text-align:center;">More coming</div>
+      </div>
+    </div>
+
+    <!-- UNIVERSITY PARTNERSHIP PREVIEW -->
+    <div style="background:var(--black);border-radius:14px;padding:20px;margin-top:24px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--purple);margin-bottom:10px;">Coming soon</div>
+      <div style="font-size:16px;font-weight:700;color:#fff;margin-bottom:8px;">Errands University Partnership</div>
+      <div style="font-size:13px;color:rgba(255,255,255,0.6);line-height:1.7;margin-bottom:16px;">Your earnings, your education. Errands is partnering with accredited universities so runners can enroll in degree programmes paid directly from their earnings. No upfront cost. No loans. Just work and learn.</div>
+      <div style="background:rgba(255,255,255,0.08);border-radius:10px;padding:12px;display:flex;align-items:center;gap:10px;">
+        <i class="ti ti-school" style="color:var(--purple);font-size:20px;flex-shrink:0;"></i>
+        <span style="font-size:12px;color:rgba(255,255,255,0.7);">Registration opens when our first university partner is confirmed. Stay active on Errands to be first in line.</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ==================== ACADEMY MODULE VIEWER ==================== -->
+<div class="screen" id="academy-module">
+  <div style="background:#fff;padding:14px 20px;border-bottom:0.5px solid var(--border);display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10;">
+    <div class="bkcircle" style="background:#f5f5f5;" onclick="go('academy')"><i class="ti ti-arrow-left" style="color:#555;font-size:16px;"></i></div>
+    <span style="font-size:15px;font-weight:700;color:var(--black);" id="module-title">Module Title</span>
+  </div>
+  <div style="flex:1;overflow-y:auto;padding-bottom:100px;" id="module-content">
+    <!-- Content loaded by JS -->
+  </div>
+  <div style="position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:#fff;border-top:0.5px solid var(--border);padding:12px 20px 20px;">
+    <div style="display:flex;gap:8px;margin-bottom:12px;" id="quiz-options"></div>
+    <button class="btn btn-dark" id="module-btn" onclick="moduleAction()">Continue →</button>
+  </div>
+</div>
+
+<!-- ==================== HELP & SUPPORT ==================== -->
+<div class="screen" id="help">
+  <div style="background:#fff;padding:14px 20px;border-bottom:0.5px solid var(--border);display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10;">
+    <div class="bkcircle" style="background:#f5f5f5;" onclick="go('home')"><i class="ti ti-arrow-left" style="color:#555;font-size:16px;"></i></div>
+    <span style="font-size:16px;font-weight:700;color:var(--black);">Help & Support</span>
+  </div>
+  <div style="padding:20px;overflow-y:auto;flex:1;padding-bottom:40px;">
+    
+    <div style="font-size:13px;color:var(--muted);margin-bottom:20px;line-height:1.6;">What do you need help with? Select a category and we will guide you to a resolution.</div>
+
+    <!-- Issue categories -->
+    <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px;" id="help-categories">
+      
+      <div class="help-cat" onclick="showHelpTopic('runner')" style="display:flex;align-items:center;gap:14px;padding:16px;border:1.5px solid var(--border);border-radius:14px;cursor:pointer;">
+        <div style="width:40px;height:40px;background:var(--light);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ti ti-run" style="color:var(--purple);font-size:20px;"></i></div>
+        <div><div style="font-size:13px;font-weight:700;color:var(--black);">Runner issue</div><div style="font-size:11px;color:var(--muted);margin-top:2px;">Runner didn't show up, wrong item, late delivery</div></div>
+        <i class="ti ti-chevron-right" style="color:#ccc;font-size:18px;margin-left:auto;"></i>
+      </div>
+
+      <div class="help-cat" onclick="showHelpTopic('payment')" style="display:flex;align-items:center;gap:14px;padding:16px;border:1.5px solid var(--border);border-radius:14px;cursor:pointer;">
+        <div style="width:40px;height:40px;background:var(--light);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ti ti-wallet" style="color:var(--purple);font-size:20px;"></i></div>
+        <div><div style="font-size:13px;font-weight:700;color:var(--black);">Payment or wallet</div><div style="font-size:11px;color:var(--muted);margin-top:2px;">Funding issue, wrong charge, wallet balance</div></div>
+        <i class="ti ti-chevron-right" style="color:#ccc;font-size:18px;margin-left:auto;"></i>
+      </div>
+
+      <div class="help-cat" onclick="showHelpTopic('escrow')" style="display:flex;align-items:center;gap:14px;padding:16px;border:1.5px solid var(--border);border-radius:14px;cursor:pointer;">
+        <div style="width:40px;height:40px;background:var(--light);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ti ti-safe" style="color:var(--purple);font-size:20px;"></i></div>
+        <div><div style="font-size:13px;font-weight:700;color:var(--black);">Escrow issue</div><div style="font-size:11px;color:var(--muted);margin-top:2px;">Funds not released, dispute, refund request</div></div>
+        <i class="ti ti-chevron-right" style="color:#ccc;font-size:18px;margin-left:auto;"></i>
+      </div>
+
+      <div class="help-cat" onclick="showHelpTopic('account')" style="display:flex;align-items:center;gap:14px;padding:16px;border:1.5px solid var(--border);border-radius:14px;cursor:pointer;">
+        <div style="width:40px;height:40px;background:var(--light);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ti ti-user" style="color:var(--purple);font-size:20px;"></i></div>
+        <div><div style="font-size:13px;font-weight:700;color:var(--black);">Account issue</div><div style="font-size:11px;color:var(--muted);margin-top:2px;">Can't sign in, profile update, verification</div></div>
+        <i class="ti ti-chevron-right" style="color:#ccc;font-size:18px;margin-left:auto;"></i>
+      </div>
+
+      <div class="help-cat" onclick="showHelpTopic('safety')" style="display:flex;align-items:center;gap:14px;padding:16px;border:1.5px solid var(--border);border-radius:14px;cursor:pointer;">
+        <div style="width:40px;height:40px;background:#fef2f2;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ti ti-shield-exclamation" style="color:#dc2626;font-size:20px;"></i></div>
+        <div><div style="font-size:13px;font-weight:700;color:var(--black);">Safety concern</div><div style="font-size:11px;color:var(--muted);margin-top:2px;">Report misconduct, fraud, or safety issue</div></div>
+        <i class="ti ti-chevron-right" style="color:#ccc;font-size:18px;margin-left:auto;"></i>
+      </div>
+
+    </div>
+
+    <!-- Help topic response -->
+    <div id="help-topic" style="display:none;background:var(--grey);border-radius:14px;padding:16px;margin-bottom:20px;">
+      <div style="font-size:13px;font-weight:700;color:var(--black);margin-bottom:10px;" id="help-topic-title"></div>
+      <div style="font-size:13px;color:#555;line-height:1.7;" id="help-topic-content"></div>
+      <button onclick="document.getElementById('help-topic').style.display='none'" style="background:transparent;border:none;color:var(--purple);font-size:12px;font-weight:700;cursor:pointer;margin-top:10px;font-family:'Clash Display',sans-serif;">← Back to categories</button>
+    </div>
+
+    <!-- Divider -->
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;"><hr style="flex:1;border:none;border-top:0.5px solid var(--border);"/><span style="font-size:11px;color:#ccc;">still need help?</span><hr style="flex:1;border:none;border-top:0.5px solid var(--border);"/></div>
+
+    <!-- Contact options -->
+    <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px;">
+      <button onclick="openWhatsApp()" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:#f0fdf4;border:1.5px solid #bbf7d0;border-radius:14px;cursor:pointer;font-family:'Clash Display',sans-serif;width:100%;">
+        <i class="ti ti-brand-whatsapp" style="color:#16a34a;font-size:22px;flex-shrink:0;"></i>
+        <div style="text-align:left;"><div style="font-size:13px;font-weight:700;color:var(--black);">WhatsApp support</div><div style="font-size:11px;color:var(--muted);margin-top:1px;">Fastest response · Usually within 1 hour</div></div>
+      </button>
+      <button onclick="openEmail()" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:var(--light);border:1.5px solid var(--border);border-radius:14px;cursor:pointer;font-family:'Clash Display',sans-serif;width:100%;">
+        <i class="ti ti-mail" style="color:var(--purple);font-size:22px;flex-shrink:0;"></i>
+        <div style="text-align:left;"><div style="font-size:13px;font-weight:700;color:var(--black);">Email support</div><div style="font-size:11px;color:var(--muted);margin-top:1px;">support@errands.app · Response within 24 hours</div></div>
+      </button>
+    </div>
+
+    <!-- Dispute escalation -->
+    <div style="background:var(--black);border-radius:14px;padding:16px;text-align:center;">
+      <div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:6px;">Need to raise a formal dispute?</div>
+      <div style="font-size:12px;color:rgba(255,255,255,0.6);margin-bottom:14px;line-height:1.6;">For errand or escrow disputes, use our structured resolution process. We aim to resolve within 48 hours.</div>
+      <button onclick="go('dispute-page')" style="background:var(--purple);color:#fff;border:none;padding:10px 24px;border-radius:10px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Clash Display',sans-serif;">Raise a dispute →</button>
+    </div>
+
+  </div>
+</div>
 </body>
 </html>
