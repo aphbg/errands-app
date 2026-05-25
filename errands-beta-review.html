@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Errands — Beta Review</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+:root{--purple:#843287;--black:#212121;--border:#ecddf0;--light:#f5f0f6;--muted:#888;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Clash Display',sans-serif;background:#f0e8f2;min-height:100vh;padding:0;}
+.page{max-width:720px;margin:0 auto;background:#fff;min-height:100vh;}
+input,textarea,select,button{font-family:'Clash Display',sans-serif;}
+
+/* HEADER */
+.header{background:var(--purple);padding:40px 40px 48px;position:relative;overflow:hidden;}
+.header::before{content:'e';position:absolute;right:-30px;top:-20px;font-size:300px;font-weight:800;color:rgba(255,255,255,0.05);line-height:1;}
+.header-logo{font-size:22px;font-weight:700;color:#fff;margin-bottom:24px;}
+.header-logo span{opacity:0.7;}
+.header h1{font-size:32px;font-weight:700;color:#fff;line-height:1.2;margin-bottom:12px;position:relative;}
+.header h1 span{color:#f0c0f5;}
+.header p{font-size:15px;color:rgba(255,255,255,0.8);line-height:1.7;max-width:520px;position:relative;}
+.header-meta{display:flex;gap:16px;margin-top:20px;flex-wrap:wrap;position:relative;}
+.meta-pill{background:rgba(255,255,255,0.15);padding:5px 14px;border-radius:20px;font-size:12px;color:rgba(255,255,255,0.9);font-weight:600;border:1px solid rgba(255,255,255,0.2);}
+
+/* SECTIONS */
+.section{padding:32px 40px;border-bottom:1px solid #f5f5f5;}
+.section:last-child{border-bottom:none;}
+.section-num{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--purple);margin-bottom:8px;}
+.section-title{font-size:20px;font-weight:700;color:var(--black);margin-bottom:12px;}
+.section-body{font-size:14px;color:#555;line-height:1.8;}
+
+/* STEPS */
+.steps{display:flex;flex-direction:column;gap:12px;margin-top:16px;}
+.step{display:flex;gap:16px;align-items:flex-start;padding:14px 16px;background:var(--light);border-radius:12px;}
+.step-num{width:28px;height:28px;border-radius:50%;background:var(--purple);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;flex-shrink:0;margin-top:1px;}
+.step-content{}
+.step-action{font-size:13px;font-weight:700;color:var(--black);margin-bottom:3px;}
+.step-detail{font-size:12px;color:var(--muted);line-height:1.5;}
+
+/* LENSES */
+.lenses{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px;}
+.lens{border:1.5px solid var(--border);border-radius:12px;padding:16px;}
+.lens-icon{font-size:24px;margin-bottom:8px;}
+.lens-title{font-size:13px;font-weight:700;color:var(--black);margin-bottom:4px;}
+.lens-desc{font-size:12px;color:var(--muted);line-height:1.5;}
+
+/* FORM */
+.form-section{background:var(--light);padding:32px 40px;}
+.form-title{font-size:22px;font-weight:700;color:var(--black);margin-bottom:6px;}
+.form-sub{font-size:13px;color:var(--muted);margin-bottom:28px;line-height:1.6;}
+.q-block{margin-bottom:28px;}
+.q-label{font-size:13px;font-weight:700;color:var(--black);margin-bottom:8px;display:block;line-height:1.5;}
+.q-sub{font-size:11px;color:var(--muted);margin-bottom:10px;display:block;}
+.rating-row{display:flex;gap:8px;margin-bottom:10px;}
+.rating-btn{width:44px;height:44px;border-radius:10px;border:1.5px solid var(--border);background:#fff;font-size:14px;font-weight:700;color:var(--muted);cursor:pointer;transition:all 0.15s;}
+.rating-btn.sel{background:var(--purple);color:#fff;border-color:var(--purple);}
+.rating-labels{display:flex;justify-content:space-between;font-size:10px;color:#ccc;margin-bottom:12px;}
+.field{width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:10px;font-size:13px;color:var(--black);background:#fff;outline:none;resize:none;}
+.field:focus{border-color:var(--purple);}
+.field::placeholder{color:#ccc;}
+.tester-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:28px;}
+.fg{display:flex;flex-direction:column;gap:6px;}
+.lbl{font-size:12px;font-weight:600;color:#555;}
+.divider-line{border:none;border-top:1.5px solid var(--border);margin:24px 0;}
+.submit-btn{width:100%;background:var(--black);color:#fff;border:none;padding:16px;border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;margin-top:8px;display:flex;align-items:center;justify-content:center;gap:10px;}
+.submit-btn:disabled{opacity:0.6;cursor:not-allowed;}
+
+/* SUCCESS */
+.success-screen{display:none;text-align:center;padding:60px 40px;}
+.success-icon{width:72px;height:72px;border-radius:50%;background:var(--purple);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:32px;}
+.success-h1{font-size:26px;font-weight:700;color:var(--black);margin-bottom:10px;}
+.success-sub{font-size:14px;color:var(--muted);line-height:1.7;max-width:400px;margin:0 auto;}
+
+/* TOAST */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--black);color:#fff;padding:12px 24px;border-radius:10px;font-size:13px;font-weight:600;z-index:999;opacity:0;transition:opacity 0.3s;pointer-events:none;}
+.toast.show{opacity:1;}
+
+/* LINK BAR */
+.link-bar{background:var(--black);padding:16px 40px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+.link-bar-text{font-size:12px;color:rgba(255,255,255,0.6);}
+.link-bar-url{font-size:13px;font-weight:700;color:var(--purple);}
+.link-bar-btn{background:var(--purple);color:#fff;border:none;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Clash Display',sans-serif;}
+
+@media(max-width:600px){
+  .header{padding:28px 20px 36px;}
+  .section{padding:24px 20px;}
+  .form-section{padding:24px 20px;}
+  .lenses{grid-template-columns:1fr;}
+  .tester-grid{grid-template-columns:1fr;}
+  .link-bar{padding:14px 20px;}
+}
+</style>
+</head>
+<body>
+
+<div class="toast" id="toast"></div>
+
+<div class="page" id="main-page">
+
+  <!-- LINK BAR -->
+  <div class="link-bar">
+    <div>
+      <div class="link-bar-text">Test the live product</div>
+      <div class="link-bar-url">errands-app-dun.vercel.app</div>
+    </div>
+    <button class="link-bar-btn" onclick="copyLink()">Copy link</button>
+  </div>
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-logo">errands<span>®</span></div>
+    <h1>Beta Review Brief<br><span>We built something.</span></h1>
+    <p>Kenneth is asking for your honest eyes on Errands — a trust-first errand marketplace and escrow platform built for Nigeria and scaling globally. This is a working prototype with a live database. Everything you do in it is real.</p>
+    <div class="header-meta">
+      <span class="meta-pill">🔒 Private beta</span>
+      <span class="meta-pill">⏱ Allow 20-30 minutes</span>
+      <span class="meta-pill">📱 Test on mobile + desktop</span>
+    </div>
+  </div>
+
+  <!-- SECTION 1 — CONTEXT -->
+  <div class="section">
+    <div class="section-num">01 — Context</div>
+    <div class="section-title">What Errands is</div>
+    <div class="section-body">
+      <p style="margin-bottom:12px;">Errands solves a problem every Nigerian knows — the inability to trust a stranger with your tasks, your money, or your time. Whether it's sending someone to the market, picking up a package, doing a school run, or holding funds for a transaction you're not sure about — trust has always been the missing piece.</p>
+      <p style="margin-bottom:12px;">Errands is two products in one: a vetted errand marketplace where verified runners handle your tasks, and Errands Escrow, a secure payment holding service for any transaction where trust is the barrier.</p>
+      <p>The product is built to global standard from day one. Nigeria is the proof of concept. The same trust problem exists in Dubai, Singapore, London, and Lagos — and the plan is to follow it.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 2 — WHAT TO TEST -->
+  <div class="section">
+    <div class="section-num">02 — What to test</div>
+    <div class="section-title">Your testing flow</div>
+    <div class="section-body">Test both as a user and a runner. Use the live link at the top of this page. Use your real email — accounts are saved to a real database.</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-action">Open the landing page on desktop</div>
+          <div class="step-detail">Read the landing page from top to bottom. Does it communicate what Errands is within 10 seconds? Does it feel global or local?</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="step-action">Sign up as a user</div>
+          <div class="step-detail">Create an account with your email. Note any friction in the signup flow. Does it feel fast enough? Too much or too little asked?</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <div class="step-action">Browse the home dashboard</div>
+          <div class="step-detail">Look at the runner cards. Tap one — review the runner profile. Does it feel credible? Would you trust this person with an errand?</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <div class="step-action">Post a test errand</div>
+          <div class="step-detail">Post a real or fictional errand through the full 3-step flow. Note the category options, how natural the flow feels, and the summary preview.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <div class="step-action">Fund your wallet and explore Escrow</div>
+          <div class="step-detail">Tap Wallet in the bottom nav. Fund a test amount. Then tap Escrow — create a test escrow transaction. Review all three tiers.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">6</div>
+        <div class="step-content">
+          <div class="step-action">Sign up as a runner (use a second email)</div>
+          <div class="step-detail">Go through the full runner signup. Complete the 4-step process including verification. Review the growth pathway screen that appears after signup.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">7</div>
+        <div class="step-content">
+          <div class="step-action">Go through the Errands Academy</div>
+          <div class="step-detail">Complete at least 2 of the 5 modules. Review the curriculum. Does this training standard feel professional? Would it build a trustworthy runner workforce?</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">8</div>
+        <div class="step-content">
+          <div class="step-action">Check the legal pages</div>
+          <div class="step-detail">Scroll to the footer. Review Terms of Service, Privacy Policy, Pricing, and Dispute Resolution. Are these substantial enough for a financial platform?</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">9</div>
+        <div class="step-content">
+          <div class="step-action">Switch to mobile</div>
+          <div class="step-detail">Open the same link on your phone. Does the experience hold up? Is the mobile version as strong as desktop?</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">10</div>
+        <div class="step-content">
+          <div class="step-action">Come back and fill this form</div>
+          <div class="step-detail">Your feedback below is the most important part. Be honest. The more specific you are, the more useful it is.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3 — REVIEW LENSES -->
+  <div class="section">
+    <div class="section-num">03 — Review framework</div>
+    <div class="section-title">Four lenses to review through</div>
+    <div class="section-body">As you test, hold these four questions in mind. The feedback form below maps to each one.</div>
+    <div class="lenses">
+      <div class="lens">
+        <div class="lens-icon">🛡️</div>
+        <div class="lens-title">Trust</div>
+        <div class="lens-desc">Does this platform earn trust fast enough for a Nigerian user to put money on it?</div>
+      </div>
+      <div class="lens">
+        <div class="lens-icon">🌍</div>
+        <div class="lens-title">Global readiness</div>
+        <div class="lens-desc">Could this launch in Dubai, London, or Singapore tomorrow with minimal changes?</div>
+      </div>
+      <div class="lens">
+        <div class="lens-icon">💰</div>
+        <div class="lens-title">Business model</div>
+        <div class="lens-desc">Does the revenue model — platform fee + escrow fee — make sense and hold up to scrutiny?</div>
+      </div>
+      <div class="lens">
+        <div class="lens-icon">🔍</div>
+        <div class="lens-title">Product gaps</div>
+        <div class="lens-desc">What is missing that should be there before this goes live to the public?</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4 — FEEDBACK FORM -->
+  <div class="form-section">
+    <div class="form-title">Your feedback</div>
+    <div class="form-sub">10 questions. Answer as honestly as you can. This goes directly to Kenneth's dashboard — not a generic survey platform.</div>
+
+    <!-- Tester info -->
+    <div class="tester-grid">
+      <div class="fg"><label class="lbl">Your name</label><input class="field" id="f-name" placeholder="First name is fine"/></div>
+      <div class="fg"><label class="lbl">Device used</label><select class="field" id="f-device"><option value="">Select</option><option>Mobile only</option><option>Desktop only</option><option>Both mobile and desktop</option></select></div>
+    </div>
+
+    <hr class="divider-line"/>
+
+    <!-- Q1 -->
+    <div class="q-block">
+      <label class="q-label">1. On first landing — did you immediately understand what Errands does?</label>
+      <span class="q-sub">Rate how clear the value proposition was within the first 10 seconds</span>
+      <div class="rating-row" id="r1">
+        <button class="rating-btn" onclick="rate(1,1)">1</button>
+        <button class="rating-btn" onclick="rate(1,2)">2</button>
+        <button class="rating-btn" onclick="rate(1,3)">3</button>
+        <button class="rating-btn" onclick="rate(1,4)">4</button>
+        <button class="rating-btn" onclick="rate(1,5)">5</button>
+      </div>
+      <div class="rating-labels"><span>Not at all</span><span>Perfectly clear</span></div>
+      <textarea class="field" id="c1" rows="2" placeholder="What was your first impression?"></textarea>
+    </div>
+
+    <!-- Q2 -->
+    <div class="q-block">
+      <label class="q-label">2. Did the trust signals feel credible? (Verified runners, Escrow, Academy)</label>
+      <span class="q-sub">Would you trust this platform with your money or your errands?</span>
+      <div class="rating-row" id="r2">
+        <button class="rating-btn" onclick="rate(2,1)">1</button>
+        <button class="rating-btn" onclick="rate(2,2)">2</button>
+        <button class="rating-btn" onclick="rate(2,3)">3</button>
+        <button class="rating-btn" onclick="rate(2,4)">4</button>
+        <button class="rating-btn" onclick="rate(2,5)">5</button>
+      </div>
+      <div class="rating-labels"><span>Not credible</span><span>Fully credible</span></div>
+      <textarea class="field" id="c2" rows="2" placeholder="What built or broke trust for you?"></textarea>
+    </div>
+
+    <!-- Q3 -->
+    <div class="q-block">
+      <label class="q-label">3. How smooth was the sign up and errand posting flow?</label>
+      <span class="q-sub">Any friction, confusion, or moments where you hesitated?</span>
+      <div class="rating-row" id="r3">
+        <button class="rating-btn" onclick="rate(3,1)">1</button>
+        <button class="rating-btn" onclick="rate(3,2)">2</button>
+        <button class="rating-btn" onclick="rate(3,3)">3</button>
+        <button class="rating-btn" onclick="rate(3,4)">4</button>
+        <button class="rating-btn" onclick="rate(3,5)">5</button>
+      </div>
+      <div class="rating-labels"><span>Very frustrating</span><span>Effortless</span></div>
+      <textarea class="field" id="c3" rows="2" placeholder="Where did you get stuck or confused, if anywhere?"></textarea>
+    </div>
+
+    <!-- Q4 -->
+    <div class="q-block">
+      <label class="q-label">4. Errands Escrow — does it feel like a standalone product or just a feature?</label>
+      <textarea class="field" id="c4" rows="3" placeholder="Could Errands Escrow stand on its own as a product independent of the errand marketplace?"></textarea>
+    </div>
+
+    <!-- Q5 -->
+    <div class="q-block">
+      <label class="q-label">5. Would you use Errands in Nigeria today? Why or why not?</label>
+      <textarea class="field" id="c5" rows="3" placeholder="Be honest. What would make you use it or not use it?"></textarea>
+    </div>
+
+    <!-- Q6 -->
+    <div class="q-block">
+      <label class="q-label">6. Global readiness — could this launch in Dubai, London, or Singapore without major changes?</label>
+      <textarea class="field" id="c6" rows="3" placeholder="What would need to change for a market outside Nigeria?"></textarea>
+    </div>
+
+    <!-- Q7 -->
+    <div class="q-block">
+      <label class="q-label">7. Rate the landing page as a first impression for an international audience</label>
+      <span class="q-sub">Imagine showing this to someone in London or Dubai who has never heard of Errands</span>
+      <div class="rating-row" id="r7">
+        <button class="rating-btn" onclick="rate(7,1)">1</button>
+        <button class="rating-btn" onclick="rate(7,2)">2</button>
+        <button class="rating-btn" onclick="rate(7,3)">3</button>
+        <button class="rating-btn" onclick="rate(7,4)">4</button>
+        <button class="rating-btn" onclick="rate(7,5)">5</button>
+      </div>
+      <div class="rating-labels"><span>Not ready</span><span>World class</span></div>
+      <textarea class="field" id="c7" rows="2" placeholder="What would make it stronger?"></textarea>
+    </div>
+
+    <!-- Q8 -->
+    <div class="q-block">
+      <label class="q-label">8. Is the pricing model fair and commercially sensible?</label>
+      <span class="q-sub">Platform fee on errands (10% / 8% / 5% tiered) + Escrow fee (2% / 1.5% / 1% tiered)</span>
+      <div class="rating-row" id="r8">
+        <button class="rating-btn" onclick="rate(8,1)">1</button>
+        <button class="rating-btn" onclick="rate(8,2)">2</button>
+        <button class="rating-btn" onclick="rate(8,3)">3</button>
+        <button class="rating-btn" onclick="rate(8,4)">4</button>
+        <button class="rating-btn" onclick="rate(8,5)">5</button>
+      </div>
+      <div class="rating-labels"><span>Too high / wrong</span><span>Perfectly positioned</span></div>
+      <textarea class="field" id="c8" rows="2" placeholder="Any pricing concerns or suggestions?"></textarea>
+    </div>
+
+    <!-- Q9 -->
+    <div class="q-block">
+      <label class="q-label">9. What is the one thing that would stop you from recommending this to someone?</label>
+      <textarea class="field" id="c9" rows="3" placeholder="The most important gap or concern you found"></textarea>
+    </div>
+
+    <!-- Q10 -->
+    <div class="q-block">
+      <label class="q-label">10. What is the one thing that genuinely impressed you?</label>
+      <textarea class="field" id="c10" rows="3" placeholder="The strongest part of the product as you experienced it"></textarea>
+    </div>
+
+    <button class="submit-btn" id="submit-btn" onclick="submitFeedback()">
+      <span>Submit feedback →</span>
+    </button>
+  </div>
+
+</div>
+
+<!-- SUCCESS -->
+<div class="page" id="success-page" style="display:none;">
+  <div class="success-screen" style="display:block;">
+    <div class="success-icon">✓</div>
+    <div class="success-h1">Thank you.</div>
+    <div class="success-sub">Your feedback has gone directly to Kenneth's dashboard. This is exactly the kind of input that shapes what Errands becomes. He will be in touch.</div>
+    <div style="margin-top:28px;padding:16px;background:var(--light);border-radius:12px;">
+      <div style="font-size:12px;color:var(--muted);">Live product</div>
+      <div style="font-size:14px;font-weight:700;color:var(--purple);margin-top:4px;">errands-app-dun.vercel.app</div>
+    </div>
+  </div>
+</div>
+
+<script>
+const { createClient } = supabase;
+const sb = createClient(
+  'https://tgtmzkpracgsbheevwud.supabase.co',
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRndG16a3ByYWNnc2JoZWV2d3VkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk0OTYxNDEsImV4cCI6MjA5NTA3MjE0MX0.j0PH1dbbytwpbMrAuLOSTEn93ejdcOL5YdR0bkQW7mU'
+);
+
+const ratings = {};
+
+function rate(q, val) {
+  ratings[q] = val;
+  const row = document.getElementById('r' + q);
+  row.querySelectorAll('.rating-btn').forEach((btn, i) => {
+    btn.classList.toggle('sel', i + 1 <= val);
+  });
+}
+
+function toast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+function copyLink() {
+  navigator.clipboard.writeText('https://errands-app-dun.vercel.app').then(() => toast('Link copied!'));
+}
+
+async function submitFeedback() {
+  const name = document.getElementById('f-name').value.trim();
+  if (!name) { toast('Please enter your name'); return; }
+
+  const btn = document.getElementById('submit-btn');
+  btn.disabled = true;
+  btn.innerHTML = '<span>Submitting...</span>';
+
+  const payload = {
+    tester_name: name,
+    tester_email: null,
+    tester_role: null,
+    device_used: document.getElementById('f-device').value,
+    q1_rating: ratings[1] || null,
+    q1_comment: document.getElementById('c1').value.trim(),
+    q2_rating: ratings[2] || null,
+    q2_comment: document.getElementById('c2').value.trim(),
+    q3_rating: ratings[3] || null,
+    q3_comment: document.getElementById('c3').value.trim(),
+    q4_answer: document.getElementById('c4').value.trim(),
+    q5_answer: document.getElementById('c5').value.trim(),
+    q6_answer: document.getElementById('c6').value.trim(),
+    q7_rating: ratings[7] || null,
+    q7_comment: document.getElementById('c7').value.trim(),
+    q8_rating: ratings[8] || null,
+    q8_comment: document.getElementById('c8').value.trim(),
+    q9_answer: document.getElementById('c9').value.trim(),
+    q10_answer: document.getElementById('c10').value.trim(),
+  };
+
+  const { error } = await sb.from('beta_feedback').insert(payload);
+
+  if (error) {
+    btn.disabled = false;
+    btn.innerHTML = '<span>Submit feedback →</span>';
+    toast('Something went wrong. Please try again.');
+    return;
+  }
+
+  document.getElementById('main-page').style.display = 'none';
+  document.getElementById('success-page').style.display = 'block';
+  window.scrollTo(0, 0);
+}
+</script>
+</body>
+</html>
