@@ -872,7 +872,8 @@ input,textarea,select,button{font-family:'Clash Display',sans-serif;}
     <div class="fg"><label class="lbl">Email address</label><input class="field" id="su-email" type="email" placeholder="kenneth@example.com"/></div>
     <label class="lbl">Phone number</label>
     <div class="phone-row"><span class="phone-pre">🇳🇬 +234</span><input class="phone-in" id="su-phone" type="tel" placeholder="802 515 8222"/></div>
-    <div class="fg"><label class="lbl">Your city</label><select class="select field" id="su-city"><option value="">Select your city</option><option value="lagos">🇳🇬 Lagos, Nigeria</option><option value="abuja">🇳🇬 Abuja, Nigeria</option></select></div>
+    <div class="fg"><label class="lbl">Your city</label><select class="select field" id="su-city" onchange="buildNeighbourhoodSelect('su-neighbourhood', this.value)"><option value="">Select your city</option><option value="lagos">🇳🇬 Lagos, Nigeria</option><option value="abuja">🇳🇬 Abuja, Nigeria</option></select></div>
+    <div class="fg"><label class="lbl">Your neighbourhood</label><select class="select field" id="su-neighbourhood"><option value="">Select city first</option></select></div>
     <div class="fg"><label class="lbl">Password</label><input class="field" id="su-password" type="password" placeholder="Min. 8 characters"/></div>
     <div class="terms-row"><input type="checkbox" id="su-terms"/><label for="su-terms">I agree to the <a href="#" onclick="go('terms-page')">Terms of Service</a> and <a href="#" onclick="go('privacy-page')">Privacy Policy</a>.</label></div>
     <button class="btn btn-dark" onclick="signUp()">Create account →</button>
@@ -940,7 +941,7 @@ input,textarea,select,button{font-family:'Clash Display',sans-serif;}
         <div class="hav" id="home-av" onclick="showProfile()" style="cursor:pointer;">KO</div>
         <div>
           <div style="font-size:12px;color:var(--muted);">Hi <span id="home-name">there</span></div>
-          <div style="font-size:11px;color:#aaa;display:flex;align-items:center;gap:4px;"><i class="ti ti-map-pin" style="color:var(--purple);font-size:11px;"></i><span id="home-city">Lagos</span></div>
+          <div style="font-size:11px;color:#aaa;display:flex;align-items:center;gap:4px;"><i class="ti ti-map-pin" style="color:var(--purple);font-size:11px;"></i><span id="home-city">Lagos</span><span id="home-hood" style="display:none;"> · <span id="home-hood-name"></span></span></div>
         </div>
       </div>
       <div style="display:flex;align-items:center;gap:12px;">
@@ -1275,130 +1276,33 @@ input,textarea,select,button{font-family:'Clash Display',sans-serif;}
   <div class="auth-body">
     <div class="auth-icon"><i class="ti ti-run" style="color:#fff;font-size:24px;"></i></div>
     <div class="auth-title">Join as a runner</div>
-    <div class="auth-sub">Earn money in your neighbourhood. 3-minute setup.</div>
+    <div class="auth-sub">Earn money in your neighbourhood. Takes 2 minutes.</div>
     <div class="err-msg" id="rs-err"></div>
-    <div class="pbar"><div class="pb on" id="rp1"></div><div class="pb" id="rp2"></div><div class="pb" id="rp3"></div><div class="pb" id="rp4"></div></div>
-    <div class="rskip vis" id="rs1">
-      <div class="row2" style="margin-bottom:16px;"><div><label class="lbl">First name</label><input class="field" id="rs-fname" placeholder="Adaeze"/></div><div><label class="lbl">Last name</label><input class="field" id="rs-lname" placeholder="Kalu"/></div></div>
-      <div class="fg"><label class="lbl">Email</label><input class="field" id="rs-email" type="email" placeholder="adaeze@example.com"/></div>
-      <label class="lbl">Phone number</label>
-      <div class="phone-row" style="margin-bottom:16px;"><span class="phone-pre">🇳🇬 +234</span><input class="phone-in" id="rs-phone" type="tel" placeholder="802 000 0000"/></div>
-      <div class="fg"><label class="lbl">City</label><select class="select field" id="rs-city"><option value="">Select city</option><option value="lagos">🇳🇬 Lagos, Nigeria</option><option value="abuja">🇳🇬 Abuja, Nigeria</option></select></div>
-      <div class="fg"><label class="lbl">Your neighbourhood</label><input class="field" id="rs-area" placeholder="e.g. Lekki Phase 1"/></div>
-      <div class="fg"><label class="lbl">Password</label><input class="field" id="rs-password" type="password" placeholder="Min. 8 characters"/></div>
-      <button class="btn btn-dark" onclick="rsNext(2)">Continue →</button>
+
+    <!-- Single step signup - same as user -->
+    <div class="row2">
+      <div><label class="lbl">First name</label><input class="field" id="rs-fname" placeholder="Adaeze"/></div>
+      <div><label class="lbl">Last name</label><input class="field" id="rs-lname" placeholder="Kalu"/></div>
     </div>
-    <div class="rskip" id="rs2">
-      <label class="lbl">Select your services</label>
-      <div class="cats-grid" style="margin-bottom:16px;">
-        <div class="copt sel" onclick="this.classList.toggle('sel')"><i class="ti ti-shopping-cart"></i><span>Market runs</span></div>
-        <div class="copt sel" onclick="this.classList.toggle('sel')"><i class="ti ti-package"></i><span>Pickup</span></div>
-        <div class="copt" onclick="this.classList.toggle('sel')"><i class="ti ti-school"></i><span>School run</span></div>
-        <div class="copt" onclick="this.classList.toggle('sel')"><i class="ti ti-tool"></i><span>Quick fixes</span></div>
-        <div class="copt" onclick="this.classList.toggle('sel')"><i class="ti ti-building"></i><span>Office</span></div>
-        <div class="copt" onclick="this.classList.toggle('sel')"><i class="ti ti-dots"></i><span>General</span></div>
-      </div>
-      <label class="lbl">Your hourly rate</label>
-      <div class="budget-wrap" style="margin-bottom:6px;"><span class="bpre">₦</span><input class="bin" type="number" id="rs-rate" placeholder="e.g. 3000"/></div>
-      <p class="hint" style="margin-bottom:16px;">Customers can also make offers.</p>
-      <div class="fg"><label class="lbl">Short bio</label><textarea class="textarea" id="rs-bio" placeholder="Tell customers about yourself and your experience..."></textarea></div>
-      <button class="btn btn-dark" onclick="rsNext(3)">Continue →</button>
-      <button class="btn btn-outline" onclick="rsNext(1)" style="margin-top:10px;">← Back</button>
+    <div class="fg"><label class="lbl">Email</label><input class="field" id="rs-email" type="email" placeholder="adaeze@example.com"/></div>
+    <label class="lbl">Phone number</label>
+    <div class="phone-row" style="margin-bottom:16px;"><span class="phone-pre">🇳🇬 +234</span><input class="phone-in" id="rs-phone" type="tel" placeholder="802 000 0000"/></div>
+    <div class="fg"><label class="lbl">City</label><select class="select field" id="rs-city" onchange="buildNeighbourhoodSelect('rs-neighbourhood', this.value)"><option value="">Select city</option><option value="lagos">🇳🇬 Lagos, Nigeria</option><option value="abuja">🇳🇬 Abuja, Nigeria</option></select></div>
+    <div class="fg"><label class="lbl">Neighbourhood</label><select class="select field" id="rs-neighbourhood"><option value="">Select city first</option></select></div>
+    <div class="fg"><label class="lbl">Password</label><input class="field" id="rs-password" type="password" placeholder="Min. 8 characters"/></div>
+    <div class="terms-row"><input type="checkbox" id="rs-terms"/><label for="rs-terms">I agree to the <a href="#" onclick="go('terms-page')">Terms of Service</a> and <a href="#" onclick="go('privacy-page')">Runner Agreement</a>.</label></div>
+
+    <button class="btn btn-dark" onclick="submitRunnerSignup()">Create runner account →</button>
+    <div class="divider"><hr/><span>or continue with</span><hr/></div>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:16px;">
+      <button class="btn btn-google" onclick="signInWithGoogle()">
+        <svg width="16" height="16" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.08 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-3.59-13.46-8.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+        Continue with Google
+      </button>
     </div>
-    <div class="rskip" id="rs3">
-      <div style="background:#fff8e6;border-radius:10px;padding:14px;margin-bottom:16px;border:1px solid #fde68a;"><p style="font-size:12px;color:#78350f;line-height:1.6;"><strong>Why we verify:</strong> Trust is our product. Every runner is verified before going live. Your documents are encrypted and never shared publicly.</p></div>
-      <div class="fg"><label class="lbl">NIN (National ID Number)</label><input class="field" id="rs-nin" placeholder="12345678901"/></div>
-      <label class="lbl">Upload valid ID</label>
-      <div style="border:1.5px dashed var(--border);border-radius:10px;padding:18px;text-align:center;background:#fff;cursor:pointer;margin-bottom:16px;"><i class="ti ti-id-badge" style="font-size:28px;color:#ccc;"></i><p style="font-size:11px;color:#bbb;margin-top:6px;">National ID, Driver's licence, or Passport</p></div>
-      <button class="btn btn-dark" onclick="submitRunnerSignup()">Submit application →</button>
-      <button class="btn btn-outline" onclick="rsNext(2)" style="margin-top:10px;">← Back</button>
-    </div>
-    <div class="rskip" id="rs4" style="padding-top:16px;">
-      <!-- Header -->
-      <div style="text-align:center;margin-bottom:20px;">
-        <div style="width:64px;height:64px;border-radius:50%;background:var(--purple);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;"><i class="ti ti-check" style="color:#fff;font-size:28px;"></i></div>
-        <h2 style="font-size:20px;font-weight:700;color:var(--black);margin-bottom:6px;">Welcome to the Errands family</h2>
-        <p style="font-size:13px;color:#888;line-height:1.6;">Application submitted. Verification within 24 hours.<br>Here is what joining Errands means for you.</p>
-      </div>
-
-      <!-- Growth pathway -->
-      <div style="margin-bottom:20px;">
-        <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--purple);margin-bottom:14px;">Your journey</div>
-        <div style="display:flex;flex-direction:column;gap:0;">
-          
-          <div style="display:flex;gap:14px;align-items:flex-start;padding-bottom:16px;position:relative;">
-            <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;">
-              <div style="width:36px;height:36px;border-radius:50%;background:var(--purple);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff;z-index:1;">1</div>
-              <div style="width:2px;flex:1;background:var(--border);min-height:40px;margin-top:4px;"></div>
-            </div>
-            <div style="flex:1;padding-top:6px;">
-              <div style="font-size:13px;font-weight:700;color:var(--black);">Rookie</div>
-              <div style="font-size:11px;color:var(--muted);margin-top:2px;line-height:1.5;">Sign up, get verified, complete your first errand. Your journey begins.</div>
-            </div>
-          </div>
-
-          <div style="display:flex;gap:14px;align-items:flex-start;padding-bottom:16px;position:relative;">
-            <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;">
-              <div style="width:36px;height:36px;border-radius:50%;background:var(--black);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff;z-index:1;">2</div>
-              <div style="width:2px;flex:1;background:var(--border);min-height:40px;margin-top:4px;"></div>
-            </div>
-            <div style="flex:1;padding-top:6px;">
-              <div style="font-size:13px;font-weight:700;color:var(--black);">Academy Certified <span style="background:var(--purple);color:#fff;font-size:9px;padding:2px 7px;border-radius:6px;margin-left:4px;">BADGE</span></div>
-              <div style="font-size:11px;color:var(--muted);margin-top:2px;line-height:1.5;">Complete 5 training modules. Unlock higher-value errands. Get your certified badge on your profile.</div>
-            </div>
-          </div>
-
-          <div style="display:flex;gap:14px;align-items:flex-start;padding-bottom:16px;position:relative;">
-            <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;">
-              <div style="width:36px;height:36px;border-radius:50%;background:var(--black);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff;z-index:1;">3</div>
-              <div style="width:2px;flex:1;background:var(--border);min-height:40px;margin-top:4px;"></div>
-            </div>
-            <div style="flex:1;padding-top:6px;">
-              <div style="font-size:13px;font-weight:700;color:var(--black);">Specialist <span style="background:var(--black);color:#fff;font-size:9px;padding:2px 7px;border-radius:6px;margin-left:4px;">BADGE</span></div>
-              <div style="font-size:11px;color:var(--muted);margin-top:2px;line-height:1.5;">Complete specialisation training in car wash, laundry, house cleaning, or more. Unlock premium errand types. Earn more per job.</div>
-            </div>
-          </div>
-
-          <div style="display:flex;gap:14px;align-items:flex-start;padding-bottom:16px;position:relative;">
-            <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;">
-              <div style="width:36px;height:36px;border-radius:50%;background:var(--black);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff;z-index:1;">4</div>
-              <div style="width:2px;flex:1;background:var(--border);min-height:40px;margin-top:4px;"></div>
-            </div>
-            <div style="flex:1;padding-top:6px;">
-              <div style="font-size:13px;font-weight:700;color:var(--black);">Premium <span style="background:#ca8a04;color:#fff;font-size:9px;padding:2px 7px;border-radius:6px;margin-left:4px;">BADGE</span></div>
-              <div style="font-size:11px;color:var(--muted);margin-top:2px;line-height:1.5;">4.8+ rating, 100+ errands completed. Priority placement in search. Higher visibility. First access to new features.</div>
-            </div>
-          </div>
-
-          <div style="display:flex;gap:14px;align-items:flex-start;">
-            <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;">
-              <div style="width:36px;height:36px;border-radius:50%;background:var(--purple);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff;">5</div>
-            </div>
-            <div style="flex:1;padding-top:6px;">
-              <div style="font-size:13px;font-weight:700;color:var(--black);">Neighbourhood Captain <span style="background:var(--purple);color:#fff;font-size:9px;padding:2px 7px;border-radius:6px;margin-left:4px;">500+ ERRANDS</span></div>
-              <div style="font-size:11px;color:var(--muted);margin-top:2px;line-height:1.5;">The highest level. Direct company representative for your neighbourhood. Mentor new runners. Earn bonus on mentee errands. Health insurance coverage. Errands for life.</div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- Benefits preview -->
-      <div style="background:var(--black);border-radius:14px;padding:16px;margin-bottom:20px;">
-        <div style="font-size:12px;font-weight:700;color:var(--purple);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;">What being an Errands runner means</div>
-        <div style="display:flex;flex-direction:column;gap:8px;">
-          <div style="display:flex;align-items:center;gap:10px;"><i class="ti ti-wallet" style="color:var(--purple);font-size:16px;flex-shrink:0;"></i><span style="font-size:12px;color:rgba(255,255,255,0.8);">Earn on your own schedule. No boss. No fixed hours.</span></div>
-          <div style="display:flex;align-items:center;gap:10px;"><i class="ti ti-school" style="color:var(--purple);font-size:16px;flex-shrink:0;"></i><span style="font-size:12px;color:rgba(255,255,255,0.8);">University partnership coming — earn while you study.</span></div>
-          <div style="display:flex;align-items:center;gap:10px;"><i class="ti ti-heart" style="color:var(--purple);font-size:16px;flex-shrink:0;"></i><span style="font-size:12px;color:rgba(255,255,255,0.8);">Health insurance for active runners — coming soon.</span></div>
-          <div style="display:flex;align-items:center;gap:10px;"><i class="ti ti-award" style="color:var(--purple);font-size:16px;flex-shrink:0;"></i><span style="font-size:12px;color:rgba(255,255,255,0.8);">Build a real career. Neighbourhood Captain is a company role.</span></div>
-        </div>
-      </div>
-
-      <button class="btn btn-dark" onclick="go('academy');loadAcademy();" style="margin-bottom:10px;">Begin Academy — Module 1 →</button>
-      <button class="btn btn-outline" onclick="go('runner-dash')">Go to dashboard first</button>
-    </div>
+    <div class="signin-link">Already have an account? <a onclick="go('signin')">Sign in</a></div>
+    <div class="runner-prompt"><p>Looking to post errands?</p><a onclick="go('signup')">Sign up as a user →</a></div>
   </div>
-</div>
 
 <!-- ==================== RUNNER DASHBOARD ==================== -->
 <div class="screen" id="runner-dash">
@@ -1418,6 +1322,13 @@ input,textarea,select,button{font-family:'Clash Display',sans-serif;}
     </div>
   </div>
   <div class="rd-body">
+    <!-- Profile completion banner -->
+    <div id="runner-completion-banner" style="display:none;background:#fff8e6;border:1.5px solid #fde68a;border-radius:14px;padding:14px 16px;margin-bottom:16px;grid-column:1/-1;">
+      <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:6px;">Complete your profile to go live</div>
+      <div style="font-size:12px;color:#a16207;margin-bottom:12px;line-height:1.5;">You cannot accept errands until your profile is complete and verified. Takes 5 minutes.</div>
+      <div id="runner-checklist" style="display:flex;flex-direction:column;gap:6px;margin-bottom:12px;"></div>
+      <button onclick="go('runner-signup-complete')" style="background:var(--black);color:#fff;border:none;padding:10px 20px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Clash Display',sans-serif;">Complete profile →</button>
+    </div>
     <div class="sec-hdr"><span class="sec-ttl">Your stats</span></div>
     <div class="rd-stats">
       <div class="rdstat"><div class="rdstat-v">0</div><div class="rdstat-l">Total errands</div></div>
@@ -1761,7 +1672,10 @@ async function signUp() {
   // If session exists (email confirmation disabled in Supabase), go straight to home
   if (data.session) {
     currentUser = data.user;
-    await sb.from('profiles').upsert({ id: currentUser.id, full_name: fname + ' ' + lname, phone: '+234' + phone, city, role: 'user' });
+    var suNeighbourhood = document.getElementById('su-neighbourhood') ? document.getElementById('su-neighbourhood').value : '';
+  await sb.from('profiles').upsert({ id: currentUser.id, full_name: fname + ' ' + lname, phone: '+234' + phone, city, neighbourhood: suNeighbourhood, role: 'user' });
+  // Also update auth metadata with neighbourhood
+  await sb.auth.updateUser({ data: { full_name: fname + ' ' + lname, phone: '+234' + phone, city, neighbourhood: suNeighbourhood } });
     toast('Account created! Welcome to Errands.');
     loadHomeData();
     go('home');
@@ -1884,7 +1798,15 @@ async function loadHomeData() {
   const name = currentUser.user_metadata?.full_name || currentUser.email?.split('@')[0] || 'there';
   document.getElementById('home-name').textContent = name.split(' ')[0];
   document.getElementById('home-av').textContent = initials(name);
-  document.getElementById('home-city').textContent = currentUser.user_metadata?.city || 'Lagos';
+  var userCity = (currentUser.user_metadata && currentUser.user_metadata.city) ? currentUser.user_metadata.city : 'Lagos';
+  var userHood = (currentUser.user_metadata && currentUser.user_metadata.neighbourhood) ? currentUser.user_metadata.neighbourhood : '';
+  document.getElementById('home-city').textContent = userCity;
+  if (userHood) {
+    var hoodEl = document.getElementById('home-hood');
+    var hoodName = document.getElementById('home-hood-name');
+    if (hoodEl) hoodEl.style.display = 'inline';
+    if (hoodName) hoodName.textContent = userHood;
+  }
   // Load my errands only (no runner cards)
   loadMyErrands();
   loadActiveErrand();
@@ -1898,7 +1820,24 @@ async function loadHomeData() {
 }
 
 async function loadRunners() {
-  const { data, error } = await sb.from('runners').select('*').eq('verified', true).limit(6);
+  // Get user's neighbourhood and city for matching
+  var userCity = currentUser && currentUser.user_metadata && currentUser.user_metadata.city ? currentUser.user_metadata.city : '';
+  var userHood = currentUser && currentUser.user_metadata && currentUser.user_metadata.neighbourhood ? currentUser.user_metadata.neighbourhood : '';
+  
+  var query = sb.from('runners').select('*').eq('verified', true);
+  
+  // Filter by city if available
+  if (userCity) query = query.ilike('city', '%' + userCity + '%');
+  
+  var { data, error } = await query.limit(6);
+  
+  // If no neighbourhood match found, fall back to city-wide
+  if (!data || data.length === 0) {
+    var fallback = await sb.from('runners').select('*').eq('verified', true).limit(6);
+    data = fallback.data;
+    error = fallback.error;
+  }
+  
   const container = document.getElementById('runners-list');
   if (error || !data || data.length === 0) {
     container.innerHTML = '<div style="padding:20px;color:var(--muted);font-size:12px;">No runners available yet.</div>';
@@ -2149,44 +2088,69 @@ function rsNext(n) {
 }
 
 async function submitRunnerSignup() {
-  const fname = document.getElementById('rs-fname').value.trim();
-  const lname = document.getElementById('rs-lname').value.trim();
-  const email = document.getElementById('rs-email').value.trim();
-  const phone = document.getElementById('rs-phone').value.trim();
-  const city = document.getElementById('rs-city').value;
-  const area = document.getElementById('rs-area').value.trim();
-  const password = document.getElementById('rs-password').value;
-  const rate = parseFloat(document.getElementById('rs-rate').value) || 2000;
-  const bio = document.getElementById('rs-bio').value.trim();
-  const nin = document.getElementById('rs-nin').value.trim();
+  var fname = document.getElementById('rs-fname').value.trim();
+  var lname = document.getElementById('rs-lname').value.trim();
+  var email = document.getElementById('rs-email').value.trim();
+  var phone = document.getElementById('rs-phone').value.trim();
+  var city = document.getElementById('rs-city').value;
+  var neighbourhood = document.getElementById('rs-neighbourhood') ? document.getElementById('rs-neighbourhood').value : '';
+  var password = document.getElementById('rs-password').value;
+  var terms = document.getElementById('rs-terms').checked;
   hideErr('rs-err');
-  if (!fname || !email || !password) return showErr('rs-err', 'Please complete all fields in Step 1.');
-  showLoader('Submitting your application...');
-  // Create auth account
-  const { data, error } = await sb.auth.signUp({
-    email, password,
-    options: { data: { full_name: fname + ' ' + lname, phone: '+234' + phone, city, role: 'runner' } }
+  if (!fname || !email || !password) return showErr('rs-err', 'Please fill in all fields.');
+  if (password.length < 8) return showErr('rs-err', 'Password must be at least 8 characters.');
+  if (!terms) return showErr('rs-err', 'Please agree to the Terms of Service.');
+  showLoader('Creating your runner account...');
+  var signupResult = await sb.auth.signUp({
+    email: email,
+    password: password,
+    options: {
+      emailRedirectTo: 'https://errands-app-dun.vercel.app',
+      data: { full_name: fname + ' ' + lname, phone: '+234' + phone, city: city, role: 'runner' }
+    }
   });
-  if (error) { hideLoader(); return showErr('rs-err', error.message); }
-  currentUser = data.user;
-  // Get selected services
-  const services = [...document.querySelectorAll('#rs2 .copt.sel')].map(el => el.querySelector('span').textContent);
-  // Create runner profile
-  await sb.from('runners').insert({
-    user_id: currentUser.id,
-    full_name: fname + ' ' + lname,
-    phone: '+234' + phone,
-    city, neighbourhood: area,
-    bio, hourly_rate: rate,
-    services, nin,
-    verified: false, online: false,
-    rating: 0, total_errands: 0,
-    response_rate: 0, success_rate: 0
-  });
-  await sb.from('profiles').upsert({ id: currentUser.id, full_name: fname + ' ' + lname, phone: '+234' + phone, city, role: 'runner' });
+  if (signupResult.error) { hideLoader(); return showErr('rs-err', signupResult.error.message); }
+  currentUser = signupResult.data.user;
+  // Create basic runner profile - incomplete, to be finished in dashboard
+  if (currentUser) {
+    await sb.from('runners').insert({
+      user_id: currentUser.id,
+      full_name: fname + ' ' + lname,
+      phone: '+234' + phone,
+      city: city,
+      neighbourhood: neighbourhood || '',
+      bio: '',
+      hourly_rate: 2000,
+      services: [],
+      nin: '',
+      verified: false,
+      online: false,
+      rating: 0,
+      total_errands: 0,
+      response_rate: 0,
+      success_rate: 0
+    });
+    await sb.from('profiles').upsert({
+      id: currentUser.id,
+      full_name: fname + ' ' + lname,
+      phone: '+234' + phone,
+      city: city,
+      role: 'runner'
+    });
+  }
   hideLoader();
-  rsNext(4);
+  // Check if email confirmation needed
+  if (signupResult.data.session) {
+    toast('Welcome to Errands! Complete your profile to go live.');
+    go('runner-dash');
+    loadRunnerDashboard();
+  } else {
+    showSignupConfirmation(email);
+  }
 }
+
+// Keep rsNext for any legacy calls
+function rsNext(n) {}
 
 // ==================== PAYMENT ====================
 function selPay(type) {
@@ -2293,11 +2257,21 @@ async function loadAdminData() {
 async function loadRunnerDashboard() {
   if (!currentUser) return;
   watchNewErrands();
+  checkRunnerProfileCompletion();
   const name = currentUser.user_metadata?.full_name || 'Runner';
   document.getElementById('rd-name').textContent = name;
   document.getElementById('rd-av').textContent = initials(name);
   // Load available errands
-  const { data } = await sb.from('errands').select('*').eq('status','pending').limit(5);
+  // Get runner's profile to match by neighbourhood
+  var runnerProfile = await sb.from('runners').select('city, neighbourhood').eq('user_id', currentUser.id).single();
+  var runnerCity = runnerProfile.data ? runnerProfile.data.city : '';
+  var runnerHood = runnerProfile.data ? runnerProfile.data.neighbourhood : '';
+  
+  var errandQuery = sb.from('errands').select('*').eq('status','pending');
+  // Filter by city if available
+  if (runnerCity) errandQuery = errandQuery.ilike('city', '%' + runnerCity + '%');
+  
+  const { data } = await errandQuery.limit(10);
   const container = document.getElementById('available-errands');
   if (!data || data.length === 0) {
     container.innerHTML = '<div class="empty-state"><p>No errands available right now. Check back soon.</p></div>';
@@ -2387,6 +2361,104 @@ function openWhatsApp() {
 
 function openEmail() {
   window.location.href = 'mailto:support@errands.app?subject=Support%20Request';
+}
+
+
+// ==================== NEIGHBOURHOOD DATA ====================
+const NEIGHBOURHOODS = {
+  lagos: [
+    // Island
+    'Lekki Phase 1', 'Lekki Phase 2', 'Lekki Conservation', 'Ajah', 'Abraham Adesanya',
+    'Sangotedo', 'Awoyaya', 'Ibeju-Lekki', 'Ikate', 'Chevron', 'Igbo Efon',
+    'Victoria Island', 'Victoria Garden City (VGC)', 'Oniru', 'Eti-Osa',
+    'Ikoyi', 'Banana Island', 'Parkview Estate', 'Bourdillon',
+    'Lagos Island', 'Lagos Island Central', 'Marina', 'Broad Street',
+    'Surulere', 'Aguda', 'Itire', 'Ojuelegba', 'Shitta',
+    'Yaba', 'Akoka', 'Abule-Ijesha', 'Sabo',
+    'Mushin', 'Idi-Araba', 'Owode', 'Papa Ajao',
+    'Ikeja', 'GRA Ikeja', 'Alausa', 'Oregun', 'Agidingbi', 'Maryland',
+    'Allen Avenue', 'Opebi', 'Adeniyi Jones', 'Toyin Street',
+    'Ogba', 'Ifako', 'Agege', 'Pen Cinema',
+    'Ojota', 'Ketu', 'Mile 12', 'Alapere', 'Ogudu', 'Oworo',
+    'Gbagada', 'Anthony', 'Pedro', 'Palmgroove',
+    'Magodo', 'Shangisha', 'Ojodu', 'Berger',
+    'Ikorodu', 'Benson', 'Imota', 'Ijede',
+    'Badagry', 'Ojo', 'Ajegunle', 'Apapa', 'Tin Can Island',
+    'Isale Eko', 'Ebute Metta', 'Orile', 'Coker', 'Alakija',
+    'Festac Town', 'Satellite Town', 'Amuwo-Odofin',
+    'Alimosho', 'Igando', 'Ikotun', 'Egbe', 'Idimu',
+    'Ipaja', 'Ayobo', 'Abule-Egba', 'Meiran',
+    'Oshodi', 'Mafoluku', 'Isolo', 'Ejigbo',
+    'Iyana-Ipaja', 'Dopemu', 'Cement', 'Ijaiye',
+    'Shomolu', 'Bariga', 'Fadeyi', 'Onipanu',
+    'Somolu', 'Igbobi', 'Jibowu'
+  ],
+  abuja: [
+    // Central Area
+    'Central Business District', 'Three Arms Zone', 'Federal Secretariat',
+    // Wuse
+    'Wuse', 'Wuse 2', 'Wuse Market', 'Wuse Zone 1', 'Wuse Zone 2',
+    'Wuse Zone 3', 'Wuse Zone 4', 'Wuse Zone 5', 'Wuse Zone 6', 'Wuse Zone 7',
+    // Garki
+    'Garki', 'Garki 2', 'Garki Area 1', 'Garki Area 2', 'Garki Area 3',
+    'Garki Area 7', 'Garki Area 8', 'Garki Area 10', 'Garki Area 11',
+    // Maitama
+    'Maitama', 'Maitama Extension', 'Diplomatic Zone',
+    // Asokoro
+    'Asokoro', 'Asokoro Extension',
+    // Gwarinpa
+    'Gwarinpa', 'Gwarinpa Estate', '1st Avenue Gwarinpa', '6th Avenue Gwarinpa',
+    // Jabi
+    'Jabi', 'Jabi Lake', 'Jabi Park',
+    // Utako
+    'Utako', 'Utako Market',
+    // Lugbe
+    'Lugbe', 'Lugbe Extension', 'Old Lugbe', 'New Lugbe',
+    // Kubwa
+    'Kubwa', 'Kubwa Express', 'Phase 1 Kubwa', 'Phase 2 Kubwa', 'Phase 3 Kubwa',
+    // Karu
+    'Karu', 'Karu Site', 'Masaka', 'Uke', 'New Karu',
+    // Nyanya
+    'Nyanya', 'Nyanya Market', 'Mararaba', 'Gitata',
+    // Gwagwalada
+    'Gwagwalada', 'Gwagwalada Centre',
+    // Bwari
+    'Bwari', 'Bwari Area Council',
+    // Kuje
+    'Kuje',
+    // Abaji
+    'Abaji',
+    // Other popular areas
+    'Gudu', 'Durumi', 'Galadimawa', 'Apo', 'Apo Resettlement',
+    'Lokogoma', 'Gosa', 'Pyakassa', 'Dawaki', 'Nbora',
+    'Karmo', 'Kabusa', 'Kaura', 'Katampe', 'Katampe Extension',
+    'Mpape', 'Dei-Dei', 'Idu', 'Kukwuaba', 'Duste',
+    'Life Camp', 'Lifecamp', 'Games Village', 'Kado', 'Wuye',
+    'Berger', 'Cadastral Zone', 'Mabushi', 'Cadastral',
+    'Gaduwa', 'Kafe', 'Naf Valley', 'Aerodrome'
+  ]
+};
+
+function getNeighbourhoods(cityId) {
+  return NEIGHBOURHOODS[cityId] || [];
+}
+
+function buildNeighbourhoodSelect(selectId, cityId) {
+  var select = document.getElementById(selectId);
+  if (!select) return;
+  var hoods = getNeighbourhoods(cityId);
+  select.innerHTML = '<option value="">Select neighbourhood</option>' +
+    hoods.map(function(h) {
+      return '<option value="' + h + '">' + h + '</option>';
+    }).join('');
+}
+
+function onCityChange(citySelectId, hoodSelectId) {
+  var citySelect = document.getElementById(citySelectId);
+  if (!citySelect) return;
+  citySelect.addEventListener('change', function() {
+    buildNeighbourhoodSelect(hoodSelectId, this.value);
+  });
 }
 
 // ==================== CITY SYSTEM ====================
@@ -2525,6 +2597,36 @@ function handleEscrowCTA() {
     // Store intent to redirect to escrow after login
     sessionStorage.setItem('post_login_redirect', 'escrow');
     go('signup');
+  }
+}
+
+
+// ==================== RUNNER PROFILE COMPLETION ====================
+async function checkRunnerProfileCompletion() {
+  if (!currentUser) return;
+  var res = await sb.from('runners').select('*').eq('user_id', currentUser.id).single();
+  if (!res.data) return;
+  var runner = res.data;
+  var checks = [
+    { label: 'Services selected', done: runner.services && runner.services.length > 0 },
+    { label: 'Bio added', done: runner.bio && runner.bio.length > 10 },
+    { label: 'NIN submitted', done: runner.nin && runner.nin.length > 5 },
+    { label: 'Neighbourhood set', done: runner.neighbourhood && runner.neighbourhood.length > 2 },
+  ];
+  var allDone = checks.every(function(c) { return c.done; });
+  var banner = document.getElementById('runner-completion-banner');
+  var checklist = document.getElementById('runner-checklist');
+  if (banner && !allDone) {
+    banner.style.display = 'block';
+    if (checklist) {
+      checklist.innerHTML = checks.map(function(c) {
+        return '<div style="display:flex;align-items:center;gap:8px;">' +
+          '<i class="ti ti-' + (c.done ? 'circle-check' : 'circle-x') + '" style="color:' + (c.done ? '#16a34a' : '#d97706') + ';font-size:16px;"></i>' +
+          '<span style="font-size:12px;color:#555;">' + c.label + '</span></div>';
+      }).join('');
+    }
+  } else if (banner) {
+    banner.style.display = 'none';
   }
 }
 
