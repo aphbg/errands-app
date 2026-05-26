@@ -106,7 +106,12 @@ input,textarea,select,button{font-family:'Clash Display',sans-serif;}
       <div class="link-bar-text">Test the live product</div>
       <div class="link-bar-url">errands-app-dun.vercel.app</div>
     </div>
-    <button class="link-bar-btn" onclick="copyLink()">Copy link</button>
+    <div style="display:flex;gap:8px;">
+      <a href="https://errands-app-dun.vercel.app" target="_blank" style="background:#22c55e;color:#fff;border:none;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Clash Display',sans-serif;text-decoration:none;display:inline-flex;align-items:center;gap:6px;">
+        Open app ↗
+      </a>
+      <button class="link-bar-btn" onclick="copyLink()">Copy</button>
+    </div>
   </div>
 
   <!-- HEADER -->

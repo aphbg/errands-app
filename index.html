@@ -1428,9 +1428,20 @@ input,textarea,select,button{font-family:'Clash Display',sans-serif;}
     <div id="available-errands">
       <div class="empty-state"><p>No errands in your area yet. Check back soon.</p></div>
     </div>
-    <div style="background:var(--light);border-radius:14px;padding:14px;display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;border:1px solid var(--border);" onclick="go('academy');loadAcademy();" style="cursor:pointer;">
-      <div><div style="font-size:13px;font-weight:700;color:var(--black);">🎓 Errands Academy</div><div style="font-size:11px;color:var(--muted);margin-top:2px;">Complete training to earn your certified badge</div></div>
-      <i class="ti ti-chevron-right" style="color:var(--purple);font-size:18px;"></i>
+    <!-- Quick links for runner -->
+    <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:16px;">
+      <div onclick="go('academy');loadAcademy();" style="background:var(--light);border-radius:14px;padding:14px;display:flex;align-items:center;justify-content:space-between;border:1px solid var(--border);cursor:pointer;">
+        <div><div style="font-size:13px;font-weight:700;color:var(--black);">🎓 Errands Academy</div><div style="font-size:11px;color:var(--muted);margin-top:2px;">Complete training to earn your certified badge</div></div>
+        <i class="ti ti-chevron-right" style="color:var(--purple);font-size:18px;"></i>
+      </div>
+      <div onclick="go('help');" style="background:#fff;border-radius:14px;padding:14px;display:flex;align-items:center;justify-content:space-between;border:1px solid var(--border);cursor:pointer;">
+        <div><div style="font-size:13px;font-weight:700;color:var(--black);">❓ Help & Support</div><div style="font-size:11px;color:var(--muted);margin-top:2px;">Get help with your account or an errand</div></div>
+        <i class="ti ti-chevron-right" style="color:var(--purple);font-size:18px;"></i>
+      </div>
+      <div onclick="loadReferralPage();go('referral-page');" style="background:#fff;border-radius:14px;padding:14px;display:flex;align-items:center;justify-content:space-between;border:1px solid var(--border);cursor:pointer;">
+        <div><div style="font-size:13px;font-weight:700;color:var(--black);">🎁 Refer a Runner</div><div style="font-size:11px;color:var(--muted);margin-top:2px;">Earn 10% of their first 10 errands</div></div>
+        <i class="ti ti-chevron-right" style="color:var(--purple);font-size:18px;"></i>
+      </div>
     </div>
     <div class="rd-share"><div class="rds-txt"><div class="title">Share your profile</div><div class="sub">Send your link. Clients book directly from it.</div></div><button class="rds-btn" onclick="go('runner-profile')">Share →</button></div>
   </div>
