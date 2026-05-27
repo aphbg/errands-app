@@ -533,6 +533,7 @@ input,textarea,select,button{font-family:'Clash Display',sans-serif;}
   gtag('js', new Date());
   gtag('config', 'G-JSVCRC95HR');
 </script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDg84832KO6Zok98Xp5qsfVRZXWNu8J-yE&libraries=places&callback=initMaps" async defer></script>
 </head>
 <body>
 <div class="app">
@@ -1018,38 +1019,91 @@ input,textarea,select,button{font-family:'Clash Display',sans-serif;}
   </div>
 </div>
 
-<!-- ==================== PROFILE MENU ==================== -->
-<div class="modal-overlay hidden" id="profile-menu" onclick="if(event.target===this)document.getElementById('profile-menu').classList.add('hidden')">
-  <div class="modal-sheet">
-    <div class="modal-handle"></div>
-    <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px;">
-      <div style="width:48px;height:48px;border-radius:50%;background:var(--purple);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#fff;" id="pm-avatar">KO</div>
+<!-- ==================== PROFILE SCREEN ==================== -->
+<div class="screen" id="profile-screen">
+  <!-- Top bar -->
+  <div style="background:#fff;padding:14px 20px;border-bottom:0.5px solid #f0f0f0;display:flex;align-items:center;gap:12px;">
+    <div class="bkcircle" style="background:#f5f5f5;" onclick="history.back ? history.back() : go('home')"><i class="ti ti-arrow-left" style="color:#555;font-size:16px;"></i></div>
+    <span style="font-size:17px;font-weight:700;color:var(--black);">Profile</span>
+  </div>
+
+  <!-- Profile header -->
+  <div style="background:linear-gradient(135deg,var(--purple) 0%,#6b2070 100%);padding:28px 20px 24px;">
+    <div style="display:flex;align-items:center;gap:16px;">
+      <div style="width:64px;height:64px;border-radius:50%;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;color:#fff;" id="pm-avatar">KO</div>
       <div>
-        <div style="font-size:15px;font-weight:700;color:var(--black);" id="pm-name">Kenneth</div>
-        <div style="font-size:12px;color:var(--muted);" id="pm-email">kenneth@example.com</div>
+        <div style="font-size:18px;font-weight:700;color:#fff;" id="pm-name">Kenneth</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.7);margin-top:3px;" id="pm-email">kenneth@example.com</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.6);margin-top:3px;" id="pm-hood"></div>
       </div>
     </div>
-    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px;">
-      <button onclick="go('wallet');loadWallet();document.getElementById('profile-menu').classList.add('hidden');" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:var(--grey);border:none;border-radius:12px;cursor:pointer;font-family:'Clash Display',sans-serif;width:100%;">
-        <i class="ti ti-wallet" style="color:var(--purple);font-size:20px;"></i>
-        <span style="font-size:13px;font-weight:600;color:var(--black);">My Wallet</span>
-      </button>
-      <button onclick="go('referral-page');loadReferralPage();document.getElementById('profile-menu').classList.add('hidden');" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:var(--grey);border:none;border-radius:12px;cursor:pointer;font-family:'Clash Display',sans-serif;width:100%;">
-        <i class="ti ti-gift" style="color:var(--purple);font-size:20px;"></i>
-        <span style="font-size:13px;font-weight:600;color:var(--black);">Refer & Earn</span>
-      </button>
-      <button onclick="go('help');document.getElementById('profile-menu').classList.add('hidden');" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:var(--grey);border:none;border-radius:12px;cursor:pointer;font-family:'Clash Display',sans-serif;width:100%;">
-        <i class="ti ti-help" style="color:var(--purple);font-size:20px;"></i>
-        <span style="font-size:13px;font-weight:600;color:var(--black);">Help & Support</span>
-      </button>
-      <button onclick="go('terms-page');document.getElementById('profile-menu').classList.add('hidden');" style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:var(--grey);border:none;border-radius:12px;cursor:pointer;font-family:'Clash Display',sans-serif;width:100%;">
-        <i class="ti ti-file-text" style="color:var(--purple);font-size:20px;"></i>
-        <span style="font-size:13px;font-weight:600;color:var(--black);">Terms & Privacy</span>
-      </button>
+  </div>
+
+  <!-- Menu items -->
+  <div style="flex:1;overflow-y:auto;padding:16px 20px;padding-bottom:80px;">
+
+    <div style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">Account</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:24px;">
+      <div onclick="go('wallet');loadWallet();" style="display:flex;align-items:center;gap:14px;padding:14px 16px;background:#fff;border:1px solid var(--border);border-radius:12px;cursor:pointer;">
+        <div style="width:38px;height:38px;border-radius:10px;background:var(--light);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <i class="ti ti-wallet" style="color:var(--purple);font-size:20px;"></i>
+        </div>
+        <div style="flex:1;">
+          <div style="font-size:13px;font-weight:700;color:var(--black);">My Wallet</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:2px;" id="pm-wallet-bal">Check balance</div>
+        </div>
+        <i class="ti ti-chevron-right" style="color:#ccc;font-size:16px;"></i>
+      </div>
+      <div onclick="loadReferralPage();go('referral-page');" style="display:flex;align-items:center;gap:14px;padding:14px 16px;background:#fff;border:1px solid var(--border);border-radius:12px;cursor:pointer;">
+        <div style="width:38px;height:38px;border-radius:10px;background:var(--light);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <i class="ti ti-gift" style="color:var(--purple);font-size:20px;"></i>
+        </div>
+        <div style="flex:1;">
+          <div style="font-size:13px;font-weight:700;color:var(--black);">Refer & Earn</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:2px;">Earn ₦500 per referral</div>
+        </div>
+        <i class="ti ti-chevron-right" style="color:#ccc;font-size:16px;"></i>
+      </div>
     </div>
+
+    <div style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">Support</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:24px;">
+      <div onclick="go('help');" style="display:flex;align-items:center;gap:14px;padding:14px 16px;background:#fff;border:1px solid var(--border);border-radius:12px;cursor:pointer;">
+        <div style="width:38px;height:38px;border-radius:10px;background:var(--light);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <i class="ti ti-help" style="color:var(--purple);font-size:20px;"></i>
+        </div>
+        <div style="flex:1;">
+          <div style="font-size:13px;font-weight:700;color:var(--black);">Help & Support</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:2px;">Get help with any issue</div>
+        </div>
+        <i class="ti ti-chevron-right" style="color:#ccc;font-size:16px;"></i>
+      </div>
+      <div onclick="go('terms-page');" style="display:flex;align-items:center;gap:14px;padding:14px 16px;background:#fff;border:1px solid var(--border);border-radius:12px;cursor:pointer;">
+        <div style="width:38px;height:38px;border-radius:10px;background:var(--light);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <i class="ti ti-file-text" style="color:var(--purple);font-size:20px;"></i>
+        </div>
+        <div style="flex:1;">
+          <div style="font-size:13px;font-weight:700;color:var(--black);">Terms & Privacy</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:2px;">Legal documents</div>
+        </div>
+        <i class="ti ti-chevron-right" style="color:#ccc;font-size:16px;"></i>
+      </div>
+      <div onclick="go('pricing-page');" style="display:flex;align-items:center;gap:14px;padding:14px 16px;background:#fff;border:1px solid var(--border);border-radius:12px;cursor:pointer;">
+        <div style="width:38px;height:38px;border-radius:10px;background:var(--light);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <i class="ti ti-receipt" style="color:var(--purple);font-size:20px;"></i>
+        </div>
+        <div style="flex:1;">
+          <div style="font-size:13px;font-weight:700;color:var(--black);">Pricing</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:2px;">Platform fees explained</div>
+        </div>
+        <i class="ti ti-chevron-right" style="color:#ccc;font-size:16px;"></i>
+      </div>
+    </div>
+
     <button onclick="signOut()" style="width:100%;background:#fef2f2;color:#dc2626;border:1.5px solid #fecaca;padding:14px;border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Clash Display',sans-serif;display:flex;align-items:center;justify-content:center;gap:8px;">
       <i class="ti ti-logout" style="font-size:18px;"></i> Sign out
     </button>
+
   </div>
 </div>
 
@@ -1487,7 +1541,10 @@ input,textarea,select,button{font-family:'Clash Display',sans-serif;}
 
     <!-- CREATE ESCROW -->
     <div class="etab-content vis" id="etab-create">
-      <div style="font-size:12px;color:var(--muted);margin-bottom:16px;line-height:1.6;">Deposit funds with Errands. We hold it securely until both parties confirm.</div>
+      <div style="background:var(--light);border-radius:12px;padding:14px;margin-bottom:16px;border-left:3px solid var(--purple);">
+        <div style="font-size:12px;font-weight:700;color:var(--black);margin-bottom:4px;">How Errands Escrow works</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6;">Deposit funds with Errands. We hold it securely. Funds release only when you confirm satisfaction. Auto-release in 7 days.</div>
+      </div>
       
       <div style="font-size:12px;font-weight:700;color:var(--black);margin-bottom:10px;">Select tier</div>
       <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px;">
@@ -1527,10 +1584,20 @@ input,textarea,select,button{font-family:'Clash Display',sans-serif;}
       <div class="fg"><label class="lbl">Receiver email or phone</label><input class="field" id="esc-receiver" placeholder="receiver@email.com or 08012345678"/></div>
       <label class="lbl">Amount</label>
       <div class="budget-wrap" style="margin-bottom:6px;"><span class="bpre">₦</span><input class="bin" type="number" id="esc-amount" placeholder="Enter amount" oninput="calcEscrowFee()"/></div>
-      <div style="background:var(--grey);border-radius:10px;padding:10px 14px;margin-bottom:16px;" id="esc-fee-display" style="display:none;">
-        <div style="display:flex;justify-content:space-between;margin-bottom:4px;"><span style="font-size:12px;color:var(--muted);">Escrow amount</span><span style="font-size:12px;font-weight:600;" id="esc-amount-display">₦0</span></div>
-        <div style="display:flex;justify-content:space-between;margin-bottom:4px;"><span style="font-size:12px;color:var(--muted);">Service fee</span><span style="font-size:12px;font-weight:600;color:var(--purple);" id="esc-fee-display-val">₦0</span></div>
-        <div style="display:flex;justify-content:space-between;border-top:0.5px solid var(--border);padding-top:6px;margin-top:4px;"><span style="font-size:13px;font-weight:700;">Total to pay</span><span style="font-size:14px;font-weight:700;" id="esc-total-display">₦0</span></div>
+      <div style="background:#fff;border:1.5px solid var(--border);border-radius:12px;padding:14px;margin-bottom:16px;display:none;" id="esc-fee-display">
+        <div style="font-size:11px;font-weight:700;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;">Cost breakdown</div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+          <span style="font-size:13px;color:#555;">Escrow amount</span>
+          <span style="font-size:13px;font-weight:600;color:var(--black);" id="esc-amount-display">₦0</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+          <span style="font-size:13px;color:#555;">Service fee</span>
+          <span style="font-size:13px;font-weight:600;color:var(--purple);" id="esc-fee-display-val">₦0</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;border-top:1px solid var(--border);padding-top:10px;margin-top:4px;">
+          <span style="font-size:14px;font-weight:700;color:var(--black);">Total to pay</span>
+          <span style="font-size:16px;font-weight:700;color:var(--black);" id="esc-total-display">₦0</span>
+        </div>
       </div>
       <div style="background:#fff8e6;border-radius:10px;padding:12px 14px;margin-bottom:16px;border:1px solid #fde68a;display:flex;gap:8px;">
         <i class="ti ti-info-circle" style="color:#d97706;font-size:16px;flex-shrink:0;"></i>
@@ -1542,14 +1609,23 @@ input,textarea,select,button{font-family:'Clash Display',sans-serif;}
     <!-- SENT ESCROW -->
     <div class="etab-content" id="etab-sent">
       <div id="escrow-sent-list">
-        <div class="empty-state"><p>No escrow transactions sent yet.</p><button class="btn btn-purple" onclick="escrowTab('create',document.querySelector('.etab'))" style="width:auto;padding:10px 20px;font-size:13px;margin-top:8px;">Create escrow →</button></div>
+        <div style="background:var(--grey);border-radius:12px;padding:24px;text-align:center;">
+          <i class="ti ti-safe" style="font-size:32px;color:#ddd;display:block;margin-bottom:8px;"></i>
+          <p style="font-size:13px;color:var(--muted);margin-bottom:4px;">No escrow sent yet</p>
+          <p style="font-size:12px;color:#ccc;margin-bottom:14px;">Create your first escrow to protect a transaction</p>
+          <button onclick="escrowTab('create', document.querySelectorAll('.etab')[0])" style="background:var(--purple);color:#fff;border:none;padding:10px 20px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Clash Display',sans-serif;">Create escrow →</button>
+        </div>
       </div>
     </div>
 
     <!-- RECEIVED ESCROW -->
     <div class="etab-content" id="etab-received">
       <div id="escrow-received-list">
-        <div class="empty-state"><p>No escrow funds received yet.</p></div>
+        <div style="background:var(--grey);border-radius:12px;padding:24px;text-align:center;">
+          <i class="ti ti-inbox" style="font-size:32px;color:#ddd;display:block;margin-bottom:8px;"></i>
+          <p style="font-size:13px;color:var(--muted);margin-bottom:4px;">No escrow received yet</p>
+          <p style="font-size:12px;color:#ccc;">When someone sends you escrow funds they will appear here</p>
+        </div>
       </div>
     </div>
   </div>
@@ -1616,6 +1692,10 @@ function go(id) {
   const t = document.getElementById(id);
   if (t) { t.classList.add('active'); t.scrollTop = 0; }
   expandForLanding();
+  // Init autocomplete on post errand screen
+  if (id === 'post-errand' && mapsReady) {
+    setTimeout(initPendingAutocomplete, 200);
+  }
 }
 function showLoader(msg = 'Loading...') {
   document.getElementById('loader-msg').textContent = msg;
@@ -1674,8 +1754,9 @@ async function signUp() {
     currentUser = data.user;
     var suNeighbourhood = document.getElementById('su-neighbourhood') ? document.getElementById('su-neighbourhood').value : '';
   await sb.from('profiles').upsert({ id: currentUser.id, full_name: fname + ' ' + lname, phone: '+234' + phone, city, neighbourhood: suNeighbourhood, role: 'user' });
-  // Also update auth metadata with neighbourhood
   await sb.auth.updateUser({ data: { full_name: fname + ' ' + lname, phone: '+234' + phone, city, neighbourhood: suNeighbourhood } });
+  // Save referral if came via referral link
+  await saveReferral(currentUser.id);
     toast('Account created! Welcome to Errands.');
     loadHomeData();
     go('home');
@@ -1726,14 +1807,28 @@ async function signIn() {
   if (error) return showErr('signin-err', 'Invalid email or password. Please try again.');
   currentUser = data.user;
   toast('Welcome back!');
-  loadHomeData();
-  go('home');
+  // Check role and redirect
+  var profileCheck = await sb.from('profiles').select('role').eq('id', currentUser.id).single();
+  var userRole = profileCheck.data ? profileCheck.data.role : 'user';
+  if (userRole === 'runner') {
+    go('runner-dash');
+    loadRunnerDashboard();
+  } else {
+    loadHomeData();
+    go('home');
+  }
 }
 
 async function signInWithGoogle() {
-  const { error } = await sb.auth.signInWithOAuth({
+  var { error } = await sb.auth.signInWithOAuth({
     provider: 'google',
-    options: { redirectTo: window.location.href }
+    options: { 
+      redirectTo: 'https://errands-app-dun.vercel.app',
+      queryParams: {
+        access_type: 'offline',
+        prompt: 'consent'
+      }
+    }
   });
   if (error) toast('Google sign in failed. Please try email.');
 }
@@ -1769,12 +1864,30 @@ async function checkSession() {
 
 function showProfile() {
   if (!currentUser) return go('signin');
-  const name = currentUser.user_metadata?.full_name || currentUser.email?.split('@')[0] || 'User';
-  const email = currentUser.email || '';
-  document.getElementById('pm-avatar').textContent = initials(name);
-  document.getElementById('pm-name').textContent = name;
-  document.getElementById('pm-email').textContent = email;
-  document.getElementById('profile-menu').classList.remove('hidden');
+  var name = (currentUser.user_metadata && currentUser.user_metadata.full_name) ? currentUser.user_metadata.full_name : currentUser.email.split('@')[0] || 'User';
+  var email = currentUser.email || '';
+  var hood = (currentUser.user_metadata && currentUser.user_metadata.neighbourhood) ? currentUser.user_metadata.neighbourhood : '';
+  var city = (currentUser.user_metadata && currentUser.user_metadata.city) ? currentUser.user_metadata.city : '';
+  
+  var av = document.getElementById('pm-avatar');
+  var nm = document.getElementById('pm-name');
+  var em = document.getElementById('pm-email');
+  var hd = document.getElementById('pm-hood');
+  
+  if (av) av.textContent = initials(name);
+  if (nm) nm.textContent = name;
+  if (em) em.textContent = email;
+  if (hd) hd.textContent = hood ? hood + (city ? ', ' + city : '') : city;
+  
+  // Load wallet balance for profile screen
+  if (currentUser) {
+    sb.from('wallets').select('balance').eq('user_id', currentUser.id).single().then(function(res) {
+      var balEl = document.getElementById('pm-wallet-bal');
+      if (balEl && res.data) balEl.textContent = '₦' + (res.data.balance||0).toLocaleString();
+    });
+  }
+  
+  go('profile-screen');
 }
 
 async function signOut() {
@@ -1782,7 +1895,6 @@ async function signOut() {
   await sb.auth.signOut();
   currentUser = null;
   hideLoader();
-  document.getElementById('profile-menu').classList.add('hidden');
   toast('Signed out successfully');
   go('landing');
 }
@@ -1973,6 +2085,12 @@ function onCategoryChange(cat) {
       '<div class="locwrap"><i class="ti ti-flag locico" style="color:var(--purple);"></i><input type="text" id="pe-location2" placeholder="End destination if different"/></div></div>';
   }
   container.innerHTML = fields;
+  // Init Google Maps autocomplete on new fields
+  setTimeout(function() {
+    if (mapsReady) {
+      initPendingAutocomplete();
+    }
+  }, 100);
 }
 
 function peNext() {
@@ -2302,13 +2420,29 @@ async function acceptErrand(id) {
 }
 
 // ==================== KEYBOARD SHORTCUT FOR ADMIN ====================
-// Triple-tap title to access admin
-let tapCount = 0;
-document.querySelector('.auth-logo')?.addEventListener('click', () => {
+// Triple-tap logo to access admin
+var tapCount = 0;
+var tapTimer = null;
+
+function handleAdminTap() {
   tapCount++;
-  if (tapCount >= 3) { tapCount = 0; loadAdminData(); go('admin'); }
-  setTimeout(() => tapCount = 0, 2000);
-});
+  clearTimeout(tapTimer);
+  tapTimer = setTimeout(function() { tapCount = 0; }, 2000);
+  if (tapCount >= 3) {
+    tapCount = 0;
+    loadAdminData();
+    go('admin');
+    toast('Admin panel');
+  }
+}
+
+// Attach to all auth logos on page
+setTimeout(function() {
+  document.querySelectorAll('.auth-logo').forEach(function(logo) {
+    logo.addEventListener('click', handleAdminTap);
+    logo.style.cursor = 'pointer';
+  });
+}, 500);
 
 // ==================== RESPONSIVE NAV ====================
 function handleResize() {
@@ -2555,6 +2689,8 @@ window.addEventListener('load', () => {
   checkReferralCode();
   // Select wallet by default
   selPay('wallet');
+  // Check for referral in URL
+  checkReferral();
   // Check for existing session
   checkSession();
   // Handle OAuth redirect
@@ -2569,14 +2705,23 @@ window.addEventListener('load', () => {
         await sb.from('profiles').upsert({ id: currentUser.id, full_name: name, phone: phone, city: city, role: 'user' });
         toast('Email confirmed! Welcome to Errands.');
       }
-      loadHomeData();
-      // Check for post-login redirect
+      // Check user role and redirect accordingly
       var redirect = sessionStorage.getItem('post_login_redirect');
       if (redirect === 'escrow') {
         sessionStorage.removeItem('post_login_redirect');
+        loadHomeData();
         setTimeout(function() { go('escrow-tab'); loadEscrowStats(); }, 500);
       } else {
-        go('home');
+        // Check role from profiles table
+        var profileRes = await sb.from('profiles').select('role').eq('id', currentUser.id).single();
+        var role = profileRes.data ? profileRes.data.role : 'user';
+        if (role === 'runner') {
+          go('runner-dash');
+          loadRunnerDashboard();
+        } else {
+          loadHomeData();
+          go('home');
+        }
       }
     }
     if (event === 'PASSWORD_RECOVERY') {
@@ -2681,16 +2826,35 @@ var categoryPricing = {
 };
 
 
-function updatePricingDisplay() {
+async function updatePricingDisplay() {
   var cat = currentErrand.category;
   var pricing = categoryPricing[cat];
   if (!pricing) return;
+  
   // Show duration selector for time-based
   var durWrap = document.getElementById('pe-duration-wrap');
   if (durWrap) durWrap.style.display = pricing.type === 'time' ? 'block' : 'none';
+  
   // Update pricing text
   var txt = document.getElementById('pe-pricing-text');
-  if (txt) txt.textContent = getEstimatedCost();
+  if (!txt) return;
+  
+  txt.textContent = 'Calculating...';
+  
+  // Try distance-based calculation first
+  var result = await calculateErrandPrice();
+  
+  if (result && result.distance) {
+    // Real distance calculation
+    txt.innerHTML = '₦' + result.total.toLocaleString() + 
+      ' <span style="font-size:11px;color:var(--muted);font-weight:400;">(base ₦' + result.base.toLocaleString() + 
+      ' + ' + result.distance + ' · ' + result.duration + ')</span>';
+    currentErrand.estimatedPrice = result.total;
+  } else {
+    // Fallback to range
+    txt.textContent = getEstimatedCost();
+    currentErrand.estimatedPrice = pricing.min;
+  }
 }
 
 function getEstimatedCost() {
@@ -2706,6 +2870,198 @@ function getEstimatedCost() {
   } else {
     return 'Estimated: ₦' + pricing.min.toLocaleString() + ' — ₦' + pricing.max.toLocaleString();
   }
+}
+
+
+// ==================== GOOGLE MAPS ====================
+var mapsReady = false;
+var autocompleteInstances = {};
+
+function initMaps() {
+  mapsReady = true;
+  // Init any pending autocomplete fields
+  initPendingAutocomplete();
+}
+
+function initPendingAutocomplete() {
+  var fields = ['pe-location1', 'pe-location2', 'pe-pickup', 'pe-dest', 'pe-school-name'];
+  fields.forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el && !autocompleteInstances[id]) {
+      initAutocomplete(id);
+    }
+  });
+}
+
+function initAutocomplete(fieldId) {
+  var el = document.getElementById(fieldId);
+  if (!el || !mapsReady || autocompleteInstances[fieldId]) return;
+  
+  var options = {
+    componentRestrictions: { country: 'ng' },
+    fields: ['formatted_address', 'geometry', 'name'],
+    types: ['geocode', 'establishment']
+  };
+  
+  try {
+    var ac = new google.maps.places.Autocomplete(el, options);
+    autocompleteInstances[fieldId] = ac;
+    
+    ac.addListener('place_changed', function() {
+      var place = ac.getPlace();
+      if (place.formatted_address) {
+        el.value = place.formatted_address;
+        // Store coordinates for distance calculation
+        if (place.geometry && place.geometry.location) {
+          el.dataset.lat = place.geometry.location.lat();
+          el.dataset.lng = place.geometry.location.lng();
+        }
+      }
+    });
+  } catch(e) {
+    console.log('Autocomplete init failed for', fieldId, e);
+  }
+}
+
+// Calculate distance between two locations
+async function calculateDistance(origin, destination) {
+  if (!mapsReady || !origin || !destination) return null;
+  
+  return new Promise(function(resolve) {
+    var service = new google.maps.DistanceMatrixService();
+    service.getDistanceMatrix({
+      origins: [origin],
+      destinations: [destination],
+      travelMode: google.maps.TravelMode.DRIVING,
+      unitSystem: google.maps.UnitSystem.METRIC
+    }, function(response, status) {
+      if (status === 'OK' && response.rows[0].elements[0].status === 'OK') {
+        var element = response.rows[0].elements[0];
+        resolve({
+          distance: element.distance.value / 1000, // km
+          distanceText: element.distance.text,
+          duration: element.duration.text
+        });
+      } else {
+        resolve(null);
+      }
+    });
+  });
+}
+
+// Calculate price based on category and distance
+async function calculateErrandPrice() {
+  var cat = currentErrand.category;
+  var pricing = categoryPricing[cat];
+  if (!pricing) return null;
+  
+  var loc1 = document.getElementById('pe-location1');
+  var loc2 = document.getElementById('pe-location2');
+  
+  if (pricing.type === 'task' && loc1 && loc2 && loc1.dataset.lat && loc2.dataset.lat) {
+    // Distance-based calculation
+    var origin = loc1.value;
+    var dest = loc2.value;
+    var distResult = await calculateDistance(origin, dest);
+    
+    if (distResult) {
+      currentErrand.distance = distResult.distance;
+      currentErrand.distanceText = distResult.distanceText;
+      currentErrand.duration = distResult.duration;
+      
+      // Base rate + distance multiplier (₦100/km above 3km)
+      var base = pricing.min;
+      var extraKm = Math.max(0, distResult.distance - 3);
+      var distanceCharge = Math.round(extraKm * 100);
+      var total = base + distanceCharge;
+      
+      return {
+        base: base,
+        distanceCharge: distanceCharge,
+        total: total,
+        distance: distResult.distanceText,
+        duration: distResult.duration
+      };
+    }
+  }
+  
+  // Fallback to range estimate
+  return {
+    base: pricing.min,
+    distanceCharge: 0,
+    total: pricing.min,
+    distance: null,
+    duration: null
+  };
+}
+
+
+// ==================== REFERRAL SYSTEM ====================
+function generateReferralCode(userId) {
+  // Generate a short unique code from user ID
+  var chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  var code = 'ERR';
+  var hash = userId.replace(/-/g, '').slice(0, 8);
+  for (var i = 0; i < 8; i += 2) {
+    var num = parseInt(hash.slice(i, i+2), 16) % chars.length;
+    code += chars[num];
+  }
+  return code;
+}
+
+async function loadReferralPage() {
+  if (!currentUser) return;
+  
+  var code = generateReferralCode(currentUser.id);
+  var referralLink = 'https://errands-app-dun.vercel.app?ref=' + code;
+  
+  // Update referral page elements if they exist
+  var codeEl = document.getElementById('referral-code');
+  var linkEl = document.getElementById('referral-link');
+  var countEl = document.getElementById('referral-count');
+  var earningsEl = document.getElementById('referral-earnings');
+  
+  if (codeEl) codeEl.textContent = code;
+  if (linkEl) linkEl.textContent = referralLink;
+  
+  // Load referral stats from profiles
+  var res = await sb.from('profiles').select('id').eq('referred_by', code);
+  var count = res.data ? res.data.length : 0;
+  if (countEl) countEl.textContent = count;
+  if (earningsEl) earningsEl.textContent = '₦' + (count * 500).toLocaleString();
+  
+  return { code: code, link: referralLink };
+}
+
+async function shareReferral() {
+  var result = await loadReferralPage();
+  if (!result) return;
+  
+  var text = 'I use Errands to get things done in Lagos. Trusted runners, secure payments. Sign up with my link and we both earn ₦500! ' + result.link;
+  
+  if (navigator.share) {
+    navigator.share({ title: 'Join Errands', text: text, url: result.link });
+  } else {
+    navigator.clipboard.writeText(result.link);
+    toast('Referral link copied!');
+  }
+}
+
+// Check if user came via referral link
+function checkReferral() {
+  var params = new URLSearchParams(window.location.search);
+  var ref = params.get('ref');
+  if (ref) {
+    sessionStorage.setItem('referral_code', ref);
+  }
+}
+
+// Save referral when user signs up
+async function saveReferral(userId) {
+  var ref = sessionStorage.getItem('referral_code');
+  if (!ref) return;
+  await sb.from('profiles').update({ referred_by: ref }).eq('id', userId);
+  sessionStorage.removeItem('referral_code');
 }
 
 // ==================== NOTIFICATIONS ====================
@@ -3143,13 +3499,16 @@ let currentRole = 'user';
 function switchRole() {
   if (currentRole === 'user') {
     currentRole = 'runner';
-    document.getElementById('role-switch-label').textContent = 'Switch to User';
+    var lbl = document.getElementById('role-switch-label');
+    if (lbl) lbl.textContent = 'User mode';
     go('runner-dash');
     loadRunnerDashboard();
     toast('Switched to Runner mode');
   } else {
     currentRole = 'user';
-    document.getElementById('role-switch-label').textContent = 'Switch to Runner';
+    var lbl = document.getElementById('role-switch-label');
+    if (lbl) lbl.textContent = 'Runner mode';
+    loadHomeData();
     go('home');
     toast('Switched to User mode');
   }
@@ -3157,9 +3516,12 @@ function switchRole() {
 
 async function checkUserRoles() {
   if (!currentUser) return;
-  const { data: runner } = await sb.from('runners').select('id').eq('user_id', currentUser.id).single();
-  if (runner) {
-    document.getElementById('role-switch-btn').style.display = 'flex';
+  var res = await sb.from('runners').select('id').eq('user_id', currentUser.id).single();
+  var btn = document.getElementById('role-switch-btn');
+  if (res.data && btn) {
+    btn.style.display = 'flex';
+    // Also show switch on runner dash
+    currentRole = 'user'; // default to user mode
   }
 }
 
